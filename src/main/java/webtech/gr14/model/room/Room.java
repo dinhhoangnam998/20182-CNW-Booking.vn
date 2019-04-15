@@ -1,5 +1,6 @@
 package webtech.gr14.model.room;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,19 @@ public class Room {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private int type;
+	private int roomType;
 	private int quality;
 	private int maxPeople;
+	
+	@Embedded
+	private Bathroom bathroom;
+	
+	@Embedded
+	private Bed bed;
+	
+	@Embedded
+	private Media media;
+	
+	@Embedded
+	private RoomGeneralFacility roomGeneralFacility;
 }

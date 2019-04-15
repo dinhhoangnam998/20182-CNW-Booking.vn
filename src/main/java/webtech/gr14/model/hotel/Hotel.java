@@ -3,6 +3,7 @@ package webtech.gr14.model.hotel;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,4 +33,13 @@ public class Hotel {
 	private List<String> imgURLs;
 	private String description;
 	// coordinate??
+
+	@Embedded
+	private HotelGeneralFacility hotelGeneralFacility = new HotelGeneralFacility();
+
+	@Embedded
+	private HotelService hotelService = new HotelService();
+
+	@Embedded
+	private HouseRule houseRule = new HouseRule();
 }
