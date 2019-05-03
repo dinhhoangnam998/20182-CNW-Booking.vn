@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import webtech.gr14.model.hotel.Hotel;
 
-public interface HotelJpa extends JpaRepository<Hotel, Integer> {
+public interface HotelR extends JpaRepository<Hotel, Integer> {
 
 	Hotel findByHotelService_Wakeup(boolean b);
 

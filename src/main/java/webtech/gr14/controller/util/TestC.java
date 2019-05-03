@@ -1,4 +1,4 @@
-package webtech.gr14.controller;
+package webtech.gr14.controller.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,13 +9,13 @@ import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.model.hotel.HotelGeneralFacility;
 import webtech.gr14.model.hotel.HotelService;
 import webtech.gr14.model.hotel.HouseRule;
-import webtech.gr14.repository.hotel.HotelJpa;
+import webtech.gr14.repository.hotel.HotelR;
 
 @Controller
-public class TestCtrl {
+public class TestC {
 
 	@Autowired
-	private HotelJpa hJpa;
+	private HotelR hJpa;
 
 	@GetMapping("/seed-data")
 	public String seedData() {

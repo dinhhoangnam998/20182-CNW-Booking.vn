@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import webtech.gr14.model.ReserveOrder;
 
-public interface ReserveOrderJpa  extends JpaRepository<ReserveOrder, Integer>{
+public interface ReserveOrderR  extends JpaRepository<ReserveOrder, Integer>{
 
 }

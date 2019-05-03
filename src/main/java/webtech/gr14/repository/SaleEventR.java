@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import webtech.gr14.model.SaleEvent;
 
-public interface SaleEventJpa  extends JpaRepository<SaleEvent, Integer>{
+public interface SaleEventR  extends JpaRepository<SaleEvent, Integer>{
 
 }

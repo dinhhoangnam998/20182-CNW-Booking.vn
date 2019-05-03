@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import webtech.gr14.model.room.Room;
 
-public interface RoomJpa  extends JpaRepository<Room, Integer>{
+public interface RoomR  extends JpaRepository<Room, Integer>{
 
 }
