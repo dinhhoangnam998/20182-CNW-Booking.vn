@@ -1,8 +1,8 @@
-package webtech.gr14.service.guest;
+package webtech.gr14.service.acc;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class HomeS {
+public class LogoutS {
 
 }

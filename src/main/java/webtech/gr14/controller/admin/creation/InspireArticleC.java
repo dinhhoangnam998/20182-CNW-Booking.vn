@@ -9,5 +9,7 @@ import webtech.gr14.service.admin.creation.InspireArticleS;
 public class InspireArticleC {
 
 	@Autowired
-	private InspireArticleS iaS;
+	private InspireArticleS iAS;
+	
+	
 }

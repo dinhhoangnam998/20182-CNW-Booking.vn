@@ -1,0 +1,17 @@
+Naming:
+ - level 1: chỉ lấy chữ cái đầu mỗi từ
+ - level 2: lấy chữ cái đầu mỗi âm tiết
+ - level 3: lấy phần đầu (pagi -> paginator)
+ - level 4: chuẩn Java, k viết tắt
+ 
+ -> tên các Class C, S, R, M : level 1
+ -> tên thuộc tính CSRM : level 1
+ -> tên thuộc tính thường: level 4
+ -> tên param : 1 or 2 or 3 prefer 2
+ -> tên local variable: 1 or 2 or 3 prefer 2
+ 
+ RESTFUL
+ - chia làm 4 phần
+  + đường dẫn/tài nguyên/hành động?tham số
+  vd: /admin/manage/books/{id}/edit
+      /admin/manage/books?p=12&pS=15

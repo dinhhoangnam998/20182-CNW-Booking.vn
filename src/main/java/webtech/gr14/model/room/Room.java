@@ -37,7 +37,7 @@ public class Room {
 	private int numberOfBed;
 	private int maxPeople;
 	private int price;
-	private int salePercent;
+//	private int salePercent;
 	//
 	private int remainQuantity;
 
