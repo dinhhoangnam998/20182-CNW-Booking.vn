@@ -1,5 +1,6 @@
 package webtech.gr14.model.hotel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -23,6 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Proxy(lazy = false)
 public class Hotel {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -30,16 +32,16 @@ public class Hotel {
 	private String address;
 	private String imgURL;
 	@ElementCollection
-	private List<String> imgURLs;
+	private List<String> imgURLs = new ArrayList<String>();
 	private String description;
 	// coordinate??
 
 	@Embedded
-	private HotelGeneralFacility hotelGeneralFacility = new HotelGeneralFacility();
+	private HotelGeneralFacility hotelGeneralFacility;
 
 	@Embedded
-	private HotelService hotelService = new HotelService();
+	private HotelService hotelService;
 
 	@Embedded
-	private HouseRule houseRule = new HouseRule();
+	private HouseRule houseRule;
 }

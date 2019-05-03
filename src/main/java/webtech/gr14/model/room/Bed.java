@@ -18,5 +18,6 @@ import lombok.Setter;
 public class Bed {
 
 	private int bedType;
+	private int quantity;
 
 }
