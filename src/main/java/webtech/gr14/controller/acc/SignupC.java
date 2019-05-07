@@ -21,13 +21,14 @@ public class SignupC {
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("acc", new Acc());
-		return "user/account/signup";
+		return "acc/signup/signup";
 	}
 	
-	@PostMapping("/sign-up")
+	@PostMapping("/signup")
 	public String signup(RedirectAttributes rdA, Acc acc) {
 		if(sS.checkSignupAccValid(acc)) {
 			sS.createNewAcc(acc);
+			rdA.addFlashAttribute("acc", acc);
 			return "redirect:/acc/signup-success";
 		} else {
 			rdA.addFlashAttribute("msgs", sS.getSignUpErrorMessages());
@@ -37,6 +38,6 @@ public class SignupC {
 	
 	@GetMapping("/signup-success")
 	public String signupSuccess(RedirectAttributes redirAttr) {
-		return "acc/signup-success";
+		return "acc/signup/signup-success";
 	}
 }

@@ -30,9 +30,7 @@ public class ProfileC {
 
 	@RequestMapping(value = "/profiles/{aid}/change-avatar", method = RequestMethod.POST, consumes = { "multipart/form-data" })
 	public String changeAvatar(@PathVariable int aid, @RequestParam MultipartFile file) {
-//		User user = accountService.userJpa.getOne(aid);
-//		user.setImgURL("/images/user/" + sfSvc.storageFile(file, "user", user.getUsername()));
-//		accountService.userJpa.save(user);
+		pS.changeAvatar(aid, file);
 		return "redirect:/profiles/" + aid;
 	}
 
@@ -56,7 +54,6 @@ public class ProfileC {
 
 	@GetMapping("/profiles/{aid}/change-password")
 	public String changePassword(Model model, @PathVariable int aid) {
-		model.addAttribute("acc", pS.getAccById(aid));
 		return "/acc/change-password";
 	}
 
@@ -67,7 +64,7 @@ public class ProfileC {
 			rdA.addFlashAttribute("msg", "Change password success!");
 			return "/acc/profiles/" + acc.getId();
 		} else {
-			rdA.addFlashAttribute("msgs", pS.getChangePasswordErrorMessage());
+			rdA.addFlashAttribute("msg","Password or Confirm password is not valid!");
 			return "/acc/profiles/" + acc.getId() + "/change-password";
 		}
 	}

@@ -9,10 +9,6 @@ public class SpringSecurityUtil {
 
 	public static String getUsername() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal instanceof UserDetails) {
-			return ((UserDetails) principal).getUsername();
-		} else {
-			return "null";
-		}
+		return ((UserDetails) principal).getUsername();
 	}
 }

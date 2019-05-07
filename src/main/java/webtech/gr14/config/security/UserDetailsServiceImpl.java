@@ -19,12 +19,12 @@ import webtech.gr14.repository.AccR;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private AccR accJpa;
+	private AccR aR;
 
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Acc user = accJpa.findByUsername(username);
+		Acc user = aR.findByUsername(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found!");
 		}
@@ -36,10 +36,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		if (user.getRole() == 1) {
+			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_HOST"));
 		}
 
 		if (user.getRole() == 2) {
+			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		}
 
