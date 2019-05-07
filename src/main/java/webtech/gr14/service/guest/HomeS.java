@@ -1,4 +1,4 @@
-package webtech.gr14.service;
+package webtech.gr14.service.guest;
 
 import org.springframework.stereotype.Service;
 

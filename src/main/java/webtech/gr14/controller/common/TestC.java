@@ -1,4 +1,4 @@
-package webtech.gr14.controller.util;
+package webtech.gr14.controller.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

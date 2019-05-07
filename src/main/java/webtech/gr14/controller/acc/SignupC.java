@@ -35,7 +35,7 @@ public class SignupC {
 		}
 	}
 	
-	@GetMapping("signup-success")
+	@GetMapping("/signup-success")
 	public String signupSuccess(RedirectAttributes redirAttr) {
 		return "acc/signup-success";
 	}
