@@ -27,27 +27,27 @@ public class GuestC {
 		return "/admin/manage/guest/bad-transactions";
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{gid}")
 	public String showGuestInfo() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/warning") 
+	@GetMapping("/{gid}/warning") 
 	public String warning() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/unwarning")
+	@GetMapping("/{gid}/unwarning")
 	public String unwarning() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/block")
+	@GetMapping("/{gid}/block")
 	public String block() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/unblock")
+	@GetMapping("/{gid}/unblock")
 	public String unblock() {
 		return "";
 	}

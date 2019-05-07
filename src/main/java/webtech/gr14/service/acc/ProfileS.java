@@ -14,8 +14,8 @@ public class ProfileS {
 	@Autowired
 	public AccR aR;
 
-	public Acc getUserById(int id) {
-		return aR.getOne(id);
+	public Acc getAccById(int aid) {
+		return aR.getOne(aid);
 	}
 
 	public boolean checkModifyProfileValid(Acc acc) {

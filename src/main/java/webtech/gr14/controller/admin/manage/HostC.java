@@ -19,27 +19,27 @@ public class HostC {
 		return "";
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{hid}")
 	public String showHostInfo() {
 		return "";
 	}
 
-	@GetMapping("/{id}/warning")
+	@GetMapping("/{hid}/warning")
 	public String warning() {
 		return "";
 	}
 
-	@GetMapping("/{id}/unwarning")
+	@GetMapping("/{hid}/unwarning")
 	public String unwarning() {
 		return "";
 	}
 
-	@GetMapping("/{id}/block")
+	@GetMapping("/{hid}/block")
 	public String block() {
 		return "";
 	}
 
-	@GetMapping("/{id}/unblock")
+	@GetMapping("/{hid}/unblock")
 	public String unblock() {
 		return "";
 	}

@@ -10,33 +10,33 @@ import webtech.gr14.model.room.Room;
 import webtech.gr14.service.host.manage.RoomS;
 
 @Controller
-@RequestMapping("/host/manage/hotels")
+@RequestMapping("/host/manage/hotels/{hid}/")
 public class RoomC {
 
 	@Autowired
 	private RoomS rS;
 	
-	@GetMapping("/{hid}/rooms")
+	@GetMapping("/rooms")
 	public String showRooms() {
 		return "";
 	}
 
-	@GetMapping("/{hid}/rooms/add")
+	@GetMapping("/rooms/add")
 	public String addRoom() {
 		return "";
 	}
 
-	@PostMapping("/{hid}/rooms/add")
+	@PostMapping("/rooms/add")
 	public String addRoom(Room room) {
 		return "";
 	}
 
-	@GetMapping("/{hid}/rooms/{rid}/edit")
+	@GetMapping("/rooms/{rid}/edit")
 	public String editRoom() {
 		return "";
 	}
 
-	@PostMapping("/{hid}/rooms/{rid}/edit")
+	@PostMapping("/rooms/{rid}/edit")
 	public String editRoom(Room room) {
 		return "";
 	}

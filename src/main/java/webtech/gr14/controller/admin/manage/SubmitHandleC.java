@@ -19,22 +19,22 @@ public class SubmitHandleC {
 		return "";
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{sid}")
 	public String showSubmit() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/new")
+	@GetMapping("/{sid}/new")
 	public String markNew() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/processing")
+	@GetMapping("/{sid}/processing")
 	public String markProcessing() {
 		return "";
 	}
 	
-	@GetMapping("/{id}/approval")
+	@GetMapping("/{sid}/approval")
 	public String markApprovaled() {
 		return "";
 	}
