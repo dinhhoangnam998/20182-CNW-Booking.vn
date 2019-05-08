@@ -38,6 +38,13 @@ public class ReserveOrder {
 	private int charge;
 	private int state;
 	
+	private int voteByGuest;
+	private int voteByHost;
+	private boolean checked;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date checkDate;
+	
 	@ManyToOne
 	private Acc acc;
 	
