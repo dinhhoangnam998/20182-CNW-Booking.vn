@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import webtech.gr14.model.Acc;
 import webtech.gr14.model.ReserveOrder;
 import webtech.gr14.service.admin.manage.GuestS;
+import webtech.gr14.util.AccRole;
 import webtech.gr14.util.AccState;
 
 @Controller
@@ -38,7 +39,15 @@ public class GuestC {
 	public String showGuestInfo(Model model, @PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
 		model.addAttribute("guest", guestAcc);
-		return "";
+		List<ReserveOrder> recentTrans = gS.getSomeRecentTrans(gid);
+		model.addAttribute("reserveOrders", recentTrans);
+		return "/admin/manage/guest/guest-info";
+	}
+
+	@ResponseBody
+	@GetMapping("/{gid}/get-more-transactions")
+	public List<ReserveOrder> fetchTransactions(@PathVariable int gid, @RequestParam int ith) {
+		return gS.getMoreTransactions(gid, ith);
 	}
 
 	@ResponseBody
@@ -46,7 +55,7 @@ public class GuestC {
 	public String warning(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
 		guestAcc.setState(AccState.WARNING);
-		guestAcc.setWarningDate(new Date());
+		guestAcc.setHandelDate(new Date());
 		gS.aR.save(guestAcc);
 		return "";
 	}
@@ -65,6 +74,8 @@ public class GuestC {
 	public String block(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
 		guestAcc.setState(AccState.BLOCK);
+		guestAcc.setRole(AccRole.BLOCKED);
+		guestAcc.setHandelDate(new Date());
 		gS.aR.save(guestAcc);
 		return "";
 	}
@@ -74,6 +85,7 @@ public class GuestC {
 	public String unblock(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
 		guestAcc.setState(AccState.ACTIVE);
+		guestAcc.setRole(AccRole.GUEST);
 		gS.aR.save(guestAcc);
 		return "";
 	}

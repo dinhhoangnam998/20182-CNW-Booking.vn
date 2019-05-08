@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import webtech.gr14.model.Acc;
 import webtech.gr14.repository.AccR;
+import webtech.gr14.util.AccRole;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -24,28 +25,28 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Acc user = aR.findByUsername(username);
-		if (user == null) {
+		Acc acc = aR.findByUsername(username);
+		if (acc == null) {
 			throw new UsernameNotFoundException("User not found!");
 		}
 
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
-		if (user.getRole() == 0) {
+		if (acc.getRole() == AccRole.GUEST) {
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 		}
 
-		if (user.getRole() == 1) {
+		if (acc.getRole() == AccRole.HOST) {
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_HOST"));
 		}
 
-		if (user.getRole() == 2) {
+		if (acc.getRole() == AccRole.ADMIN) {
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		}
 
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+		return new org.springframework.security.core.userdetails.User(acc.getUsername(), acc.getPassword(),
 				grantedAuthorities);
 	}
 

@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import webtech.gr14.util.HotelState;
 
 @Entity
 @Getter
@@ -35,7 +36,7 @@ public class Hotel {
 	private List<String> imgURLs = new ArrayList<String>();
 	private String description;
 	// coordinate??
-
+	private HotelState state;
 	@Embedded
 	private HotelGeneralFacility hotelGeneralFacility;
 
