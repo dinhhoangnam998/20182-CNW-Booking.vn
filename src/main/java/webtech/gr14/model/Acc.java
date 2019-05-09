@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webtech.gr14.util.AccRole;
-import webtech.gr14.util.AccState;
+import webtech.gr14.util.ActiveState;
 import webtech.gr14.util.Gender;
 
 @Entity
@@ -58,7 +58,7 @@ public class Acc {
 	private double hotelScore;
 
 	// admin manage guest info
-	private AccState state;
+	private ActiveState state;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date handelDate;

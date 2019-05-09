@@ -1,5 +1,6 @@
 package webtech.gr14.controller.admin.manage;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.service.admin.manage.SubmitHandleS;
-import webtech.gr14.util.HotelState;
+import webtech.gr14.util.ActiveState;
+import webtech.gr14.util.SubmitState;
 
 @Controller
 @RequestMapping("/admin/manage/submits")
@@ -33,23 +35,41 @@ public class SubmitHandleC {
 	}
 
 	@GetMapping("/{sid}")
-	public String showSubmit(Model model, @PathVariable int sid) {
+	public String showSubmitInfo(Model model, @PathVariable int sid) {
 		model.addAttribute("hotel", shS.hR.getOne(sid));
 		return "/admin/manage/submit/show";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/{sid}/checked")
 	public String markChecked(@PathVariable int sid) {
 		Hotel hotel = shS.hR.getOne(sid);
-		hotel.setState(HotelState.CHECKED);
-		
+		hotel.setSubmitState(SubmitState.CHECKED);
+		hotel.setHandleSubmitDate(new Date());
+		shS.hR.save(hotel);
 		return "";
 	}
 
 	@ResponseBody
 	@GetMapping("/{sid}/approval")
-	public String markApprovaled() {
+	public String markApprovaled(@PathVariable int sid) {
+		Hotel hotel = shS.hR.getOne(sid);
+		hotel.setSubmitState(SubmitState.APPROVAL);
+		hotel.setActiveState(ActiveState.ACTIVE);
+		hotel.setHandleSubmitDate(new Date());
+		shS.hR.save(hotel);
 		return "";
 	}
+
+	@ResponseBody
+	@GetMapping("/{sid}/decline")
+	public String markDeclined(@PathVariable int sid) {
+		Hotel hotel = shS.hR.getOne(sid);
+		hotel.setSubmitState(SubmitState.DECLINED);
+		hotel.setActiveState(ActiveState.BLOCKED);
+		hotel.setHandleSubmitDate(new Date());
+		shS.hR.save(hotel);
+		return "";
+	}
+
 }

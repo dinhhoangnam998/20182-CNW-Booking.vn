@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Proxy(lazy = false)
 public class ReserveOrder {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -37,17 +37,21 @@ public class ReserveOrder {
 	private String note;
 	private int charge;
 	private int state;
-	
+
 	private int voteByGuest;
 	private int voteByHost;
-	private boolean checked;
+
+	// admin manage info
+	private boolean checkedHotel;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date checkDate;
-	
+	private Date checkHotelDate;
+
+	private boolean checkedGuest;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date checkGuestDate;
+
 	@ManyToOne
 	private Acc acc;
-	
-	// list details
-
 }

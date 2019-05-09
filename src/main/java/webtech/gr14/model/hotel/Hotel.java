@@ -1,6 +1,7 @@
 package webtech.gr14.model.hotel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -9,14 +10,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Proxy;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import webtech.gr14.util.HotelState;
+import webtech.gr14.model.Acc;
+import webtech.gr14.util.ActiveState;
+import webtech.gr14.util.SubmitState;
 
 @Entity
 @Getter
@@ -25,7 +32,7 @@ import webtech.gr14.util.HotelState;
 @AllArgsConstructor
 @Proxy(lazy = false)
 public class Hotel {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -35,8 +42,12 @@ public class Hotel {
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
 	private String description;
+	
 	// coordinate??
-	private HotelState state;
+	
+	@ManyToOne
+	private Acc acc;
+
 	@Embedded
 	private HotelGeneralFacility hotelGeneralFacility;
 
@@ -45,4 +56,11 @@ public class Hotel {
 
 	@Embedded
 	private HouseRule houseRule;
+
+	// admin manage info
+	private ActiveState activeState;
+	private SubmitState submitState;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date handleSubmitDate;
 }
