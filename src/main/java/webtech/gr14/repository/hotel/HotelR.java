@@ -5,15 +5,16 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import webtech.gr14.model.hotel.Hotel;
+import webtech.gr14.util.enums.ActiveState;
 
 public interface HotelR extends JpaRepository<Hotel, Integer> {
 
 	Hotel findByHotelService_Wakeup(boolean b);
 
-	List<Hotel> findByAcc_Id(int id);
-
-	Hotel findByName(String name);
+	Hotel findByNameAndDeleted(String name, boolean b);
 
 	List<Hotel> findByAcc_IdAndDeleted(int id, boolean b);
+
+	List<Hotel> findByCommune_IdAndDeletedAndActiveStateNot(int cid, boolean b, ActiveState blocked);
 
 }

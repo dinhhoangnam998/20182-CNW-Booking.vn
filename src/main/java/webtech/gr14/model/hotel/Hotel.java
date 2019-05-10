@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webtech.gr14.model.Acc;
+import webtech.gr14.model.address.Commune;
 import webtech.gr14.util.enums.ActiveState;
 import webtech.gr14.util.enums.SubmitState;
 
@@ -66,5 +67,8 @@ public class Hotel {
 
 	@Embedded
 	private HouseRule houseRule;
+	
+	@ManyToOne
+	private Commune commune;
 
 }

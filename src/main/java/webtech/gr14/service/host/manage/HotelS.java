@@ -34,7 +34,7 @@ public class HotelS {
 
 	public boolean validateNewHotel(Hotel newHotel) {
 		errMsgs.clear();
-		Hotel hotel = hR.findByName(newHotel.getName());
+		Hotel hotel = hR.findByNameAndDeleted(newHotel.getName(), false);
 		if (hotel != null) {
 			errMsgs.add(env.getProperty("msg.hotel.add.failure.hotel-name-exit"));
 		}
@@ -58,7 +58,7 @@ public class HotelS {
 
 	public boolean validateModifyHotel(Hotel newHotel) {
 		errMsgs.clear();
-		Hotel hotel = hR.findByName(newHotel.getName());
+		Hotel hotel = hR.findByNameAndDeleted(newHotel.getName(), false);
 		if (hotel != null) {
 			errMsgs.add(env.getProperty("msg.hotel.add.failure.hotel-name-exit"));
 		}
