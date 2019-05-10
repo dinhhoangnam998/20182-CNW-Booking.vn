@@ -1,4 +1,4 @@
-package webtech.gr14.model.room;
+package webtech.gr14.model.floor;
 
 import javax.persistence.Embeddable;
 

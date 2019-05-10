@@ -1,4 +1,4 @@
-package webtech.gr14.model.room;
+package webtech.gr14.model.floor;
 
 import javax.persistence.Embeddable;
 
@@ -15,10 +15,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Proxy(lazy = false)
-public class RoomGeneralFacility {
+public class Bed {
 
-	private boolean airconditioning;
-	private boolean heating;
-	private boolean view;
-	private boolean soundproof;
+	private int bedType;
+	private int quantity;
+
 }

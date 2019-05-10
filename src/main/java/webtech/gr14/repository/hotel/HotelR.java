@@ -14,4 +14,6 @@ public interface HotelR extends JpaRepository<Hotel, Integer> {
 
 	Hotel findByName(String name);
 
+	List<Hotel> findByAcc_IdAndDeleted(int id, boolean b);
+
 }

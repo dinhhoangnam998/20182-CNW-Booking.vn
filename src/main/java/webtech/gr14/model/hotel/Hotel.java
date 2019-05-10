@@ -42,6 +42,7 @@ public class Hotel {
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
 	private String description;
+	private boolean deleted;
 	// coordinate??
 
 	// admin manage info

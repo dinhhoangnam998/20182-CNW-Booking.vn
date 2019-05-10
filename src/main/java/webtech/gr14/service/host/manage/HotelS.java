@@ -29,7 +29,7 @@ public class HotelS {
 
 	public List<Hotel> getHotels() {
 		Acc acc = aS.getAcc();
-		return hR.findByAcc_Id(acc.getId());
+		return hR.findByAcc_IdAndDeleted(acc.getId(), false);
 	}
 
 	public boolean validateNewHotel(Hotel newHotel) {

@@ -9,39 +9,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import webtech.gr14.service.host.manage.AdjustRoomS;
+import webtech.gr14.service.host.manage.AdjustFloorS;
 
 @Controller
-@RequestMapping("/host/manage/hotels/{hid}/rooms/adjust")
-public class AdjustRoomC {
+@RequestMapping("/host/manage/hotels/{hid}/floors/adjust")
+public class AdjustFloorC {
 
 	@Autowired
-	private AdjustRoomS arS;
+	private AdjustFloorS afS;
 
 	@GetMapping
 	public String list(Model model, @PathVariable int hid) {
-		model.addAttribute("rooms", arS.getRooms(hid));
+		model.addAttribute("floor", afS.getFloors(hid));
 		return "";
 	}
 
 	@ResponseBody
-	@GetMapping("/{rid}")
-	public String adjustRoom(@RequestParam String dates, @RequestParam int price, @PathVariable int rid) {
-		arS.adjust(rid, dates, price);
+	@GetMapping("/{fid}")
+	public String adjustRoom(@RequestParam String openDates, @RequestParam int price, @PathVariable int fid) {
+		afS.adjust(fid, openDates, price);
 		return "";
 	}
 
 	@ResponseBody
-	@GetMapping("/{rid}/off")
-	public String turnOff(@PathVariable int rid) {
-		arS.turnOff(rid);
+	@GetMapping("/{fid}/off")
+	public String turnOff(@PathVariable int fid) {
+		afS.turnOff(fid);
 		return "";
 	}
 
 	@ResponseBody
-	@GetMapping("/{rid}/on")
-	public String turnOn(@PathVariable int rid) {
-		arS.turnOn(rid);
+	@GetMapping("/{fid}/on")
+	public String turnOn(@PathVariable int fid) {
+		afS.turnOn(fid);
 		return "";
 	}
 

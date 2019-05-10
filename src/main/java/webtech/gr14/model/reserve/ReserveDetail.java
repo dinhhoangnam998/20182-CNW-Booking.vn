@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import webtech.gr14.model.room.Floor;
+import webtech.gr14.model.floor.Floor;
 
 @Entity
 @Getter

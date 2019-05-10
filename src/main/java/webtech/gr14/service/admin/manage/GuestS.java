@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import webtech.gr14.model.reserve.ReserveOrder;
 import webtech.gr14.repository.AccR;
-import webtech.gr14.repository.ReserveOrderR;
+import webtech.gr14.repository.reserve.ReserveOrderR;
 
 @Service
 public class GuestS {

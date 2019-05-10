@@ -1,4 +1,4 @@
-package webtech.gr14.model.room;
+package webtech.gr14.model.floor;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Proxy;
 
@@ -32,5 +33,9 @@ public class Room {
 	List<Date> remainOpenDates;
 	@ElementCollection
 	List<Date> reservedDates;
+	private boolean deleted;
+	
+	@ManyToOne
+	private Floor floor;
 
 }

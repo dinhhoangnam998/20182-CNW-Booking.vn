@@ -1,4 +1,4 @@
-package webtech.gr14.model.room;
+package webtech.gr14.model.floor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +33,13 @@ public class Floor {
 	private int id;
 	private String name;
 	private int ithFloor;
-	private int quantity;
+	private int numOfRoom;
 	private int price;
 	@Column(columnDefinition = "varchar(2047)")
 	private String openDates;
+	// on or off
 	private boolean active;
+	private boolean deleted;
 
 //	room info
 	private int roomType;

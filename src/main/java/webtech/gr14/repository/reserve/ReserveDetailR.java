@@ -1,4 +1,4 @@
-package webtech.gr14.repository;
+package webtech.gr14.repository.reserve;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
