@@ -33,6 +33,6 @@ public class ReserveDetail {
 	private ReserveOrder reserveOrder;
 	
 	@OneToOne
-	private Floor room;
+	private Floor floor;
 
 }

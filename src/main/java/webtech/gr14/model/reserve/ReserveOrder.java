@@ -1,13 +1,16 @@
 package webtech.gr14.model.reserve;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webtech.gr14.model.Acc;
+import webtech.gr14.util.enums.ReserveOrderState;
 
 @Entity
 @Getter
@@ -37,7 +41,8 @@ public class ReserveOrder {
 	private Date date;
 	private String note;
 	private int charge;
-	private int state;
+	private String dateRange;
+	private ReserveOrderState state;
 
 	// for admin to manage
 	private int voteByGuest;
@@ -45,6 +50,9 @@ public class ReserveOrder {
 	private boolean checkedHotel;
 	private boolean checkedGuest;
 
+	@OneToMany(mappedBy = "reserveOrder", cascade = CascadeType.ALL)
+	private List<ReserveDetail> reserveDetails;
+	
 	@ManyToOne
 	private Acc acc;
 }

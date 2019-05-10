@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,11 +25,18 @@ public class AdjustFloorC {
 		return "";
 	}
 
+	// need replace this by AJAX
+	@GetMapping("/{fild}")
+	public String showAdjustFloor(Model model, @PathVariable int fid) {
+		model.addAttribute("floor", afS.fR.getOne(fid));
+		return "";
+	}
+
 	@ResponseBody
-	@GetMapping("/{fid}")
+	@PostMapping("/{fid}")
 	public String adjustRoom(@RequestParam String openDates, @RequestParam int price, @PathVariable int fid) {
 		afS.adjust(fid, openDates, price);
-		return "";
+		return "success";
 	}
 
 	@ResponseBody

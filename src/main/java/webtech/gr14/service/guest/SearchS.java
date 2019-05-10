@@ -46,9 +46,7 @@ public class SearchS {
 			int numOfPeople) {
 		ss.setAttribute("dateRange", dateRange);
 		int cid = getCommuneIdFromAddress(address);
-		Date begin = getBeginDateFromDateRange(dateRange);
-		Date end = getEndDateFromDateRange(dateRange);
-		List<Date> dateList = getDateListFromBeginToEnd(begin, end);
+		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
 		return getSearchResult(cid, dateList, numOfRoom, numOfPeople);
 	}
 
@@ -56,22 +54,6 @@ public class SearchS {
 		String[] part = address.split(",");
 		String communeName = part[0];
 		return cR.findByName(communeName);
-	}
-
-	public Date getBeginDateFromDateRange(String dateRange) {
-		String[] part = dateRange.split("-");
-		String dateInStr = part[0];
-		return DateCommonUtil.stringToDate("MM/DD/YYYY", dateInStr);
-	}
-
-	public Date getEndDateFromDateRange(String dateRange) {
-		String[] part = dateRange.split("-");
-		String dateInStr = part[1];
-		return DateCommonUtil.stringToDate("MM/DD/YYYY", dateInStr);
-	}
-
-	public List<Date> getDateListFromBeginToEnd(Date begin, Date end) {
-		return DateCommonUtil.getDatesBetweenBeginAndEnd(begin, end);
 	}
 
 	public List<Hotel> getSearchResult(int cid, List<Date> dateList, int numOfRoom, int numOfPeople) {

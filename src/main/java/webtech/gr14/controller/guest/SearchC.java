@@ -15,7 +15,7 @@ import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.service.guest.SearchS;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/guest")
 public class SearchC {
 	@Autowired
 	private SearchS sS;
