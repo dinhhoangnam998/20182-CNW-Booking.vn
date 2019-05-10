@@ -25,10 +25,11 @@ public class ProfileC {
 	@GetMapping("/profiles/{aid}")
 	public String profile(Model model, @PathVariable int aid) {
 		model.addAttribute("acc", pS.getAccById(aid));
-		return "acc/profile";
+		return "/acc/profile/info";
 	}
 
-	@RequestMapping(value = "/profiles/{aid}/change-avatar", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	@RequestMapping(value = "/profiles/{aid}/change-avatar", method = RequestMethod.POST, consumes = {
+			"multipart/form-data" })
 	public String changeAvatar(@PathVariable int aid, @RequestParam MultipartFile file) {
 		pS.changeAvatar(aid, file);
 		return "redirect:/profiles/" + aid;
@@ -37,7 +38,7 @@ public class ProfileC {
 	@GetMapping("/profiles/{aid}/edit")
 	public String editProfile(Model model, @PathVariable int aid) {
 		model.addAttribute("acc", pS.getAccById(aid));
-		return "/acc/edit-profile";
+		return "/acc/profile/edit";
 	}
 
 	@PostMapping("/profiles/{aid}/edit")
@@ -45,7 +46,7 @@ public class ProfileC {
 		if (pS.checkModifyProfileValid(acc)) {
 			pS.saveModifiedProfile(acc);
 			rdA.addFlashAttribute("msg", "Change profile success!");
-			return "/acc/profiles" + acc.getId();
+			return "/acc/profiles/" + acc.getId();
 		} else {
 			rdA.addFlashAttribute("msgs", pS.getEditProfileErrorMessages());
 			return "redirect:/acc/profiles/" + acc.getId() + "/edit";
@@ -54,7 +55,7 @@ public class ProfileC {
 
 	@GetMapping("/profiles/{aid}/change-password")
 	public String changePassword(Model model, @PathVariable int aid) {
-		return "/acc/change-password";
+		return "/acc/profile/change-password";
 	}
 
 	@PostMapping("/profiles/{aid}/change-password")
@@ -64,8 +65,8 @@ public class ProfileC {
 			rdA.addFlashAttribute("msg", "Change password success!");
 			return "/acc/profiles/" + acc.getId();
 		} else {
-			rdA.addFlashAttribute("msg","Password or Confirm password is not valid!");
-			return "/acc/profiles/" + acc.getId() + "/change-password";
+			rdA.addFlashAttribute("msg", "Password or Confirm password is not valid!");
+			return "redirect:/acc/profiles/" + acc.getId() + "/change-password";
 		}
 	}
 

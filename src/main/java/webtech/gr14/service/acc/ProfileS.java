@@ -15,19 +15,19 @@ import webtech.gr14.service.util.StorageFileS;
 
 @Service
 public class ProfileS {
-	
+
 	@Autowired
 	public AccR aR;
-	
+
 	@Autowired
-	private AccChecker accChecker; 
-	
+	private AccChecker accChecker;
+
 	@Autowired
 	private PasswordEncoder pwE;
-	
+
 	@Autowired
 	private StorageFileS sfS;
-	
+
 	List<String> errMsgs = new ArrayList<String>();
 
 	public Acc getAccById(int aid) {
@@ -35,17 +35,17 @@ public class ProfileS {
 	}
 
 	public boolean checkModifyProfileValid(Acc acc) {
-		
+
 		errMsgs.clear();
-		
-		if(!accChecker.checkEmail(acc.getEmail())) {
+
+		if (!accChecker.checkEmail(acc.getEmail())) {
 			errMsgs.add("Email không hợp lệ!");
 		}
-		
-		if(!accChecker.checkPhone(acc.getPhone())) {
+
+		if (!accChecker.checkPhone(acc.getPhone())) {
 			errMsgs.add("Số điện thoại không hợp lệ!");
 		}
-		
+
 		return errMsgs.size() == 0;
 	}
 
@@ -70,6 +70,5 @@ public class ProfileS {
 		Acc acc = aR.getOne(aid);
 		acc.setImgURL("/images/acc/" + sfS.saveFile(file, "acc", acc.getUsername()));
 		aR.save(acc);
-		
 	}
 }

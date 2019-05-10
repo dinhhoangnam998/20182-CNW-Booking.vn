@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import webtech.gr14.service.guest.HomeS;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/guest")
 public class HomeC {
 
 	@Autowired
@@ -16,7 +16,7 @@ public class HomeC {
 	
 	@GetMapping("/home")
 	public String home() {
-		return "";
+		return "guest/home/home";
 	}
 	
 	

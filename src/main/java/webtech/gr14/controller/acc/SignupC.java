@@ -14,30 +14,30 @@ import webtech.gr14.service.acc.SignupS;
 @Controller
 @RequestMapping("/acc")
 public class SignupC {
-	
+
 	@Autowired
 	private SignupS sS;
-	
+
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("acc", new Acc());
 		return "acc/signup/signup";
 	}
-	
+
 	@PostMapping("/signup")
 	public String signup(RedirectAttributes rdA, Acc acc) {
-		if(sS.checkSignupAccValid(acc)) {
+		if (sS.checkSignupAccValid(acc)) {
 			sS.createNewAcc(acc);
 			rdA.addFlashAttribute("acc", acc);
-			return "redirect:/acc/signup-success";
+			return "redirect:/acc/signup/success";
 		} else {
 			rdA.addFlashAttribute("msgs", sS.getSignUpErrorMessages());
 			return "redirect:/acc/signup";
 		}
 	}
 	
-	@GetMapping("/signup-success")
-	public String signupSuccess(RedirectAttributes redirAttr) {
-		return "acc/signup/signup-success";
+	@GetMapping("/signup/success")
+	public String signupSuccess(Model model) {
+		return "/acc/signup/success";
 	}
 }

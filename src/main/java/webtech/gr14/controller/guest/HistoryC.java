@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import webtech.gr14.service.guest.HistoryS;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/guest")
 public class HistoryC {
 
 	@Autowired
