@@ -1,4 +1,4 @@
-package webtech.gr14.model;
+package webtech.gr14.model.article;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

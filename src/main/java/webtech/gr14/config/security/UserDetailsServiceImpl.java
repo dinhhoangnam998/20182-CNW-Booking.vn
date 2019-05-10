@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import webtech.gr14.model.Acc;
 import webtech.gr14.repository.AccR;
-import webtech.gr14.util.AccRole;
+import webtech.gr14.util.enums.AccRole;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

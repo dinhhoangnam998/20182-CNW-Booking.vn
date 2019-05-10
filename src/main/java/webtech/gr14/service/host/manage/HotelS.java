@@ -11,7 +11,7 @@ import webtech.gr14.model.Acc;
 import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.service.acc.AccS;
-import webtech.gr14.util.SubmitState;
+import webtech.gr14.util.enums.SubmitState;
 
 @Service("hostManageHotelS")
 public class HotelS {

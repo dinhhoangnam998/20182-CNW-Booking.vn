@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import webtech.gr14.model.room.Room;
+import webtech.gr14.model.room.Floor;
 
-public interface RoomR  extends JpaRepository<Room, Integer>{
+public interface RoomR  extends JpaRepository<Floor, Integer>{
 
-	List<Room> findByHotel_Id(int hid);
+	List<Floor> findByHotel_Id(int hid);
 
 }

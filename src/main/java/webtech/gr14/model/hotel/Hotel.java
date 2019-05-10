@@ -22,8 +22,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webtech.gr14.model.Acc;
-import webtech.gr14.util.ActiveState;
-import webtech.gr14.util.SubmitState;
+import webtech.gr14.util.enums.ActiveState;
+import webtech.gr14.util.enums.SubmitState;
 
 @Entity
 @Getter
@@ -42,9 +42,18 @@ public class Hotel {
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
 	private String description;
-	
 	// coordinate??
-	
+
+	// admin manage info
+	private ActiveState activeState;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date handelDate;
+	private SubmitState submitState;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date handleSubmitDate;
+
 	@ManyToOne
 	private Acc acc;
 
@@ -57,10 +66,4 @@ public class Hotel {
 	@Embedded
 	private HouseRule houseRule;
 
-	// admin manage info
-	private ActiveState activeState;
-	private SubmitState submitState;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date handleSubmitDate;
 }

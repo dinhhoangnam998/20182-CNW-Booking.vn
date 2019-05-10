@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import webtech.gr14.model.ReserveOrder;
+import webtech.gr14.model.reserve.ReserveOrder;
 import webtech.gr14.repository.AccR;
 import webtech.gr14.repository.ReserveOrderR;
 

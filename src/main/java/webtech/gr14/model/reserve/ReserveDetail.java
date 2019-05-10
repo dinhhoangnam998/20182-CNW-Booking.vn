@@ -1,4 +1,4 @@
-package webtech.gr14.model;
+package webtech.gr14.model.reserve;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import webtech.gr14.model.room.Room;
+import webtech.gr14.model.room.Floor;
 
 @Entity
 @Getter
@@ -33,6 +33,6 @@ public class ReserveDetail {
 	private ReserveOrder reserveOrder;
 	
 	@OneToOne
-	private Room room;
+	private Floor room;
 
 }

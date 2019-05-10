@@ -1,11 +1,13 @@
-package webtech.gr14.model;
+package webtech.gr14.model.reserve;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import webtech.gr14.model.Acc;
 
 @Entity
 @Getter
@@ -23,19 +26,25 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Proxy(lazy = false)
-public class SaleEvent {
+public class ReserveOrder {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date beginDate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
-	private String percent;
-	private String imgURL;
-	private String description;
-	// some property for condition
+	@Column(name = "datex")
+	private Date date;
+	private String note;
+	private int charge;
+	private int state;
+
+	// for admin to manage
+	private int voteByGuest;
+	private int voteByHost;
+	private boolean checkedHotel;
+	private boolean checkedGuest;
+
+	@ManyToOne
+	private Acc acc;
 }

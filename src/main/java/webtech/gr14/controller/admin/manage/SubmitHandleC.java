@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.service.admin.manage.SubmitHandleS;
-import webtech.gr14.util.ActiveState;
-import webtech.gr14.util.SubmitState;
+import webtech.gr14.util.enums.ActiveState;
+import webtech.gr14.util.enums.SubmitState;
 
 @Controller
 @RequestMapping("/admin/manage/submits")

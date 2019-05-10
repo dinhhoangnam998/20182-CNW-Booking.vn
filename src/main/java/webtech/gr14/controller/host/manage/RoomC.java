@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import webtech.gr14.model.room.Room;
+import webtech.gr14.model.room.Floor;
 import webtech.gr14.service.host.manage.RoomS;
 
 @Controller
@@ -27,12 +27,12 @@ public class RoomC {
 
 	@GetMapping("/rooms/add")
 	public String addRoom(Model model, @PathVariable int hid) {
-		model.addAttribute("room", new Room());
+		model.addAttribute("room", new Floor());
 		return "";
 	}
 
 	@PostMapping("/rooms/add")
-	public String addRoom(RedirectAttributes rdA, Room room, @PathVariable int hid) {
+	public String addRoom(RedirectAttributes rdA, Floor room, @PathVariable int hid) {
 		if (rS.validateNewRoom(room, hid)) {
 			rS.createNewRoom(room, hid);
 			rdA.addFlashAttribute("successMsg", rS.getCreateSuccessMsg());
@@ -50,7 +50,7 @@ public class RoomC {
 	}
 
 	@PostMapping("/rooms/{rid}/edit")
-	public String editRoom(RedirectAttributes rdA, Room room) {
+	public String editRoom(RedirectAttributes rdA, Floor room) {
 		if(rS.validateModifyRoom(room)) {
 			rS.saveChange(room);
 			rdA.addFlashAttribute("successMsg", rS.getEditSuccessMsg());

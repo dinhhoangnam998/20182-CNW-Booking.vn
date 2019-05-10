@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import webtech.gr14.model.Acc;
-import webtech.gr14.model.ReserveOrder;
+import webtech.gr14.model.reserve.ReserveOrder;
 import webtech.gr14.service.admin.manage.GuestS;
-import webtech.gr14.util.AccRole;
-import webtech.gr14.util.ActiveState;
+import webtech.gr14.util.enums.AccRole;
+import webtech.gr14.util.enums.ActiveState;
 
 @Controller
 @RequestMapping("/admin/manage/guests")
@@ -54,7 +54,7 @@ public class GuestC {
 	@GetMapping("/{gid}/warning")
 	public String warning(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setState(ActiveState.WARNING);
+		guestAcc.setActiveState(ActiveState.WARNING);
 		guestAcc.setHandelDate(new Date());
 		gS.aR.save(guestAcc);
 		return "";
@@ -64,7 +64,7 @@ public class GuestC {
 	@GetMapping("/{gid}/unwarning")
 	public String unwarning(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setState(ActiveState.ACTIVE);
+		guestAcc.setActiveState(ActiveState.ACTIVE);
 		gS.aR.save(guestAcc);
 		return "";
 	}
@@ -73,7 +73,7 @@ public class GuestC {
 	@GetMapping("/{gid}/block")
 	public String block(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setState(ActiveState.BLOCKED);
+		guestAcc.setActiveState(ActiveState.BLOCKED);
 		guestAcc.setRole(AccRole.BLOCKED);
 		guestAcc.setHandelDate(new Date());
 		gS.aR.save(guestAcc);
@@ -84,7 +84,7 @@ public class GuestC {
 	@GetMapping("/{gid}/unblock")
 	public String unblock(@PathVariable int gid) {
 		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setState(ActiveState.ACTIVE);
+		guestAcc.setActiveState(ActiveState.ACTIVE);
 		guestAcc.setRole(AccRole.GUEST);
 		gS.aR.save(guestAcc);
 		return "";
@@ -95,7 +95,6 @@ public class GuestC {
 	public String checked(@PathVariable int tid) {
 		ReserveOrder rO = gS.roR.getOne(tid);
 		rO.setCheckedGuest(true);
-		rO.setCheckGuestDate(new Date());
 		gS.roR.save(rO);
 		return "";
 	}

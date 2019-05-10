@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import webtech.gr14.model.ReserveOrder;
+import webtech.gr14.model.reserve.ReserveOrder;
 
 public interface ReserveOrderR extends JpaRepository<ReserveOrder, Integer> {
 

@@ -1,4 +1,4 @@
-package webtech.gr14.util;
+package webtech.gr14.util.enums;
 
 public enum AccRole {
 	ADMIN, HOST, GUEST, BLOCKED
