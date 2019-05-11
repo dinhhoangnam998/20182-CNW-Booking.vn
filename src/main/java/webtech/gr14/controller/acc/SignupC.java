@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import webtech.gr14.model.Acc;
@@ -25,9 +26,9 @@ public class SignupC {
 	}
 
 	@PostMapping("/signup")
-	public String signup(RedirectAttributes rdA, Acc acc) {
+	public String signup(RedirectAttributes rdA, Acc acc, @RequestParam(required = false, defaultValue = "false") boolean isHost) {
 		if (sS.checkSignupAccValid(acc)) {
-			sS.createNewAcc(acc);
+			sS.createNewAcc(acc, isHost);
 			rdA.addFlashAttribute("acc", acc);
 			return "redirect:/acc/signup/success";
 		} else {
@@ -35,7 +36,7 @@ public class SignupC {
 			return "redirect:/acc/signup";
 		}
 	}
-	
+
 	@GetMapping("/signup/success")
 	public String signupSuccess(Model model) {
 		return "/acc/signup/success";

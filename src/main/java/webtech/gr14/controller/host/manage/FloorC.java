@@ -22,13 +22,13 @@ public class FloorC {
 	@GetMapping("/floors")
 	public String showFloors(Model model, @PathVariable int hid) {
 		model.addAttribute("floors", fS.getFloors(hid));
-		return "";
+		return "/host/manage/floor/list";
 	}
 
 	@GetMapping("/floors/add")
 	public String addFloor(Model model, @PathVariable int hid) {
 		model.addAttribute("floor", new Floor());
-		return "";
+		return "/host/manage/floor/add";
 	}
 
 	@PostMapping("/floors/add")
@@ -36,17 +36,17 @@ public class FloorC {
 		if (fS.validateNewFloor(floor, hid)) {
 			fS.createNewFloor(floor, hid);
 			rdA.addFlashAttribute("successMsg", fS.getCreateSuccessMsg());
-			return "";
+			return "redirect:/host/manage/floors";
 		} else {
 			rdA.addFlashAttribute("errMsgs", fS.getCreateErrorMsgs());
-			return "";
+			return "redirect:/host/manage/floor/add";
 		}
 	}
 
 	@GetMapping("/floors/{rid}/edit")
 	public String editFloor(Model model, @PathVariable int rid) {
 		model.addAttribute("floor", fS.fR.getOne(rid));
-		return "";
+		return "/host/manage/floor/edit";
 	}
 
 	@PostMapping("/floors/{rid}/edit")
@@ -54,10 +54,10 @@ public class FloorC {
 		if (fS.validateModifyFloor(floor)) {
 			fS.saveChange(floor);
 			rdA.addFlashAttribute("successMsg", fS.getEditSuccessMsg());
-			return "";
+			return "redirect:/host/manage/floors";
 		} else {
 			rdA.addFlashAttribute("errMsgs", fS.getEditErrorMsgs());
-			return "";
+			return "redirect:/host/manage/floors/" + floor.getId() + "/edit";
 		}
 	}
 }

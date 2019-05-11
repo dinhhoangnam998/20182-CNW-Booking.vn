@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css"
-    />
+    <th:block th:include="~{/base::head ('Home')}"></th:block>
   </head>
   <body>
+     <!-- header -->
+    <header th:replace="/base::header"></header>
+    
     <nav>
       <div th:if="${session.acc} == null">
         <button data-toggle="modal" data-target="#loginModal"> Login</button>
@@ -97,6 +86,11 @@
         <a th:href="@{/acc/logout}">Logout</a>
       </div>
     </nav>
-    <main></main>
+    <main>
+
+
+    </main>
+    <!-- footer -->
+    <footer th:replace="/base::footer"></footer>
   </body>
 </html>

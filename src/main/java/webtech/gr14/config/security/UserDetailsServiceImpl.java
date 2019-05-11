@@ -37,12 +37,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		if (acc.getRole() == AccRole.HOST) {
-			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_HOST"));
 		}
 
 		if (acc.getRole() == AccRole.ADMIN) {
-			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
 			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		}
 

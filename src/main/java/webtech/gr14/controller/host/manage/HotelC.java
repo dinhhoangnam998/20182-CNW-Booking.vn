@@ -25,13 +25,13 @@ public class HotelC {
 	public String showHotels(Model model) {
 		List<Hotel> hotels = hS.getHotels();
 		model.addAttribute("hotels", hotels);
-		return "";
+		return "/host/manage/hotel/list";
 	}
 
 	@GetMapping("/add")
 	public String addHotel(Model model) {
 		model.addAttribute("hotel", new Hotel());
-		return "";
+		return "/host/manage/hotel/add";
 	}
 
 	@PostMapping("/add")
@@ -39,23 +39,23 @@ public class HotelC {
 		if (hS.validateNewHotel(hotel)) {
 			hS.createNewHotel(hotel);
 			rdA.addFlashAttribute("successMsg", hS.getAddSuccessMsg());
-			return "";
+			return "redirect:/host/manage/hotels";
 		} else {
 			rdA.addFlashAttribute("errMsgs", hS.getAddErrorMsgs());
-			return "";
+			return "redirect:/host/manage/hotels/add";
 		}
 	}
 
 	@GetMapping("/{hid}")
 	public String showHotel(Model model, @PathVariable int hid) {
 		model.addAttribute("hotel", hS.hR.getOne(hid));
-		return "";
+		return "/host/manage/hotel/info";
 	}
 
 	@GetMapping("/{hid}/edit")
 	public String editHotel(Model model, @PathVariable int hid) {
 		model.addAttribute("hotel", hS.hR.getOne(hid));
-		return "";
+		return "/host/manage/hotel/edit";
 	}
 
 	@PostMapping("{hid}/edit")
@@ -63,10 +63,10 @@ public class HotelC {
 		if (hS.validateModifyHotel(hotel)) {
 			hS.saveChange(hotel);
 			rdA.addFlashAttribute("successMsg", hS.getEditSuccessMsg());
-			return "";
+			return "redirect:/host/manage/hotels/" + hotel.getId();
 		} else {
 			rdA.addFlashAttribute("errMsgs", hS.getEditErrorMsgs());
-			return "";
+			return "redirect:/host/manage/hotels/" + hotel.getId() + "/edit";
 		}
 	}
 

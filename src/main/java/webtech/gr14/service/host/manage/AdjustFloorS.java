@@ -59,4 +59,14 @@ public class AdjustFloorS {
 		}
 	}
 
+	public void toggle(int fid) {
+		Floor f = fR.getOne(fid);
+		if(f.isActive() == false) {
+			f.setActive(true);
+		} else {
+			f.setActive(false);
+		}
+		fR.save(f);
+	}
+
 }
