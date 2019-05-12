@@ -18,12 +18,12 @@
       <div class="row">
         <!-- navside -->
         <div class="col-md-3">
-
+          <nav th:replace="~{/layout/host-base::navside(${session.hid})}"></nav>
         </div>
         <!-- info -->
         <div class="col-md-9">
           <h3 class="clearfix">Your hotel
-            <a th:href="@{/host/manage/hotels/{hid}/edit(hid=${hotel.id})}" class="btn btn-primary float-right">Edit</a>
+            <a th:href="@{/host/manage/hotels/{hid}/edit(hid=${hotel.id})}" class="btn btn-warning float-right">Edit</a>
           </h3>
           <!-- img galerry -->
           <div>

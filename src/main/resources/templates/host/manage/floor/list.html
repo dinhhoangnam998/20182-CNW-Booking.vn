@@ -11,19 +11,37 @@
 
   <!-- main -->
   <main>
-    <div class="container-fluid clearfix">
-      <h3>Your floors
-        <a th:href="@{floors/add}" class="btn btn-primary float-right">Add</a>
-      </h3>
-    </div>
-    <div th:each="floor : ${floors}">
-      <h5 class="clearfix">[[${floor.name}]]
-        <a th:href="@{/host/manage/hotels/{hid}/floors/{fid}/edit(hid=${hid}, fid=${floor.id})}" class="btn btn-primary float-right">Edit</a>
-      </h5>
-      <div>roomtype: [[${floor.roomType}]]</div>
-      <div>quality: [[${floor.roomQuality}]]</div>
 
+    <div class="container-fluid">
+      <div class="row">
+        <!-- navside -->
+        <div class="col-md-3">
+          <nav th:replace="~{/layout/host-base::navside(${session.hid})}"></nav>
+        </div>
+
+        <!-- list -->
+        <div class="col-md-9">
+
+          <div class="">
+            <h3>Your floors
+              <a th:href="@{floors/add}" class="btn btn-success btn-sm float-right">Add</a>
+            </h3>
+          </div>
+
+          <div th:each="floor : ${floors}">
+            <h5 class="">[[${floor.name}]]
+              <a th:href="@{/host/manage/hotels/{hid}/floors/{fid}/edit(hid=${hid}, fid=${floor.id})}"
+                class="btn btn-warning  btn-sm float-right">Edit</a>
+            </h5>
+            <div>roomtype: [[${floor.roomType}]]</div>
+            <div>quality: [[${floor.roomQuality}]]</div>
+          </div>
+
+        </div>
+      </div>
     </div>
+
+
   </main>
 
   <!-- footer -->

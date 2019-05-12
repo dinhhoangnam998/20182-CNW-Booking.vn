@@ -2,6 +2,8 @@ package webtech.gr14.controller.host.manage;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +51,8 @@ public class HotelC {
 	}
 
 	@GetMapping("/{hid}")
-	public String showHotel(Model model, @PathVariable int hid) {
+	public String showHotel(HttpSession ss, Model model, @PathVariable int hid) {
+		ss.setAttribute("hid", hid);
 		model.addAttribute("hotel", hS.hR.getOne(hid));
 		return "/host/manage/hotel/info";
 	}

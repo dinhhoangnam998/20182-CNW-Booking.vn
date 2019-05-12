@@ -21,47 +21,21 @@ public class AdjustFloorC {
 
 	@GetMapping
 	public String list(Model model, @PathVariable int hid) {
-		model.addAttribute("floor", afS.getFloors(hid));
+		model.addAttribute("floors", afS.getFloors(hid));
 		return "/host/manage/adjust/list";
 	}
 
-	// need replace this by AJAX
-	// do not need, we use javascript is enough
-//	@GetMapping("/{fild}")
-//	public String showAdjustFloor(Model model, @PathVariable int fid) {
-//		model.addAttribute("floor", afS.fR.getOne(fid));
-//		return "";
-//	}
+	@ResponseBody
+	@GetMapping("/{fid}")
+	public boolean adjustRoom(@RequestParam String openDates, @RequestParam int price, @PathVariable int fid) {
+		afS.adjust(fid, openDates, price);
+		return true;
+	}
 
 	@ResponseBody
-	@PostMapping("/{fid}")
-	public String adjustRoom(@RequestParam String openDates, @RequestParam int price, @PathVariable int fid) {
-		afS.adjust(fid, openDates, price);
-		return "success";
-	}
-	
-	@ResponseBody
 	@GetMapping("/{fid}/toggle")
-	public String toggle(@PathVariable int fid) {
-		afS.toggle(fid);
-		return "";
+	public boolean toggle(@PathVariable int fid) {
+		return afS.toggle(fid);
 	}
-	
-//	may do not need
-//	@ResponseBody
-//	@GetMapping("/{fid}/off")
-//	public String turnOff(@PathVariable int fid) {
-//		afS.turnOff(fid);
-//		return "";
-//	}
-//
-//	@ResponseBody
-//	@GetMapping("/{fid}/on")
-//	public String turnOn(@PathVariable int fid) {
-//		afS.turnOn(fid);
-//		return "";
-//	}
-	
-	
 
 }

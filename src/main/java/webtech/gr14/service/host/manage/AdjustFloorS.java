@@ -49,7 +49,7 @@ public class AdjustFloorS {
 		List<Date> openDateList = new ArrayList<>();
 		String[] array = openDates.split("\\,");
 		for (String s : array) {
-			openDateList.add(DateCommonUtil.stringToDate("yyyy-MM-dd", s));
+			openDateList.add(DateCommonUtil.stringToDate("dd-mm-yyyy", s));
 		}
 
 		List<Room> rooms = rR.findByFloor_IdAndDeleted(floor.getId(), false);
@@ -59,14 +59,17 @@ public class AdjustFloorS {
 		}
 	}
 
-	public void toggle(int fid) {
+	public boolean toggle(int fid) {
 		Floor f = fR.getOne(fid);
-		if(f.isActive() == false) {
+		if (f.isActive() == false) {
 			f.setActive(true);
+			fR.save(f);
+			return true;
 		} else {
 			f.setActive(false);
+			fR.save(f);
+			return false;
 		}
-		fR.save(f);
 	}
 
 }
