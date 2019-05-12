@@ -3,6 +3,10 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Home')}"></th:block>
+  <!-- date picker 2 -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body>
@@ -11,11 +15,47 @@
 
   <!-- main -->
   <main>
-    
+    <div class="container-fulid">
+      <h3>Find your best deal</h3>
+      <p></p>
+
+      <!-- <form action="/guest/search-hotels" method="post" id="search-form">
+        <div class="row">
+          <div class="col-md-3">
+            <input type="text" placeholder="where to go">
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="" class="datepicker">
+          </div>
+          <div class="col-md-2">
+            <input type="number" placeholder="number of room">
+          </div>
+          <div class="col-md-2">
+            <input type="number" placeholder="number of people">
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" form="search-form">Search</button>
+          </div>
+        </div>
+      </form> -->
+
+      <form th:action="@{/guest/search-hotels}" method="post">
+        <input type="text" name="address" placeholder="where to go">
+        <input type="text" name="dateRange" class="datepicker">
+        <input type="number" name="numOfRoom" placeholder="number of room">
+        <input type="number" name="numOfPeople" placeholder="number of people">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <p></p>
+    </div>
   </main>
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+    $('input.datepicker').daterangepicker();
+  </script>
 </body>
 
 </html>

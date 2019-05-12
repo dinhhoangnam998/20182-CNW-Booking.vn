@@ -41,6 +41,7 @@ public class Hotel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	// need replace 
 	private String address;
 	private String imgURL;
 	@ElementCollection

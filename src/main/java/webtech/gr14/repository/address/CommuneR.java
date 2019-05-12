@@ -6,6 +6,6 @@ import webtech.gr14.model.address.Commune;
 
 public interface CommuneR extends JpaRepository<Commune, Integer> {
 
-	int findByName(String communeName);
+	Commune findByName(String communeName);
 
 }

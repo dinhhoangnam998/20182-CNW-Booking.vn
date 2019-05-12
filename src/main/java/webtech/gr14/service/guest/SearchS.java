@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import webtech.gr14.model.address.Commune;
 import webtech.gr14.model.floor.Floor;
 import webtech.gr14.model.floor.Room;
 import webtech.gr14.model.hotel.Hotel;
@@ -45,12 +46,13 @@ public class SearchS {
 	public List<Hotel> getSearchResults(HttpSession ss, String address, String dateRange, int numOfRoom,
 			int numOfPeople) {
 		ss.setAttribute("dateRange", dateRange);
-		int cid = getCommuneIdFromAddress(address);
+		Commune cmm = getCommuneIdFromAddress(address);
+		int cid = cmm.getId();
 		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
 		return getSearchResult(cid, dateList, numOfRoom, numOfPeople);
 	}
 
-	public int getCommuneIdFromAddress(String address) {
+	public Commune getCommuneIdFromAddress(String address) {
 		String[] part = address.split(",");
 		String communeName = part[0];
 		return cR.findByName(communeName);
