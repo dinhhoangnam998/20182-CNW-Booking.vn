@@ -3,6 +3,8 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
 </head>
 
 <body>
@@ -13,11 +15,54 @@
   <main>
     <div class="container-fluid">
 
+      <div class="row">
+        <!-- navside -->
+        <div class="col-md-3">
+
+        </div>
+        <!-- info -->
+        <div class="col-md-9">
+          <h3 class="clearfix">Your hotel
+            <a th:href="@{/host/manage/hotels/{hid}/edit(hid=${hotel.id})}" class="btn btn-primary float-right">Edit</a>
+          </h3>
+          <!-- img galerry -->
+          <div>
+            <h3>Img gallery</h3>
+            <ul id="imgGallery">
+              <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
+                <img style="height: 450px; width: 100%; object-fit: cover" th:src="@{${imgURL}}" alt="img not found" />
+              </li>
+            </ul>
+          </div>
+
+          <!-- description -->
+          <div>
+            <div th:utext="${hotel.description}">
+
+            </div>
+          </div>
+
+          <!-- facility -->
+
+        </div>
+      </div>
     </div>
   </main>
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+      $(document).ready(function() {
+        $("#imgGallery").lightSlider({
+          gallery: true,
+          item: 1,
+          loop: true,
+          thumbItem: 9,
+          keyPress: true,
+          controls: true
+        });
+      });
+    </script>
 </body>
 
 </html>

@@ -22,12 +22,14 @@ public class FloorC {
 	@GetMapping("/floors")
 	public String showFloors(Model model, @PathVariable int hid) {
 		model.addAttribute("floors", fS.getFloors(hid));
+		model.addAttribute("hid", hid);
 		return "/host/manage/floor/list";
 	}
 
 	@GetMapping("/floors/add")
 	public String addFloor(Model model, @PathVariable int hid) {
 		model.addAttribute("floor", new Floor());
+		model.addAttribute("hid", hid);
 		return "/host/manage/floor/add";
 	}
 
@@ -36,28 +38,30 @@ public class FloorC {
 		if (fS.validateNewFloor(floor, hid)) {
 			fS.createNewFloor(floor, hid);
 			rdA.addFlashAttribute("successMsg", fS.getCreateSuccessMsg());
-			return "redirect:/host/manage/floors";
+			return "redirect:/host/manage/hotels/" + hid + "/floors";
 		} else {
 			rdA.addFlashAttribute("errMsgs", fS.getCreateErrorMsgs());
-			return "redirect:/host/manage/floor/add";
+			return "redirect:/host/manage/hotels/" + hid + "/floors/add";
 		}
 	}
 
-	@GetMapping("/floors/{rid}/edit")
-	public String editFloor(Model model, @PathVariable int rid) {
-		model.addAttribute("floor", fS.fR.getOne(rid));
+	@GetMapping("/floors/{fid}/edit")
+	public String editFloor(Model model, @PathVariable int fid, @PathVariable int hid) {
+		model.addAttribute("floor", fS.fR.getOne(fid));
+		model.addAttribute("hid", hid);
 		return "/host/manage/floor/edit";
 	}
 
-	@PostMapping("/floors/{rid}/edit")
-	public String editFloor(RedirectAttributes rdA, Floor floor) {
-		if (fS.validateModifyFloor(floor)) {
+	@PostMapping("/floors/{fid}/edit")
+	public String editFloor(RedirectAttributes rdA, Floor floor, @PathVariable int hid) {
+		if (fS.validateModifyFloor(floor, hid)) {
 			fS.saveChange(floor);
 			rdA.addFlashAttribute("successMsg", fS.getEditSuccessMsg());
-			return "redirect:/host/manage/floors";
+			return "redirect:/host/manage/hotels/" + hid + "/floors";
 		} else {
 			rdA.addFlashAttribute("errMsgs", fS.getEditErrorMsgs());
-			return "redirect:/host/manage/floors/" + floor.getId() + "/edit";
+			System.out.println("--------------> errrrrrrrrrrrrrrrror");
+			return "redirect:/host/manage/hotels/" + hid + "/floors/" + floor.getId() + "/edit";
 		}
 	}
 }

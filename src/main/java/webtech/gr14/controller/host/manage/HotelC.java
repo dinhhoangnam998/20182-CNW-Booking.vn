@@ -60,10 +60,11 @@ public class HotelC {
 		return "/host/manage/hotel/edit";
 	}
 
-	@PostMapping("{hid}/edit")
-	public String editHotel(RedirectAttributes rdA, Hotel hotel) {
+	@PostMapping(value = "{hid}/edit", consumes = { "multipart/form-data" })
+	public String editHotel(RedirectAttributes rdA, Hotel hotel, MultipartFile img, MultipartFile[] imgs,
+			MultipartFile[] thumbs) {
 		if (hS.validateModifyHotel(hotel)) {
-			hS.saveChange(hotel);
+			hS.saveChange(hotel, img, imgs, thumbs);
 			rdA.addFlashAttribute("successMsg", hS.getEditSuccessMsg());
 			return "redirect:/host/manage/hotels/" + hotel.getId();
 		} else {

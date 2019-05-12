@@ -1,17 +1,169 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  
-  <head>
-    <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
-  </head>
 
-  <body>
-    <!-- header -->
-    <header th:replace="~{/layout/base::header}"></header>
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+</head>
 
-    <!-- main -->
-    <main>
-      
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <form th:action="@{/host/manage/hotels/{hid}/floors/{fid}/edit(hid=${hid}, fid=${floor.id})}" method="POST"
+        th:object="${floor}" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" th:value="${floor.id}">
+
+        <div class="container-fluid">
+          <h3>General Info</h3>
+
+          <div class="form-group">
+            <label th:for="name">name</label>
+            <input type="text" th:field="*{name}" th:id="name" class="form-control" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label th:for="ithFloor">ithFloor</label>
+            <input type="number" th:field="*{ithFloor}" th:id="ithFloor" class="form-control" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label th:for="numOfRoom">numOfRoom</label>
+            <input type="number" th:field="*{numOfRoom}" th:id="numOfRoom" class="form-control" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label th:for="maxPeople">maxPeople</label>
+            <input type="number" th:field="*{maxPeople}" th:id="maxPeople" class="form-control" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label for="roomType">roomType</label>
+            <select th:field="*{roomType}" class="form-control" id="roomType">
+              <option th:each="roomType : ${T(webtech.gr14.util.enums.RoomType).values()}" th:value="${roomType}"
+                th:text="${roomType}">
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="roomQuality">roomQuality</label>
+            <select th:field="*{roomQuality}" class="form-control" id="roomQuality">
+              <option th:each="roomQuality : ${T(webtech.gr14.util.enums.RoomQuality).values()}"
+                th:value="${roomQuality}" th:text="${roomQuality}">
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+              <h3>General Facilitis</h3>
+
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                        th:field="*{roomGeneralFacility.airconditioning}">
+                  <label class="custom-control-label" th:for="${#ids.prev('facility')}">airconditioning</label>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                          th:field="*{roomGeneralFacility.heating}">
+                    <label class="custom-control-label" th:for="${#ids.prev('facility')}">heating</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                            th:field="*{roomGeneralFacility.view}">
+                      <label class="custom-control-label" th:for="${#ids.prev('facility')}">view</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{roomGeneralFacility.soundproof}">
+                        <label class="custom-control-label" th:for="${#ids.prev('facility')}">soundproof</label>
+                      </div>
+                </div>
+
+              
+                <div class="col-md-4">
+                  <h3>Bathroom</h3>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.towel}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">towel</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.bathtub}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">bathtub</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.bathrobe}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">bathrobe</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.slipper}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">slipper</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.toiletPaper}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">toiletPaper</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.toilettries}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">toilettries</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('bathroom')}"
+                          th:field="*{bathroom.hairdryer}">
+                    <label class="custom-control-label" th:for="${#ids.prev('bathroom')}">hairdryer</label>
+                  </div>
+
+                </div>
+
+                <div class="col-md-4">
+                  <h3>Media</h3>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('media')}"
+                          th:field="*{media.flatTv}">
+                    <label class="custom-control-label" th:for="${#ids.prev('media')}">flatTv</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('media')}"
+                          th:field="*{media.cableChannel}">
+                    <label class="custom-control-label" th:for="${#ids.prev('media')}">cableChannel</label>
+                  </div>
+
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('media')}"
+                          th:field="*{media.highendSoundSystem}">
+                    <label class="custom-control-label" th:for="${#ids.prev('media')}">highendSoundSystem</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
     </main>   
 
     <!-- footer -->

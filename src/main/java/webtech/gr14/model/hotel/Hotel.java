@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -46,6 +47,7 @@ public class Hotel {
 	private List<String> imgURLs = new ArrayList<String>();
 	@ElementCollection
 	private List<String> thumbURLs = new ArrayList<String>();
+	@Column(columnDefinition = "varchar(4095)")
 	private String description;
 	private boolean deleted;
 	// coordinate??

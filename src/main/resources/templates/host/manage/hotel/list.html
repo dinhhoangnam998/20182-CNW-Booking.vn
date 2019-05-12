@@ -21,10 +21,8 @@
             <img th:src="@{${hotel.imgURL}}" alt="img not found" style="height: 200px; width: 200px; object-fit: cover">
           </a>
         </div>
-        <div>
-          <div th:text="${hotel.name}"></div>
-          <div th:text="${hotel.activeState}"></div>
-        </div>
+        <div>Active State: [[${hotel.activeState}]]</div>
+        <div>Submit State: [[${hotel.submitState}]]</div>
       </div>
     </div>
   </main>
