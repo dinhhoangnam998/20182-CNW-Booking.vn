@@ -17,9 +17,9 @@ import lombok.Setter;
 @Proxy(lazy = false)
 public class HotelService {
 
-	private boolean housekeeping;
-	private boolean laundry;
-	private boolean roomService;
-	private boolean wakeup;
-	private boolean bicycleRental;
+	private boolean housekeeping = false;
+	private boolean laundry = false;
+	private boolean roomService = false;
+	private boolean wakeup = false;
+	private boolean bicycleRental = false;
 }

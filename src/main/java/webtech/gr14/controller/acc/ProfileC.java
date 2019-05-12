@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import webtech.gr14.model.Acc;
 import webtech.gr14.service.acc.ProfileS;
 
 @Controller
@@ -41,74 +40,64 @@ public class ProfileC {
 		return "redirect:/acc/profiles/" + aid;
 	}
 
-	@GetMapping("/profiles/{aid}/edit")
-	public String editProfile(Model model, @PathVariable int aid) {
-		model.addAttribute("acc", pS.getAccById(aid));
-		return "/acc/profile/edit";
-	}
-
-	@PostMapping("/profiles/{aid}/edit")
-	public String editProfile(RedirectAttributes rdA, Acc acc) {
-		if (pS.checkModifyProfileValid(acc)) {
-			pS.saveModifiedProfile(acc);
-			rdA.addFlashAttribute("msg", "Change profile success!");
-			return "/acc/profiles/" + acc.getId();
-		} else {
-			rdA.addFlashAttribute("msgs", pS.getEditProfileErrorMessages());
-			return "redirect:/acc/profiles/" + acc.getId() + "/edit";
-		}
-	}
-
 	@GetMapping("/profiles/{aid}/change-password")
 	public String changePassword(Model model, @PathVariable int aid) {
+		model.addAttribute("aid", aid);
 		return "/acc/profile/change-password";
 	}
 
 	@PostMapping("/profiles/{aid}/change-password")
-	public String changePassword(RedirectAttributes rdA, Acc acc) {
-		if (pS.checkPasswordMatch(acc)) {
-			pS.saveChangePassword(acc);
+	public String changePassword(RedirectAttributes rdA, @RequestParam String pw, @RequestParam String cpw,
+			@PathVariable int aid) {
+		if (pS.checkPasswordMatch(pw, cpw)) {
+			pS.saveChangePassword(pw);
 			rdA.addFlashAttribute("msg", "Change password success!");
-			return "/acc/profiles/" + acc.getId();
+			return "redirect:/acc/profiles/" + aid + "/change-password/success";
 		} else {
 			rdA.addFlashAttribute("msg", "Password or Confirm password is not valid!");
-			return "redirect:/acc/profiles/" + acc.getId() + "/change-password";
+			return "redirect:/acc/profiles/" + aid + "/change-password";
 		}
 	}
-	
+
+	@GetMapping("/profiles/{aid}/change-password/success")
+	public String changePasswordSuccess(Model model, @PathVariable int aid) {
+		model.addAttribute("msg", "Change password success!");
+		return "/acc/profile/change-password-success";
+	}
+
 	@ResponseBody
 	@GetMapping("/profiles/{aid}/change-name")
 	public String changeName(HttpSession ss, @RequestParam String name) {
 		pS.changeName(name, ss);
 		return name;
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/profiles/{aid}/change-birthday")
 	public String changeBirthday(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday) {
 		pS.changeBirthday(birthday);
 		return "ok";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/profiles/{aid}/change-gender")
 	public String toggleGender() {
 		pS.toggleGender();
 		return "ok";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/profiles/{aid}/change-email")
 	public boolean changeEmail(@RequestParam String email) {
 		return pS.changeEmail(email);
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/profiles/{aid}/change-phone")
 	public boolean changePhone(@RequestParam String phone) {
 		return pS.changePhone(phone);
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/profiles/{aid}/change-address")
 	public boolean changeAddress(@RequestParam String address) {

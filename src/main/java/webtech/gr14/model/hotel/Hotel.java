@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,16 +44,23 @@ public class Hotel {
 	private String imgURL;
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
+	@ElementCollection
+	private List<String> thumbURLs = new ArrayList<String>();
 	private String description;
 	private boolean deleted;
 	// coordinate??
 
 	// admin manage info
+	@Enumerated(EnumType.STRING)
 	private ActiveState activeState;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date handelDate;
+	
+	@Enumerated(EnumType.STRING)
 	private SubmitState submitState;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date handleSubmitDate;
@@ -60,13 +69,13 @@ public class Hotel {
 	private Acc acc;
 
 	@Embedded
-	private HotelGeneralFacility hotelGeneralFacility;
+	private HotelGeneralFacility hotelGeneralFacility = new HotelGeneralFacility();
 
 	@Embedded
-	private HotelService hotelService;
+	private HotelService hotelService = new HotelService();
 
 	@Embedded
-	private HouseRule houseRule;
+	private HouseRule houseRule = new HouseRule();
 	
 	@ManyToOne
 	private Commune commune;

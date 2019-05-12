@@ -17,14 +17,14 @@ import lombok.Setter;
 @Proxy(lazy = false)
 public class HotelGeneralFacility {
 
-	private boolean wifi;
-	private boolean airConditioning;
-	private boolean heating;
-	private boolean elevator;
-	private boolean convenienceStore;
-	private boolean shuttle;
-	private boolean parking;
-	private boolean swimmingPool;
-	private boolean frontDeck24h;
-	private boolean miniBar;
+	private boolean wifi = false;
+	private boolean airConditioning = false;
+	private boolean heating = false;
+	private boolean elevator = false;
+	private boolean convenienceStore = false;
+	private boolean shuttle = false;
+	private boolean parking = false;
+	private boolean swimmingPool = false;
+	private boolean frontDeck24h = false;
+	private boolean miniBar = false;
 }

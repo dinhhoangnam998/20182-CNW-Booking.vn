@@ -22,7 +22,9 @@
       <!-- above row -->
       <div class="row">
         <!-- logo -->
-        <div class="col-md-6">Booking.vn</div>
+        <div class="col-md-6">
+          <a href="/guest/home">Booking.vn</a>
+        </div>
         <!-- login signup || icons -->
         <div class="col-md-6">
 
@@ -85,7 +87,7 @@
           <div th:if="${session.acc} != null">
             <!-- mail icon -->
             <div style="display: inline-block">
-              <i class="fas fa-mail-bulk    "></i>
+              <i class="fas fa-mail-bulk"></i>
             </div>
             <!-- user icon -->
             <div style="display: inline-block">
@@ -96,18 +98,31 @@
                       style="width: 30px; height: 30px; object-fit: cover" />
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-icon">
-                    <!-- <a th:if="${session.acc.privilege} == 1" th:href="@{/admin/manage/authors}"
-                      class="dropdown-item btn btn-primary ">Quản lý trang web</a>
-                    <div th:if="${session.acc.privilege} == 1" class="dropdown-divider"></div> -->
-                
-                    <a class="dropdown-item" th:href="@{/acc/profiles/{aid}(aid=${session.acc.id})}">Thông tin tài khoản</a>
+                    <th:block th:if="${session.acc.role} == ${T(webtech.gr14.util.enums.AccRole).ADMIN}" >
+                      <a th:href="@{/admin/manage/submits}"
+                        class="dropdown-item btn btn-primary ">Admin - Quản lý</a>
+                      <div class="dropdown-divider"></div>
+                    </th:block>
+
+                    <th:block  th:if="${session.acc.role} == ${T(webtech.gr14.util.enums.AccRole).HOST}" >
+                      <a th:href="@{/host/manage/hotels}"
+                        class="dropdown-item btn btn-primary ">Quản lý khách sạn</a>
+                      <div class="dropdown-divider"></div>
+                    </th:block>
+
+                    <a class="dropdown-item" th:href="@{/acc/profiles/{aid}(aid=${session.acc.id})}">Thông tin tài
+                      khoản</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/guest/reserve-history}">Lịch sử mua sắm</a>
-                
+                    <a class="dropdown-item" th:href="@{/guest/reserve-history}">Lịch sử đặt phòng</a>
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/acc/profiles/{aid}/change-password(aid=${session.acc.id})}">Đổi mật khẩu</a>
+
+                    <a class="dropdown-item" th:href="@{/acc/profiles/{aid}/change-password(aid=${session.acc.id})}">Đổi
+                      mật khẩu</a>
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-right" th:href="@{/acc/logout}">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
+                    <a class="dropdown-item text-right" th:href="@{/acc/logout}">Đăng xuất <i
+                        class="fas fa-sign-out-alt"></i></a>
                   </div>
                 </div>
               </div>
@@ -126,7 +141,10 @@
       </div>
     </div>
   </header>
+  <main>
 
+
+  </main>
   <!-- footer -->
   <footer th:fragment="footer" id="footer">
     <div class="jumbotron jumbotron-fluid mb-0 ">

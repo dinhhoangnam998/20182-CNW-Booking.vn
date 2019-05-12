@@ -26,7 +26,7 @@ public class LoginC {
 	@GetMapping("/login/success")
 	public String loginSuccess(HttpSession ss) {
 		lS.processWhenLoginSuccess(ss);
-		return "redirect:/guest/home";
+		return lS.getRedirectPage();
 	}
 
 	@GetMapping("/login/failure")

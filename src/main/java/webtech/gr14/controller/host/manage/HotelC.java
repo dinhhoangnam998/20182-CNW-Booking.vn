@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import webtech.gr14.model.hotel.Hotel;
@@ -34,10 +35,11 @@ public class HotelC {
 		return "/host/manage/hotel/add";
 	}
 
-	@PostMapping("/add")
-	public String addHotel(RedirectAttributes rdA, Hotel hotel) {
+	@PostMapping(value = "/add", consumes = { "multipart/form-data" })
+	public String addHotel(RedirectAttributes rdA, Hotel hotel, MultipartFile img, MultipartFile[] imgs,
+			MultipartFile[] thumbs) {
 		if (hS.validateNewHotel(hotel)) {
-			hS.createNewHotel(hotel);
+			hS.createNewHotel(hotel, img, imgs, thumbs);
 			rdA.addFlashAttribute("successMsg", hS.getAddSuccessMsg());
 			return "redirect:/host/manage/hotels";
 		} else {

@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import webtech.gr14.model.Acc;
 import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.service.acc.AccS;
+import webtech.gr14.service.util.StorageFileS;
 import webtech.gr14.util.enums.SubmitState;
 
 @Service("hostManageHotelS")
@@ -24,6 +26,9 @@ public class HotelS {
 
 	@Autowired
 	public HotelR hR;
+
+	@Autowired
+	private StorageFileS sfS;
 
 	private List<String> errMsgs = new ArrayList<String>();
 
@@ -42,9 +47,34 @@ public class HotelS {
 		return errMsgs.isEmpty();
 	}
 
-	public void createNewHotel(Hotel newHotel) {
+	public void createNewHotel(Hotel newHotel, MultipartFile img, MultipartFile[] imgs, MultipartFile[] thumbs) {
 		newHotel.setAcc(aS.getAcc());
 		newHotel.setSubmitState(SubmitState.NEW);
+		newHotel.setDeleted(false);
+
+		String hotelName = newHotel.getName();
+		if (img.getSize() != 0) {
+			newHotel.setImgURL("/images/hotel/primary/" + sfS.saveFile(img, "hotel/primary", hotelName));
+		}
+
+		List<String> imgURLs = new ArrayList<String>();
+		for (int i = 0; i <= imgs.length - 1; i++) {
+			MultipartFile ithImg = imgs[i];
+			if (ithImg.getSize() != 0) {
+				imgURLs.add("/images/hotel/others/" + sfS.saveFile(ithImg, "hotel/others", hotelName + "-" + i));
+			}
+		}
+		newHotel.setImgURLs(imgURLs);
+
+		List<String> thumbURLs = new ArrayList<String>();
+		for (int j = 0; j <= thumbs.length - 1; j++) {
+			MultipartFile ithThumb = thumbs[j];
+			if (ithThumb.getSize() != 0) {
+				thumbURLs.add("/images/hotel/thumbs/" + sfS.saveFile(ithThumb, "hotel/thumbs", hotelName) + "-" + j);
+			}
+		}
+		newHotel.setThumbURLs(thumbURLs);
+
 		hR.save(newHotel);
 	}
 
@@ -71,7 +101,7 @@ public class HotelS {
 	}
 
 	public Object getEditSuccessMsg() {
-		return  env.getProperty("msg.hotel.edit.success");
+		return env.getProperty("msg.hotel.edit.success");
 	}
 
 	public Object getEditErrorMsgs() {

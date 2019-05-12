@@ -21,8 +21,8 @@ public class HouseRule {
 	private int checkinTimeEnd;
 	private int checkoutTimeBegin;
 	private int checkoutTimeEnd;
-	private boolean photoId;
-	private boolean pet;
-	private boolean smoke;
-	private boolean noise;
+	private boolean photoId = false;
+	private boolean pet = false;
+	private boolean smoke = false;
+	private boolean noise = false;
 }

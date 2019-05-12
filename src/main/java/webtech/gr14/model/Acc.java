@@ -48,6 +48,7 @@ public class Acc {
 	private String address;
 	private String phone;
 	private String imgURL;
+	@Enumerated(EnumType.STRING)
 	private AccRole role;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -55,9 +56,11 @@ public class Acc {
 
 	// ratting score average
 	private double guestScore;
+	private int numOfVoteG;
 	private double hotelScore;
-
+	private int numOfVoteH;
 	// admin manage guest info
+	@Enumerated(EnumType.STRING)
 	private ActiveState activeState;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)

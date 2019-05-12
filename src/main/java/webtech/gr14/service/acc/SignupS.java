@@ -1,6 +1,7 @@
 package webtech.gr14.service.acc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import webtech.gr14.model.Acc;
 import webtech.gr14.repository.AccR;
 import webtech.gr14.service.util.AccChecker;
 import webtech.gr14.util.enums.AccRole;
+import webtech.gr14.util.enums.ActiveState;
 
 @Service
 public class SignupS {
@@ -50,6 +52,8 @@ public class SignupS {
 
 	public void createNewAcc(Acc acc, boolean isHost) {
 		acc.setPassword(pwE.encode(acc.getPassword()));
+		acc.setSignupDate(new Date());
+		acc.setActiveState(ActiveState.ACTIVE);
 		
 		if (isHost) {
 			acc.setRole(AccRole.HOST);

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,6 +44,7 @@ public class ReserveOrder {
 	private String note;
 	private int charge;
 	private String dateRange;
+	@Enumerated(EnumType.STRING)
 	private ReserveOrderState state;
 
 	// for admin to manage

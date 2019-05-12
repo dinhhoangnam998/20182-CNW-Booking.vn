@@ -64,12 +64,13 @@ public class ProfileS {
 		return errMsgs;
 	}
 
-	public boolean checkPasswordMatch(Acc acc) {
-		return accChecker.checkPassword(acc.getPassword(), acc.getConfirmPassword());
+	public boolean checkPasswordMatch(String pw, String cpw) {
+		return accChecker.checkPassword(pw, cpw);
 	}
 
-	public void saveChangePassword(Acc acc) {
-		acc.setPassword(pwE.encode(acc.getPassword()));
+	public void saveChangePassword(String pw) {
+		Acc acc = aS.getAcc();
+		acc.setPassword(pwE.encode(pw));
 		aR.save(acc);
 	}
 
