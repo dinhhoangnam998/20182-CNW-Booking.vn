@@ -45,4 +45,9 @@ public class AccChecker {
 		}
 
 	}
+
+	public boolean checkAddress(String address) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

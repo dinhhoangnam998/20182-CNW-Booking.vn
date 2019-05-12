@@ -1,7 +1,10 @@
 package webtech.gr14.service.acc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,9 +15,13 @@ import webtech.gr14.model.Acc;
 import webtech.gr14.repository.AccR;
 import webtech.gr14.service.util.AccChecker;
 import webtech.gr14.service.util.StorageFileS;
+import webtech.gr14.util.enums.Gender;
 
 @Service
 public class ProfileS {
+
+	@Autowired
+	public AccS aS;
 
 	@Autowired
 	public AccR aR;
@@ -66,9 +73,66 @@ public class ProfileS {
 		aR.save(acc);
 	}
 
-	public void changeAvatar(int aid, MultipartFile file) {
+	public void changeAvatar(HttpSession ss, int aid, MultipartFile file) {
 		Acc acc = aR.getOne(aid);
 		acc.setImgURL("/images/acc/" + sfS.saveFile(file, "acc", acc.getUsername()));
 		aR.save(acc);
+		ss.setAttribute("acc", acc);
+	}
+
+	public void changeName(String name, HttpSession ss) {
+		Acc acc = aS.getAcc();
+		acc.setName(name);
+		aR.save(acc);
+		ss.setAttribute("acc", acc);
+	}
+
+	public void changeBirthday(Date birthday) {
+		Acc acc = aS.getAcc();
+		acc.setBirthday(birthday);
+		aR.save(acc);
+	}
+
+	public void toggleGender() {
+		Acc acc = aS.getAcc();
+		if (acc.getGender() == Gender.FEMALE) {
+			acc.setGender(Gender.MALE);
+		} else {
+			acc.setGender(Gender.FEMALE);
+		}
+		aR.save(acc);
+	}
+
+	public boolean changeEmail(String email) {
+		Acc acc = aS.getAcc();
+		if (accChecker.checkEmail(email)) {
+			acc.setEmail(email);
+			aR.save(acc);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean changePhone(String phone) {
+		Acc acc = aS.getAcc();
+		if (accChecker.checkPhone(phone)) {
+			acc.setPhone(phone);
+			aR.save(acc);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean changeAddress(String address) {
+		Acc acc = aS.getAcc();
+		if (accChecker.checkAddress(address)) {
+			acc.setAddress(address);
+			aR.save(acc);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

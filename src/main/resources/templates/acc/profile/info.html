@@ -1,12 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <th:block th:include="~{/layout/base::head ('Home')}"></th:block>
 </head>
+
 <body>
-  Profile info
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left side  -->
+        <div class="col-md-3">
+          <!-- avatar -->
+          <div>
+            <!-- img -->
+            <img th:src="@{${acc.imgURL}}" alt="no image found" style="height: 400px; width: 100%; object-fit: cover">
+            <div></div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#change-avatar-modal">
+              Change avatar
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="change-avatar-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Choose new image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <img th:src="@{${acc.imgURL}}" alt="no image found"
+                            style="height: 100px; width: 100px; object-fit: cover">
+                        </div>
+                        <div class="col-md-7">
+                          <!-- form -->
+                          <div>
+                            <form th:action="@{/acc/profiles/{aid}/change-avatar(aid=${acc.id})}" method="post"
+                              enctype="multipart/form-data">
+                              <input type="file" name="file" class="btn form-control-file">
+                              <br />
+                              <input type="submit" value="Save" class="btn btn-primary">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- profile  -->
+        <div class="col-md-9">
+          <!-- basic info -->
+          <div>
+            <h4>Basic info</h4>
+            <div class="container-fluid">
+              <!-- respone msg -->
+              <div id="basic-info-container">
+              </div>
+
+              <!-- basic info -->
+              <div class="row">
+                <div class="col-md-3">Full Name</div>
+                <div class="col-md-6">
+                  <input type="text" id="full-name" class="form-control" th:value="${acc.name}">
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">Birthday</div>
+                <div class="col-md-6">
+                  <input type="date" id="birthday" class="form-control" th:value="${acc.birthday}">
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">Gender</div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-check-inline">
+                      <label class="form-check-label" for="male">
+                        <input type="radio" name="gender" class="form-check-input" id="male" value="Male"
+                          th:checked="${acc.gender} == ${T(webtech.gr14.util.enums.Gender).MALE}" />Male
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label" for="female">
+                        <input type="radio" name="gender" class="form-check-input" id="female" value="Female"
+                          th:checked="${acc.gender} == ${T(webtech.gr14.util.enums.Gender).FEMALE}" />Female
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- contact info -->
+          <div>
+            <h4>Contact info</h4>
+            <div class="container-fluid">
+              <div id="contact-info-container">
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">Email</div>
+                <div class="col-md-6">
+                  <input type="email" id="email" class="form-control" th:value="${acc.email}">
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">Phone</div>
+                <div class="col-md-6">
+                  <input type="tel" id="phone" class="form-control" th:value="${acc.phone}">
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">Address</div>
+                <div class="col-md-6">
+                  <input type="text" id="address" class="form-control" th:value="${acc.address}">
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- payment  -->
+          <div>
+            <h4>Payment</h4>
+          </div>
+
+          <!-- social -->
+          <div>
+            <h4>Social</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+    var aid = 7;
+    var alertHtmlCodeBasicInfo =
+      '<div id="basic-info-alert" class="alert alert-dismissible fade show" role="alert">' +
+      ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+      '<span aria-hidden="true">&times;</span>' +
+      ' <span class="sr-only">Close</span>' +
+      ' </button>' +
+      ' <strong id="basic-info-msg"></strong>' +
+      ' </div>';
+
+    var alertHtmlCodeContactInfo =
+      '<div id="contact-info-alert" class="alert alert-dismissible fade show" role="alert">' +
+      ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+      '<span aria-hidden="true">&times;</span>' +
+      ' <span class="sr-only">Close</span>' +
+      ' </button>' +
+      ' <strong id="contact-info-msg"></strong>' +
+      ' </div>';
+
+    $(document).ready(function () {
+      $('#full-name').change(function (e) {
+        var newName = $(this).val();
+        var url = "/acc/profiles/" + aid + "/change-name";
+        $.get(url, { name: newName },
+          function (respone, textStatus, jqXHR) {
+            if (textStatus === "success") {
+              $('#acc-name-on-header').text(respone);
+              $('#basic-info-container').html(alertHtmlCodeBasicInfo);
+              $('#basic-info-msg').text("Change name success!");
+              $('#basic-info-alert').removeClass("alert-warning").addClass(" alert-success");
+              $('#basic-info-container').css("display", "block");
+            }
+          },
+          "text"
+        );
+      });
+
+      $("#birthday").change(function (e) {
+        var newBirthday = $(this).val();
+        var url = "/acc/profiles/" + aid + "/change-birthday";
+        $.get(url, { birthday: newBirthday },
+          function (data, textStatus, jqXHR) {
+            if (textStatus === "success") {
+              $('#basic-info-container').html(alertHtmlCodeBasicInfo);
+              $('#basic-info-msg').text("Change birthday success!");
+              $('#basic-info-alert').removeClass("alert-warning").addClass(" alert-success");
+              $('#basic-info-container').css("display", "block");
+            }
+
+          },
+          "text"
+        );
+      });
+
+      $("input[name='gender']").change(function (e) {
+        var url = "/acc/profiles/" + aid + "/change-gender";
+        $.get(url, {},
+          function (data, textStatus, jqXHR) {
+            if (textStatus === "success") {
+              $('#basic-info-container').html(alertHtmlCodeBasicInfo);
+              $('#basic-info-msg').text("Change gender success!");
+              $('#basic-info-alert').removeClass("alert-warning").addClass(" alert-success");
+              $('#basic-info-container').css("display", "block");
+            }
+          },
+          "text"
+        );
+      });
+
+      $('#email').change(function (e) {
+        var newEmail = $(this).val();
+        var url = "/acc/profiles/" + aid + "/change-email";
+        $.get(url, { email: newEmail },
+          function (respone, textStatus, jqXHR) {
+            if (textStatus === "success") {
+              if (respone == "false") {
+                $('#contact-info-container').html(alertHtmlCodeContactInfo);
+                $('#contact-info-alert').removeClass("alert-success").addClass(" alert-warning");
+                $('#contact-info-msg').text("New email is invalid!");
+                $('#contact-info-container').css("display", "block");
+              } else {
+                $('#contact-info-container').html(alertHtmlCodeContactInfo);
+                $('#contact-info-alert').removeClass("alert-warning").addClass(" alert-success");
+                $('#contact-info-msg').text("Change email success!");
+                $('#contact-info-container').css("display", "block");
+              }
+            }
+          },
+          "text"
+        );
+      });
+
+      $('#phone').change(function (e) {
+        var newPhone = $(this).val();
+        var url = "/acc/profiles/" + aid + "/change-phone";
+        $.get(url, { phone: newPhone },
+          function (respone, textStatus, jqXHR) {
+            if (textStatus === "success") {
+              if (respone == "false") {
+                $('#contact-info-container').html(alertHtmlCodeContactInfo);
+                $('#contact-info-alert').removeClass("alert-success").addClass(" alert-warning");
+                $('#contact-info-msg').text("Phone invalid!");
+                $('#contact-info-container').css("display", "block");
+              } else {
+                $('#contact-info-container').html(alertHtmlCodeContactInfo);
+                $('#contact-info-msg').text("Change phone success!");
+                $('#contact-info-alert').removeClass("alert-warning").addClass(" alert-success");
+                $('#contact-info-container').css("display", "block");
+              }
+            }
+          },
+          "text"
+        );
+      });
+
+      $('#address').change(function (e) {
+        var newAddress = $(this).val();
+        var url = "/acc/profiles/" + aid + "/change-address";
+        $.get(url, { address: newAddress },
+          function (respone, textStatus, jqXHR) {
+            if (textStatus === "success") {
+              if (respone == "false") {
+                $('#contact-info-container').html(alertHtmlCodeContactInfo);
+                $('#contact-info-alert').removeClass("alert-success").addClass(" alert-warning");
+                $('#contact-info-msg').text("Address invalid!");
+                $('#contact-info-container').css("display", "block");
+              } else {
+                $('#contact-info-container').html(alertHtmlCodeContactInfo);
+                $('#contact-info-msg').text("Change address success!");
+                $('#contact-info-alert').removeClass("alert-warning").addClass(" alert-success");
+                $('#contact-info-container').css("display", "block");
+              }
+            }
+          },
+          "text"
+        );
+      })
+    });
+  </script>
 </body>
+
 </html>
