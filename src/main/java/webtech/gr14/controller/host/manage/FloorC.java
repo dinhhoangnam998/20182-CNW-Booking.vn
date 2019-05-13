@@ -60,7 +60,6 @@ public class FloorC {
 			return "redirect:/host/manage/hotels/" + hid + "/floors";
 		} else {
 			rdA.addFlashAttribute("errMsgs", fS.getEditErrorMsgs());
-			System.out.println("--------------> errrrrrrrrrrrrrrrror");
 			return "redirect:/host/manage/hotels/" + hid + "/floors/" + floor.getId() + "/edit";
 		}
 	}

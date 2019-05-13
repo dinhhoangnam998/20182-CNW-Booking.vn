@@ -1,7 +1,6 @@
 package webtech.gr14.service.guest;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import webtech.gr14.model.address.Commune;
-import webtech.gr14.model.floor.Floor;
-import webtech.gr14.model.floor.Room;
 import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.repository.address.CommuneR;
 import webtech.gr14.repository.address.DistrictR;
@@ -20,7 +17,6 @@ import webtech.gr14.repository.floor.FloorR;
 import webtech.gr14.repository.floor.RoomR;
 import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.service.util.HotelAPI;
-import webtech.gr14.util.date.DateCommonUtil;
 import webtech.gr14.util.enums.ActiveState;
 
 @Service

@@ -25,7 +25,7 @@ public class ReserveC {
 	@PostMapping("/reserve")
 	public String reserve(RedirectAttributes rdA, HttpSession ss, @RequestParam Integer[] floorsId,
 			@RequestParam Integer[] numOfReserveRoom) {
-		int reserveOrderId = rS.tempReserve(floorsId, numOfReserveRoom);
+		int reserveOrderId = rS.tempReserve(ss, floorsId, numOfReserveRoom);
 		return "redirect:/guest/checkout/" + reserveOrderId;
 	}
 
@@ -36,7 +36,7 @@ public class ReserveC {
 		return "guest/reserve/checkout";
 	}
 
-	@PostMapping("/final-checkout/{roid}")
+	@GetMapping("/final-checkout/{roid}")
 	public String finalCheckout(RedirectAttributes rdA, HttpSession ss, @PathVariable int roid) {
 		if (rS.tryFinalCheckout(ss, roid)) {
 			rdA.addFlashAttribute("msg", "success");
