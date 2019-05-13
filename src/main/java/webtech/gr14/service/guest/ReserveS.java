@@ -38,16 +38,16 @@ public class ReserveS {
 
 	public int tempReserve(Integer[] floorsId, Integer[] numOfReserveRoom) {
 		ReserveOrder tempRO = new ReserveOrder();
-
 		Acc acc = aS.getAcc();
 		tempRO.setAcc(acc);
-
 		tempRO.setState(ReserveOrderState.TEMP);
 
 		List<ReserveDetail> rds = new ArrayList<>();
 		for (int i = 0; i <= floorsId.length - 1; i++) {
-			if (numOfReserveRoom[i] != 0) {
+			if (numOfReserveRoom[i] > 0) {
 				ReserveDetail rd = new ReserveDetail();
+				
+				
 				Floor floor = fR.getOne(floorsId[i]);
 				rd.setFloor(floor);
 				rd.setQuantity(numOfReserveRoom[i]);

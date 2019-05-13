@@ -17,7 +17,7 @@ import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.util.date.DateCommonUtil;
 
 @Service
-public class HotelS {
+public class HotelInfoS {
 
 	@Autowired
 	public HotelR hR;

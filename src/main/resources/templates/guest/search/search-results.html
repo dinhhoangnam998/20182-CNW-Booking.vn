@@ -11,10 +11,33 @@
 
     <!-- main -->
     <main>
-      <div th:each="hotel: ${hotels}">
-        <div>[[${hotel.name}]]</div>
-        <div>[[${hotel.description}]]</div>
+
+
+      <div class="container-fluid">
+        <div class="row">
+          <!-- filter -->
+          <div class="col-md-3">
+
+          </div>
+
+          <!-- results -->
+          <div class="col-md-9">
+            <div th:each="hotel : ${hotels}">
+              <div class="row mb-1 bg-secondary">
+                <div class="col-md-4">
+                  <a th:href="@{/guest/hotels/{hid}(hid = ${hotel.id})}">
+                    <img th:src="@{${hotel.imgURL}}" alt="no img" style="height: 200px; width: 100%; object-fit: cover">
+                  </a>
+                </div>
+                <div class="col-md-8">
+                    <div>[[${hotel.name}]]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </main>   
 
     <!-- footer -->

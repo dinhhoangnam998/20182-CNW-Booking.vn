@@ -33,7 +33,7 @@ public class ReserveC {
 	public String checkout(Model model, @PathVariable int roid) {
 		ReserveOrder reserveOrder = rS.roR.getOne(roid);
 		model.addAttribute("reserveOrder", reserveOrder);
-		return "";
+		return "guest/reserve/checkout";
 	}
 
 	@PostMapping("/final-checkout/{roid}")

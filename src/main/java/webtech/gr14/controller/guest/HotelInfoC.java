@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import webtech.gr14.model.floor.Floor;
 import webtech.gr14.model.hotel.Hotel;
-import webtech.gr14.service.guest.HotelS;
+import webtech.gr14.service.guest.HotelInfoS;
 
 @Controller
 @RequestMapping("/guest")
-public class HotelC {
+public class HotelInfoC {
 
 	@Autowired
-	private HotelS hS;
+	private HotelInfoS hiS;
 
 	@GetMapping("/hotels/{hid}")
 	public String hotelInfo(Model model, HttpSession ss, @PathVariable int hid) {
-		Hotel hotel = hS.hR.getOne(hid);
-		List<Floor> floors = hS.fR.findByHotel_IdAndDeleted(hid, false);
-		List<Integer> remainRoomOfEachFloor = hS.getRemainRoomOfEachFloor(ss, hid);
+		Hotel hotel = hiS.hR.getOne(hid);
+		List<Floor> floors = hiS.fR.findByHotel_IdAndDeleted(hid, false);
+		List<Integer> remainRoomOfEachFloor = hiS.getRemainRoomOfEachFloor(ss, hid);
 		
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("floors", floors);
 		model.addAttribute("remainRoomOfEachFloor", remainRoomOfEachFloor);
 		
-		return "";
+		return "/guest/hotel/hotel-info";
 	}
 }

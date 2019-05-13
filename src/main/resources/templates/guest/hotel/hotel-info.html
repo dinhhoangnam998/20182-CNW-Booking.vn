@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
+</head>
+
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- search colapse & map & facility... -->
+        <div class="col-md-3"></div>
+        <!-- hotel info -->
+        <div class="col-md-9">
+          <!-- gallery -->
+          <div>
+            <ul id="imgGallery">
+              <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
+                <img style="height: 450px; width: 100%; object-fit: cover" th:src="@{${imgURL}}" alt="img not found" />
+              </li>
+            </ul>
+          </div>
+          <!-- description -->
+          <div>
+            [[${hotel.description}]]
+          </div>
+          <!-- room remain -->
+          <div class="container-fluid">
+            <!-- reserve info -->
+            <div></div>
+            <form th:action="@{/guest/reserve}" method="POST" id="myform">
+              <div class="row">
+
+                <!-- floor info -->
+                <div class="col-md-9 border border-danger">
+                  <div class="row" th:each="remain, i : ${remainRoomOfEachFloor}" th:if="${remain} > 0">
+                    <div class="col-md-4">
+                      [[${floors[__${i.index}__].name}]]
+                    </div>
+                    <div class="col-md-1">
+                      max people
+                    </div>
+                    <div class="col-md-2">
+                      [[${floors[__${i.index}__].price}]]
+                    </div>
+                    <div class="col-md-4">
+                      choose service or not
+                    </div>
+                    <div class="col-md-1 border border-warning">
+                      <input type="hidden" name="floorsId" th:value="${floors[__${i.index}__].id}" multiple>
+                      <input type="number" min="0" th:max="${remain}" style="width:100%" name="numOfReserveRoom" multiple>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- reserve button -->
+                <div class="col-md-3 border border-primary">
+                  <button type="submit" class="btn btn-primary" form="myform">I'll Reserve</button>
+                </div>
+
+              </div>
+
+            </form>
+
+          </div>
+
+          <!-- facility -->
+          <div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+    $(document).ready(function () {
+      $("#imgGallery").lightSlider({
+        gallery: true,
+        item: 1,
+        loop: true,
+        thumbItem: 9,
+        keyPress: true,
+        controls: true
+      });
+    });
+  </script>
+</body>
+
+</html>

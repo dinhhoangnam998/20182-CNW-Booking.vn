@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import webtech.gr14.model.floor.Floor;
+import webtech.gr14.model.floor.Room;
 
 @Entity
 @Getter
@@ -22,17 +22,16 @@ import webtech.gr14.model.floor.Floor;
 @AllArgsConstructor
 @Proxy(lazy = false)
 public class ReserveDetail {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int quantity;
-	private int totalCharge;
-	
+	private int charge;
+
 	@ManyToOne
 	private ReserveOrder reserveOrder;
-	
+
 	@OneToOne
-	private Floor floor;
+	private Room room;
 
 }

@@ -19,6 +19,7 @@ import webtech.gr14.repository.address.ProvinceR;
 import webtech.gr14.repository.floor.FloorR;
 import webtech.gr14.repository.floor.RoomR;
 import webtech.gr14.repository.hotel.HotelR;
+import webtech.gr14.service.util.HotelAPI;
 import webtech.gr14.util.date.DateCommonUtil;
 import webtech.gr14.util.enums.ActiveState;
 
@@ -43,13 +44,18 @@ public class SearchS {
 	@Autowired
 	public RoomR rR;
 
+	@Autowired
+	private HotelAPI hAPI;
+
 	public List<Hotel> getSearchResults(HttpSession ss, String address, String dateRange, int numOfRoom,
 			int numOfPeople) {
 		ss.setAttribute("dateRange", dateRange);
+		ss.setAttribute("address", address);
+		ss.setAttribute("numOfRoom", numOfRoom);
+		ss.setAttribute("numOfPeople", numOfPeople);
 		Commune cmm = getCommuneIdFromAddress(address);
 		int cid = cmm.getId();
-		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
-		return getSearchResult(cid, dateList, numOfRoom, numOfPeople);
+		return getSearchResult(cid, dateRange, numOfRoom, numOfPeople);
 	}
 
 	public Commune getCommuneIdFromAddress(String address) {
@@ -58,29 +64,12 @@ public class SearchS {
 		return cR.findByName(communeName);
 	}
 
-	public List<Hotel> getSearchResult(int cid, List<Date> dateList, int numOfRoom, int numOfPeople) {
+	public List<Hotel> getSearchResult(int cid, String dateRange, int numOfRoom, int numOfPeople) {
 		List<Hotel> result = new ArrayList<Hotel>();
-		// each hotel
 		List<Hotel> hotelsInCommune = hR.findByCommune_IdAndDeletedAndActiveStateNot(cid, false, ActiveState.BLOCKED);
 		for (Hotel hotel : hotelsInCommune) {
-			int roomRemain = 0, maxPeople = 0;
-			// each floor
-			List<Floor> floors = fR.findByHotel_Id(hotel.getId());
-			for (Floor floor : floors) {
-				int roomRemainOfThisFloor = 0;
-				// each room
-				List<Room> rooms = rR.findByFloor_IdAndDeleted(floor.getId(), false);
-				for (Room room : rooms) {
-					if (room.getRemainOpenDates().containsAll(dateList)) {
-						roomRemainOfThisFloor += 1;
-					}
-				}
-
-				roomRemain += roomRemainOfThisFloor;
-				maxPeople += floor.getMaxPeople();
-			}
-			// if satisfy
-			if (roomRemain > numOfRoom && maxPeople > numOfPeople) {
+			Integer[] nOARAMP = hAPI.getNumOfAvailableRoomAndMaxPeople(hotel.getId(), dateRange);
+			if (nOARAMP[0] >= numOfRoom && nOARAMP[1] >= numOfPeople) {
 				result.add(hotel);
 			}
 		}
