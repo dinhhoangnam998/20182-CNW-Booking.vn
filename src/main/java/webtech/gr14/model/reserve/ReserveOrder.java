@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webtech.gr14.model.Acc;
+import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.util.enums.ReserveOrderState;
 
 @Entity
@@ -58,4 +59,7 @@ public class ReserveOrder {
 	
 	@ManyToOne
 	private Acc acc;
+	
+	@ManyToOne
+	private Hotel hotel;
 }

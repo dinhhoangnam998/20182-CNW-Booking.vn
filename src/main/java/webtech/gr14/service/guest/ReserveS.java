@@ -15,6 +15,7 @@ import webtech.gr14.model.reserve.ReserveDetail;
 import webtech.gr14.model.reserve.ReserveOrder;
 import webtech.gr14.repository.floor.FloorR;
 import webtech.gr14.repository.floor.RoomR;
+import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.repository.reserve.ReserveDetailR;
 import webtech.gr14.repository.reserve.ReserveOrderR;
 import webtech.gr14.service.acc.AccS;
@@ -35,6 +36,9 @@ public class ReserveS {
 
 	@Autowired
 	public RoomR rR;
+
+	@Autowired
+	public HotelR hR;
 
 	@Autowired
 	public ReserveDetailR rdR;
@@ -87,10 +91,14 @@ public class ReserveS {
 
 		String dateRange = (String) ss.getAttribute("dateRange");
 		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
+		int numOfNight = dateList.size();
 		List<ReserveDetail> rds = rdR.findByReserveOrder_Id(roid);
 		for (ReserveDetail rd : rds) {
 			Room room = rd.getRoom();
-			charge += room.getFloor().getPrice();
+			int chargeForRoom = room.getFloor().getPrice() * numOfNight;
+			rd.setCharge(chargeForRoom);
+			rdR.save(rd);
+			charge += chargeForRoom;
 			if (!room.getRemainOpenDates().containsAll(dateList)) {
 				roR.delete(ro);
 				return false;
@@ -102,10 +110,11 @@ public class ReserveS {
 			room.setRemainOpenDates((List<Date>) CollectionUtils.subtract(room.getRemainOpenDates(), dateList));
 			rR.save(room);
 		}
-
+		int hotelId = (int) ss.getAttribute("hotelId");
 		ro.setDate(new Date());
 		ro.setCharge(charge);
 		ro.setDateRange(dateRange);
+		ro.setHotel(hR.getOne(hotelId));
 		ro.setState(ReserveOrderState.ORDERED);
 		// set note
 		roR.save(ro);

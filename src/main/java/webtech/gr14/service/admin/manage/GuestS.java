@@ -28,7 +28,7 @@ public class GuestS {
 	public List<ReserveOrder> getBadTransactionsOfGuests(int p, int pS) {
 		// validate p and pS here
 		return roR.findByVoteByHost(ONE_STAR, PageRequest.of(p - 1, pS,
-				Sort.by(new Order(Direction.ASC, "checked"), new Order(Direction.DESC, "date"))));
+				Sort.by(new Order(Direction.ASC, "checkedGuest"), new Order(Direction.DESC, "date"))));
 	}
 
 	public List<Integer> getPageList(int p, int pS) {

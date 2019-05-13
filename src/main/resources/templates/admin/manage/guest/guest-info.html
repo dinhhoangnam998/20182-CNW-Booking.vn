@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+</head>
+
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main th:id="${guest.id}">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            <img th:src="${guest.imgURL}" style="height: 300px; width: 300px; object-fit: cover" alt="no image found">
+          </div>
+          <div class="col-md-9">
+            <h4>[[${guest.name}]]</h4>
+            <div id="active-state">
+              [[${guest.activeState}]]
+            </div>
+
+            <div th:if="${guest.activeState} == ${T(webtech.gr14.util.enums.ActiveState).ACTIVE}">
+              <a th:href="@{/admin/manage/guests/{gid}/warning(gid=${guest.id})}" class="btn btn-warning warning-btn">Warning</a>
+              <a th:href="@{/admin/manage/guests/{gid}/block(gid=${guest.id})}" class="btn btn-danger block-btn">Block</a>
+            </div>
+
+            <div th:if="${guest.activeState} == ${T(webtech.gr14.util.enums.ActiveState).WARNING}">
+              <a th:href="@{/admin/manage/guests/{gid}/unwarning(gid=${guest.id})}" class="btn btn-success unwarning-btn">Unwarning</a>
+              <a th:href="@{/admin/manage/guests/{gid}/block(gid=${guest.id})}" class="btn btn-danger block-btn">Block</a>
+            </div>
+
+            <div th:if="${guest.activeState} == ${T(webtech.gr14.util.enums.ActiveState).BLOCKED}">
+              <a th:href="@{/admin/manage/guests/{gid}/unblock(gid=${guest.id})}" class="btn btn-success unblock-btn">Unblock</a>
+            </div>
+
+
+
+
+            <!-- <script>
+              $(document).ready(function () {
+                var gid = $('main').attr("id");
+                var activeStateE = $('#active-state');
+
+                var activeHTML =
+                  ' <button type="button" class="btn btn-warning warning-btn">Warning</button>' +
+                  ' <button type="button" class="btn btn-danger block-btn">Block</button>';
+
+                var warningHTML =
+                  '<button type="button" class="btn btn-success unwarning-btn">Unarning</button>' +
+                  ' <button type="button" class="btn btn-danger block-btn">Block</button>';
+
+                var blockHTML = '<button type="button" class="btn btn-success unblock-btn">Unblock</button>';
+
+                $('#warning').click(function (e) {
+                  var url = "/admin/manage/guests/" + gid + "/warning";
+                  var parentE = $(this).parent();
+                  var thisE = $(this);
+                  $.get(url, {},
+                    function (data, textStatus, jqXHR) {
+                      if (textStatus == "success") {
+                        activeStateE.text("WARNING");
+                        thisE.text("unwaring").removeClass("warning-btn").addClass("unwarning-btn").removeClass("btn-warning").addClass("btn-success")
+
+                      }
+                    },
+                    "text"
+                  );
+                });
+
+                $('#unwarning').click(function (e) {
+                  var url = "/admin/manage/guests/" + gid + "/unwarning";
+                  var parentE = $(this).parent();
+                  $.get(url, {},
+                    function (data, textStatus, jqXHR) {
+                      if (textStatus == "success") {
+                        activeStateE.text("ACTIVE");
+                        parentE.html(activeHTML);
+                      }
+                    },
+                    "text"
+                  );
+                });
+
+                $('#block').click(function (e) {
+                  var url = "/admin/manage/guests/" + gid + "/block";
+                  var parentE = $(this).parent();
+                  $.get(url, {},
+                    function (data, textStatus, jqXHR) {
+                      if (textStatus == "success") {
+                        activeStateE.text("BLOCK");
+                        parentE.html(blockHTML);
+                      }
+                    },
+                    "text"
+                  );
+                });
+
+                $('#unblock').click(function (e) {
+                  var url = "/admin/manage/guests/" + gid + "/unblock";
+                  var parentE = $(this).parent();
+                  $.get(url, {},
+                    function (data, textStatus, jqXHR) {
+                      if (textStatus == "success") {
+                        activeStateE.text("ACTIVE");
+                        parentE.html(activeHTML);
+                      }
+                    },
+                    "text"
+                  );
+                });
+
+              });
+
+            </script> -->
+
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div th:each="ro :${reserveOrders}" class="mb-1">
+          <div> Id: [[${ro.id}]]</div>
+          <div>Charge: [[${ro.charge}]]</div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+</body>
+
+</html>

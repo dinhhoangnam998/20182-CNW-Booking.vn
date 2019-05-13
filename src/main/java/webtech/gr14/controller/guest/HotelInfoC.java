@@ -24,6 +24,7 @@ public class HotelInfoC {
 
 	@GetMapping("/hotels/{hid}")
 	public String hotelInfo(Model model, HttpSession ss, @PathVariable int hid) {
+		ss.setAttribute("hotelId", hid);
 		Hotel hotel = hiS.hR.getOne(hid);
 		List<Floor> floors = hiS.fR.findByHotel_IdAndDeleted(hid, false);
 		List<Integer> remainRoomOfEachFloor = hiS.getRemainRoomOfEachFloor(ss, hid);
