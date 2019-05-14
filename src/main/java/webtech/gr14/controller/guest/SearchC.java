@@ -32,7 +32,8 @@ public class SearchC {
 
 	@PostMapping("/search-hotels")
 	public String searchHotels(HttpSession ss, Model model, @RequestParam String address,
-			@RequestParam String dateRange, @RequestParam int numOfRoom, @RequestParam int numOfPeople) {
+			@RequestParam String dateRange, @RequestParam(required = false, defaultValue = "1") int numOfRoom,
+			@RequestParam(required = false, defaultValue = "1") int numOfPeople) {
 		List<Hotel> hotels = sS.getSearchResults(ss, address, dateRange, numOfRoom, numOfPeople);
 		model.addAttribute("hotels", hotels);
 		return "/guest/search/search-results";

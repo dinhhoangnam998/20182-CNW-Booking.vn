@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,7 +109,7 @@ public class SeedDataC {
 		try {
 			List<String> myprovinces = Files
 					.readAllLines(Paths.get("src/main/resources/for-dev-only/addressTextDate/provinces.txt"));
-			List<String> provinces = new ArrayList<>(new HashSet<>(myprovinces));
+			List<String> provinces = new ArrayList<>(new LinkedHashSet<>(myprovinces));
 			for (String p : provinces) {
 				Province province = new Province();
 				province.setName(p);
@@ -122,7 +122,7 @@ public class SeedDataC {
 		try {
 			List<String> mydistricts = Files
 					.readAllLines(Paths.get("src/main/resources/for-dev-only/addressTextDate/districts.txt"));
-			List<String> districts = new ArrayList<>(new HashSet<>(mydistricts));
+			List<String> districts = new ArrayList<>(new LinkedHashSet<>(mydistricts));
 			int i = 10;
 			for (String d : districts) {
 				i++;
@@ -138,7 +138,7 @@ public class SeedDataC {
 		try {
 			List<String> mycommunes = Files
 					.readAllLines(Paths.get("src/main/resources/for-dev-only/addressTextDate/communes.txt"));
-			List<String> communes = new ArrayList<>(new HashSet<>(mycommunes));
+			List<String> communes = new ArrayList<>(new LinkedHashSet<>(mycommunes));
 			int j = 1;
 			for (String comm : communes) {
 				j++;
@@ -282,6 +282,7 @@ public class SeedDataC {
 		for (Room room : rooms) {
 			room.setFloor(fR.getOne(j / 5));
 			rR.save(room);
+			j++;
 		}
 		return "redirect:/guest/home";
 	}

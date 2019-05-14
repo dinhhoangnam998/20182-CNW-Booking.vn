@@ -107,6 +107,9 @@ public class HotelS {
 		newHotel.setHandelDate(origin.getHandelDate());
 		newHotel.setSubmitState(origin.getSubmitState());
 		newHotel.setHandleSubmitDate(origin.getHandleSubmitDate());
+		newHotel.setAddress(origin.getAddress());
+		newHotel.setCommune(origin.getCommune());
+		newHotel.setSubmitDate(origin.getSubmitDate());
 		newHotel.setAcc(aS.getAcc());
 
 		String hotelName = newHotel.getName();
