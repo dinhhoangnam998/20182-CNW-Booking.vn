@@ -19,28 +19,13 @@
       <h3>Find your best deal</h3>
       <p></p>
 
-      <!-- <form action="/guest/search-hotels" method="post" id="search-form">
-        <div class="row">
-          <div class="col-md-3">
-            <input type="text" placeholder="where to go">
-          </div>
-          <div class="col-md-3">
-            <input type="text" name="" class="datepicker">
-          </div>
-          <div class="col-md-2">
-            <input type="number" placeholder="number of room">
-          </div>
-          <div class="col-md-2">
-            <input type="number" placeholder="number of people">
-          </div>
-          <div class="col-md-2">
-            <button type="submit" class="btn btn-primary" form="search-form">Search</button>
-          </div>
-        </div>
-      </form> -->
-
       <form th:action="@{/guest/search-hotels}" method="post">
-        <input type="text" name="address" placeholder="where to go">
+        <div style="position: relative;">
+          <input type="search" name="address" id="search-box" class="form-control" placeholder="...Search" />
+          <div
+            style="position: absolute; overflow: auto; max-height: 250px; width: 100%; background-color:white; z-index: 9;"
+            id="search-result"></div>
+        </div>
         <input type="text" name="dateRange" class="datepicker">
         <input type="number" name="numOfRoom" placeholder="number of room">
         <input type="number" name="numOfPeople" placeholder="number of people">
@@ -49,12 +34,55 @@
 
       <p></p>
     </div>
+
+
+
   </main>
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
   <script>
     $('input.datepicker').daterangepicker();
+  </script>
+  <script>
+    $(document).ready(function () {
+
+
+      function showResult(content) {
+        $('#search-result').html(content);
+        $('#search-result').show();
+        $('.list-group-item').click(function () { 
+          var address = $(this).text();
+          $('#search-box').val(address);
+          $('#search-result').hide();
+         })
+      }
+
+      function processResult(districts) {
+        var content = "";
+        content = '<ul class="list-group">';
+
+        districts.forEach(dis => {
+          content +=
+            '<li class="list-group-item">' +
+            dis.name + ", " + dis.province.name +
+            ' </li>';
+        });
+        content += '</ul>';
+        showResult(content);
+      }
+
+      $('#search-box').keyup(function (e) {
+        var q = $('#search-box').val();
+        $.getJSON("/guest/get-recomment", { querry: q },
+          function (data, textStatus, jqXHR) {
+            if (textStatus == "success") {
+              processResult(data);
+            }
+          }
+        );
+      });
+    });
   </script>
 </body>
 
