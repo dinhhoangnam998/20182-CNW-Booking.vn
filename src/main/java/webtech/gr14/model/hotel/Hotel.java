@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,6 +28,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webtech.gr14.model.Acc;
 import webtech.gr14.model.address.Commune;
+import webtech.gr14.model.floor.Floor;
 import webtech.gr14.util.enums.ActiveState;
 import webtech.gr14.util.enums.SubmitState;
 
@@ -88,5 +91,8 @@ public class Hotel {
 
 	@ManyToOne
 	private Commune commune;
+	
+	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+	private List<Floor> floors;
 
 }

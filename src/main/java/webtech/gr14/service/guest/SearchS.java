@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import webtech.gr14.model.address.Commune;
+import webtech.gr14.model.address.District;
 import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.repository.address.CommuneR;
 import webtech.gr14.repository.address.DistrictR;
@@ -49,27 +49,30 @@ public class SearchS {
 		ss.setAttribute("address", address);
 		ss.setAttribute("numOfRoom", numOfRoom);
 		ss.setAttribute("numOfPeople", numOfPeople);
-		Commune cmm = getCommuneIdFromAddress(address);
-		int cid = cmm.getId();
-		return getSearchResult(cid, dateRange, numOfRoom, numOfPeople);
+		return getSearchResult(getDistrictIdFromAddress(address), dateRange, numOfRoom, numOfPeople);
 	}
 
-	public Commune getCommuneIdFromAddress(String address) {
+	public int getDistrictIdFromAddress(String address) {
 		String[] part = address.split(",");
-		String communeName = part[0];
-		return cR.findByName(communeName);
+		String district = part[0];
+		return dR.findByName(district).getId();
 	}
 
-	public List<Hotel> getSearchResult(int cid, String dateRange, int numOfRoom, int numOfPeople) {
+	public List<Hotel> getSearchResult(int did, String dateRange, int numOfRoom, int numOfPeople) {
 		List<Hotel> result = new ArrayList<Hotel>();
-		List<Hotel> hotelsInCommune = hR.findByCommune_IdAndDeletedAndActiveStateNot(cid, false, ActiveState.BLOCKED);
-		for (Hotel hotel : hotelsInCommune) {
+		List<Hotel> hotelsInDistrict = hR.findByCommune_District_IdAndDeletedAndActiveStateNot(did, false,
+				ActiveState.BLOCKED);
+		for (Hotel hotel : hotelsInDistrict) {
 			Integer[] nOARAMP = hAPI.getNumOfAvailableRoomAndMaxPeople(hotel.getId(), dateRange);
 			if (nOARAMP[0] >= numOfRoom && nOARAMP[1] >= numOfPeople) {
 				result.add(hotel);
 			}
 		}
 		return result;
+	}
+
+	public List<District> getRecomment(String querry) {
+		return dR.findByNameContaining(querry);
 	}
 
 }

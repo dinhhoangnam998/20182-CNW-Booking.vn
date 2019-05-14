@@ -19,4 +19,6 @@ public interface HotelR extends JpaRepository<Hotel, Integer> {
 
 	Hotel findByNameAndDeletedAndIdNot(String name, boolean b, int id);
 
+	List<Hotel> findByCommune_District_IdAndDeletedAndActiveStateNot(int did, boolean b, ActiveState blocked);
+
 }

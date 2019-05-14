@@ -25,8 +25,8 @@ public class Commune {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	
+
 	@ManyToOne
-	private District distrcit;
+	private District district;
 
 }

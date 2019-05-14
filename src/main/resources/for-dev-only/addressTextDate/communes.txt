@@ -341,3 +341,397 @@ Tịnh Thới
 Tân Khánh Đông
 Tân Phú Đông
 Tân Quy Tây
+Phường Phúc Xá
+Phường Trúc Bạch
+Phường Vĩnh Phúc
+Phường Cống Vị
+Phường Liễu Giai
+Phường Nguyễn Trung Trực
+Phường Quán Thánh
+Phường Ngọc Hà
+Phường Điện Biên
+Phường Đội Cấn
+Phường Ngọc Khánh
+Phường Kim Mã
+Phường Giảng Võ
+Phường Thành Công
+Phường Phúc Tân
+Phường Đồng Xuân
+Phường Hàng Mã
+Phường Hàng Buồm
+Phường Hàng Đào
+Phường Hàng Bồ
+Phường Cửa Đông
+Phường Lý Thái Tổ
+Phường Hàng Bạc
+Phường Hàng Gai
+Phường Chương Dương Độ
+Phường Hàng Trống
+Phường Cửa Nam
+Phường Hàng Bông
+Phường Tràng Tiền
+Phường Trần Hưng Đạo
+Phường Phan Chu Trinh
+Phường Phú Thượng
+Phường Nhật Tân
+Phường Tứ Liên
+Phường Quảng An
+Phường Xuân La
+Phường Yên Phụ
+Phường Bưởi
+Phường Thụy Khuê
+Phường Thượng Thanh
+Phường Ngọc Thụy
+Phường Giang Biên
+Phường Đức Giang
+Phường Việt Hưng
+Phường Gia Thụy
+Phường Ngọc Lâm
+Phường Phúc Lợi
+Phường Bồ Đề
+Phường Sài Đồng
+Phường Long Biên
+Phường Thạch Bàn
+Phường Phúc Đồng
+Phường Cự Khối
+Phường Nghĩa Đô
+Phường Nghĩa Tân
+Phường Mai Dịch
+Phường Dịch Vọng
+Phường Dịch Vọng Hậu
+Phường Quan Hoa 
+Phường Tân Định
+Phường Đa Kao
+Phường Bến Nghé
+Phường Bến Thành
+Phường Nguyễn Thái Bình
+Phường Phạm Ngũ Lão
+Phường Cầu Ông Lãnh
+Phường Cô Giang
+Phường Nguyễn Cư Trinh
+Phường Cầu Kho
+Phường Thạnh Xuân
+Phường Thạnh Lộc
+Phường Hiệp Thành
+Phường Thới An
+Phường Tân Chánh Hiệp
+Phường An Phú Đông
+Phường Tân Thới Hiệp
+Phường Trung Mỹ Tây
+Phường Tân Hưng Thuận
+Phường Đông Hưng Thuận
+Phường Tân Thới Nhất
+Phường Linh Xuân
+Phường Bình Chiểu
+Phường Linh Trung
+Phường Tam Bình
+Phường Tam Phú
+Phường Hiệp Bình Phước
+Phường Hiệp Bình Chánh
+Phường Linh Chiểu
+Phường Linh Tây
+Phường Linh Đông
+Phường Bình Thọ
+Phường Trường Thọ
+Phường Long Bình
+Phường Long Thạnh Mỹ
+Phường Tân Phú
+Phường Hiệp Phú
+Phường Tăng Nhơn Phú A
+Phường Tăng Nhơn Phú B
+Phường Phước Long B
+Phường Phước Long A
+Phường Trường Thạnh
+Phường Long Phước
+Phường Long Trường
+Phường Phước Bình
+Phường Phú Hữu
+Xã Kim Lan
+Xã Văn Đức
+yện Từ Liêm
+Thị trấn Cầu Diễn
+Xã Thượng Cát
+Xã Liên Mạc
+Xã Đông Ngạc
+Xã Thụy Phương
+Xã Tây Tựu
+Xã Xuân Đỉnh
+Xã Minh Khai
+Xã Cổ Nhuế
+Xã Phú Diễn
+Xã Xuân Phương
+Xã Mỹ Đình
+Xã Tây Mỗ
+Xã Mễ Trì
+Xã Đại Mỗ
+Xã Trung Văn
+yện Thanh Trì
+Thị trấn Văn Điển
+Xã Tân Triều
+Xã Thanh Liệt
+Xã Tả Thanh Oai
+Xã Hữu Hoà
+Xã Tam Hiệp
+Xã Tứ Hiệp
+Xã Yên Mỹ
+Xã Vĩnh Quỳnh
+Xã Ngũ Hiệp
+Xã Duyên Hà
+Xã Ngọc Hồi
+Xã Vạn Phúc
+Xã Đại Áng
+Xã Liên Ninh
+Xã Đông Mỹ
+Thị trấn Chi Đông
+Thị trấn Quang Minh
+Xã Đại Thịnh
+Xã Kim Hoa
+Xã Thạch Đà
+Xã Tiến Thắng
+Xã Tự Lập
+Xã Thanh Lâm
+Xã Tam Đồng
+Xã Liên Mạc
+Xã Vạn Yên
+Xã Chu Phan
+Xã Tiến Thịnh
+Xã Mê Linh
+Xã Văn Khê
+Xã Hoàng Kim
+Xã Tiền Phong
+Xã Tráng Việt
+
+Phường Nguyễn Trãi
+Phường Mộ Lao
+Phường Văn Quán
+Phường Vạn Phúc
+Phường Yết Kiêu
+Phường Quang Trung
+Phường La Khê
+Phường Phú La
+Phường Phúc La
+Phường Hà Cầu
+Xã Yên Nghĩa
+Xã Kiến Hưng
+Xã Phú Lãm
+Xã Phú Lương
+Xã Đồng Mai
+Xã Dương Nội
+Xã Biên Gia
+Phường Lê Lợi
+Phường Phú Thịnh
+Phường Ngô Quyền
+Phường Quang Trung
+Phường Sơn Lộc
+Phường Xuân Khanh
+Phường Viên Sơn
+Phường Trung Hưng
+Phường Trung Sơn Trầm
+Xã Đường Lâm
+Xã Xuân Sơn
+Xã Thanh Mỹ
+Xã Kim Sơn
+Xã Sơn Đông
+Xã Cổ Đông
+yện Ba Vì
+Thị trấn Tây Đằng
+Xã Phú Cường
+Xã Cổ Đô
+Xã Tản Hồng
+Xã Vạn Thắng
+Xã Châu Sơn
+Xã Phong Vân
+Xã Phú Đông
+Xã Phú Phương
+Xã Phú Châu
+Xã Thái Hòa
+Xã Đồng Thái
+Xã Phú Sơn
+Xã Minh Châu
+Xã Vật Lại
+Xã Chu Minh
+Xã Tòng Bạt
+Xã Cẩm Lĩnh
+Xã Sơn Đà
+Xã Đông Quang
+Xã Tiên Phong
+Xã Thụy An
+Xã Cam Thượng
+Xã Thuần Mỹ
+Xã Tản Lĩnh
+Xã Ba Trại
+Xã Minh Quang
+Xã Ba Vì
+Xã Vân Hòa
+Xã Yên Bài
+Xã Khánh Thượng
+yện Phúc Thọ
+Thị trấn Phúc Thọ
+Xã Vân Hà
+Xã Vân Phúc
+Xã Vân Nam
+Xã Xuân Phú
+Xã Phương Độ
+Xã Sen Chiểu
+Xã Cẩm Đình
+Xã Võng Xuyên
+Xã Thọ Lộc
+Xã Long Xuyên
+Xã Thượng Cốc
+Xã Hát Môn
+Xã Tích Giang
+Xã Thanh Đa
+Xã Trạch Mỹ Lộc
+Xã Phúc Hòa
+Xã Ngọc Tảo
+Xã Phụng Thượng
+Xã Tam Thuấn
+Xã Tam Hiệp
+Xã Hiệp Thuận
+Xã Liên Hiệp
+yện Đan Phượng
+Thị trấn Phùng
+Xã Trung Châu 
+Xã Thọ An
+Xã Thọ Xuân
+Xã Hồng Hà
+Xã Liên Hồng
+Xã Liên Hà
+Xã Hạ Mỗ
+Xã Liên Trung
+Xã Phương Đình
+Xã Thượng Mỗ
+Xã Tân Hội
+Xã Tân Lập
+Xã Đan Phượng
+Xã Đồng Tháp
+Xã Song Phượng
+yện Hoài Đức
+Xã Đức Thượng
+Xã Minh Khai
+Xã Dương Liễu
+Xã Di Trạch
+Xã Đức Giang
+Xã Cát Quế
+Xã Kim Chung
+Xã Yên Sở
+Xã Sơn Đồng
+Xã Vân Canh
+Xã Đắc Sở
+Xã Lại Yên
+Xã Tiền Yên
+Xã Song Phương
+Xã An Khánh
+Xã An Thượng
+Xã Vân Côn
+Xã La Phù
+Xã Đông La
+Xã Phượng Cách
+Xã Yên Sơn
+Xã Ngọc Liệp
+Xã Ngọc Mỹ
+Xã Liệp Tuyết
+Xã Thạch Thán
+Xã Đồng Quang
+Xã Phú Cát
+Xã Tuyết Nghĩa
+Xã Nghĩa Hương
+Xã Cộng Hòa
+Xã Tân Phú
+Xã Đại Thành
+Xã Phú Mãn
+Xã Cấn Hữu
+Xã Tân Hòa
+Xã Hòa Thạch
+Xã Đông Yên
+Xã Đông Xuân
+Xã Đại Đồng
+Xã Cẩm Yên
+Xã Lại Thượng
+Xã Phú Kim
+Xã Hương Ngải
+Xã Canh Nậu
+Xã Kim Quan
+Xã Dị Nậu
+Xã Bình Yên
+Xã Chàng Sơn
+Xã Thạch Hoà
+Xã Cần Kiệm
+Xã Hữu Bằng
+Xã Phùng Xá
+Xã Tân Xã
+Xã Thạch 
+Xã Bình Phú
+Xã Hạ Bằng
+Xã Đồng Trúc
+Xã Yên Trung
+Xã Yên Bình
+Xã Tiến Xuân
+yện Chương Mỹ
+Thị trấn Chúc Sơn
+Thị trấn Xuân Mai
+Xã Phụng Châu
+Xã Tiên Phương
+Xã Đông Sơn
+Xã Đông Phương Yên
+Xã Phú Nghĩa
+Xã Trường Yên
+Xã Ngọc Hòa
+Xã Thủy Xuân Tiên
+Xã Thanh Bình
+Xã Trung Hòa
+Xã Đại Yên
+Xã Thụy Hương
+Xã Tốt Động
+Xã Lam Điền
+Xã Tân Tiến
+Xã Nam Phương Tiến
+Xã Hợp Đồng
+Xã Hoàng Văn Thụ
+Xã Hoàng Diệu
+Xã Hữu Văn
+Xã Quảng Bị
+Xã Mỹ Lương
+Xã Thượng Vực
+Xã Hồng Phong
+Xã Đồng Phú
+Xã Trần Phú
+Xã Văn Võ
+Xã Đồng Lạc
+Xã Hòa Chính
+Xã Phú Nam An
+yện Thanh Oai
+Thị trấn Kim Bài
+Xã Cự Khê
+Xã Bích Hòa
+Xã Mỹ Hưng
+Xã Cao Viên
+Xã Bình Minh
+Xã Tam Hưng
+Xã Thanh Cao
+Xã Thanh Thùy
+Xã Thanh Mai
+Xã Thanh Văn
+Xã Đỗ Động
+Xã Kim An
+Xã Kim Thư
+Xã Phương Trung
+Xã Tân Ước
+Xã Dân Hòa
+Xã Liên Châu
+Xã Cao Dương
+Xã Xuân Dương
+Xã Hồng Dương
+yện Thường Tín
+Thị trấn Thường Tín
+Xã Ninh Sở
+Xã Nhị Khê
+Xã Duyên Thái
+Xã Khánh Hà
+Xã Hòa Bình
+Xã Văn Bình
+Xã Hiền Giang
+Xã Hồng Vân
+Xã Vân Tảo
+Xã Liên Phương
+Xã Văn Phú 
