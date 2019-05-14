@@ -7,12 +7,12 @@ Bắc Ninh
 Bến Tre
 Bình Dương
 Bình Định
- Bình Phước
+Bình Phước
 Bình Thuận
 Cà Mau
 Cao Bằng
-Cần Thơ (TP)
-Đà Nẵng (TP)
+Cần Thơ
+Đà Nẵng
 Đắk Lắk
 Đắk Nông
 Điện Biên
@@ -21,13 +21,13 @@ Cần Thơ (TP)
 Gia Lai
 Hà Giang
 Hà Nam
-Hà Nội (TP)
+Hà Nội
 Hà Tây
 Hà Tĩnh
 Hải Dương
-Hải Phòng (TP)
+Hải Phòng
 Hòa Bình
-Hồ Chí Minh (TP)
+Hồ Chí Minh
 Hậu Giang
 Hưng Yên
 Khánh Hòa
