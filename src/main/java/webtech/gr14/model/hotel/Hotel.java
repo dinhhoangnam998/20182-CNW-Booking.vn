@@ -50,6 +50,7 @@ public class Hotel {
 	private List<String> thumbURLs = new ArrayList<String>();
 	@Column(columnDefinition = "varchar(4095)")
 	private String description;
+	private double score;
 	private boolean deleted;
 	// coordinate??
 

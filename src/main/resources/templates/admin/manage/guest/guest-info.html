@@ -3,6 +3,7 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <script th:src="@{/js/admin/manage/guest/guest-info/load-more-transaction.js}"></script>
 </head>
 
 <body>
@@ -12,126 +13,136 @@
   <!-- main -->
   <main th:id="${guest.id}">
     <div class="container-fluid">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-            <img th:src="${guest.imgURL}" style="height: 300px; width: 300px; object-fit: cover" alt="no image found">
-          </div>
-          <div class="col-md-9">
-            <h4>[[${guest.name}]]</h4>
-            <div id="active-state">
-              [[${guest.activeState}]]
-            </div>
-
-            <div th:if="${guest.activeState} == ${T(webtech.gr14.util.enums.ActiveState).ACTIVE}">
-              <a th:href="@{/admin/manage/guests/{gid}/warning(gid=${guest.id})}" class="btn btn-warning warning-btn">Warning</a>
-              <a th:href="@{/admin/manage/guests/{gid}/block(gid=${guest.id})}" class="btn btn-danger block-btn">Block</a>
-            </div>
-
-            <div th:if="${guest.activeState} == ${T(webtech.gr14.util.enums.ActiveState).WARNING}">
-              <a th:href="@{/admin/manage/guests/{gid}/unwarning(gid=${guest.id})}" class="btn btn-success unwarning-btn">Unwarning</a>
-              <a th:href="@{/admin/manage/guests/{gid}/block(gid=${guest.id})}" class="btn btn-danger block-btn">Block</a>
-            </div>
-
-            <div th:if="${guest.activeState} == ${T(webtech.gr14.util.enums.ActiveState).BLOCKED}">
-              <a th:href="@{/admin/manage/guests/{gid}/unblock(gid=${guest.id})}" class="btn btn-success unblock-btn">Unblock</a>
-            </div>
-
-
-
-
-            <!-- <script>
-              $(document).ready(function () {
-                var gid = $('main').attr("id");
-                var activeStateE = $('#active-state');
-
-                var activeHTML =
-                  ' <button type="button" class="btn btn-warning warning-btn">Warning</button>' +
-                  ' <button type="button" class="btn btn-danger block-btn">Block</button>';
-
-                var warningHTML =
-                  '<button type="button" class="btn btn-success unwarning-btn">Unarning</button>' +
-                  ' <button type="button" class="btn btn-danger block-btn">Block</button>';
-
-                var blockHTML = '<button type="button" class="btn btn-success unblock-btn">Unblock</button>';
-
-                $('#warning').click(function (e) {
-                  var url = "/admin/manage/guests/" + gid + "/warning";
-                  var parentE = $(this).parent();
-                  var thisE = $(this);
-                  $.get(url, {},
-                    function (data, textStatus, jqXHR) {
-                      if (textStatus == "success") {
-                        activeStateE.text("WARNING");
-                        thisE.text("unwaring").removeClass("warning-btn").addClass("unwarning-btn").removeClass("btn-warning").addClass("btn-success")
-
-                      }
-                    },
-                    "text"
-                  );
-                });
-
-                $('#unwarning').click(function (e) {
-                  var url = "/admin/manage/guests/" + gid + "/unwarning";
-                  var parentE = $(this).parent();
-                  $.get(url, {},
-                    function (data, textStatus, jqXHR) {
-                      if (textStatus == "success") {
-                        activeStateE.text("ACTIVE");
-                        parentE.html(activeHTML);
-                      }
-                    },
-                    "text"
-                  );
-                });
-
-                $('#block').click(function (e) {
-                  var url = "/admin/manage/guests/" + gid + "/block";
-                  var parentE = $(this).parent();
-                  $.get(url, {},
-                    function (data, textStatus, jqXHR) {
-                      if (textStatus == "success") {
-                        activeStateE.text("BLOCK");
-                        parentE.html(blockHTML);
-                      }
-                    },
-                    "text"
-                  );
-                });
-
-                $('#unblock').click(function (e) {
-                  var url = "/admin/manage/guests/" + gid + "/unblock";
-                  var parentE = $(this).parent();
-                  $.get(url, {},
-                    function (data, textStatus, jqXHR) {
-                      if (textStatus == "success") {
-                        activeStateE.text("ACTIVE");
-                        parentE.html(activeHTML);
-                      }
-                    },
-                    "text"
-                  );
-                });
-
-              });
-
-            </script> -->
-
-          </div>
+      <div class="row">
+        <!-- navside -->
+        <div class="col-md-3">
+          <div th:replace="~{/layout/admin-base::nav}"></div>
         </div>
-      </div>
-      <div class="container-fluid">
-        <div th:each="ro :${reserveOrders}" class="mb-1">
-          <div> Id: [[${ro.id}]]</div>
-          <div>Charge: [[${ro.charge}]]</div>
-        </div>
+        <!-- guest info -->
+        <div class="col-md-9">
+          <!-- basic info -->
+          <div class="my-2 container-fluid mx-0">
+            <div class="row">
+              <div class="col-md-3">
+                <img th:src="${guest.imgURL}" alt="no img found" style="height: 300px; width: 100%; object-fit: cover">
+              </div>
+              <div class="col-md-9">
+                  <div id="alertHTML"></div>
+                <div>[[${guest.name}]]</div>
 
+                <!-- action btn -->
+                <div id="parent" th:name="${guest.activeState}">
+                  <button id="warning-btn" type="button" class="btn btn-warning" style="display: none">Warning</button>
+                  <button id="unwarning-btn" type="button" class="btn btn-primary"
+                    style="display: none">Unwarning</button>
+                  <button id="block-btn" type="button" class="btn btn-danger" style="display: none">Block</button>
+                  <button id="unblock-btn" type="button" class="btn btn-primary" style="display: none">Unblock</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- transaction info -->
+          <div id="transacions" class="my-2">
+            <div th:each="ro: ${reserveOrders}" class="bg-secondary my-1">
+              <div>RO Id: [[${ro.id}]]</div>
+              <div>RO Date: [[${ro.date}]]</div>
+              <div>Hotel Name: [[${ro.hotel.name}]]</div>
+              <div>Vote by Hotel: [[${ro.voteByHost}]]</div>
+            </div>
+          </div>
+
+
+
+          <!-- load more tran -->
+          <div style="text-align: center" class="my-2">
+            <button id="load-more-btn" type="button" class="btn btn-outline-primary">Load more transaction</button>
+          </div>
+
+
+        </div>
       </div>
     </div>
+
   </main>
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+    $(document).ready(function () {
+      function checkState() {
+        var state = $('#parent').attr("name");
+        if (state == "ACTIVE") {
+          $('#unwarning-btn').hide();
+          $('#unblock-btn').hide();
+          $('#warning-btn').show();
+          $('#block-btn').show();
+        } else if (state == "WARNING") {
+          $('#unwarning-btn').show();
+          $('#unblock-btn').hide();
+          $('#warning-btn').hide();
+          $('#block-btn').show();
+        } else if (state == "BLOCKED") {
+          $('#unwarning-btn').hide();
+          $('#unblock-btn').show();
+          $('#warning-btn').hide();
+          $('#block-btn').hide();
+        } else if (state == "WATTING") {
+          $('#unwarning-btn').hide();
+          $('#unblock-btn').hide();
+          $('#warning-btn').hide();
+          $('#block-btn').hide();
+        }
+      }
+
+      checkState();
+
+      function callAjax(action) {
+        var gid = $('main').attr("id");
+        var url = "/admin/manage/guests/" + gid + "/" + action;
+        $.get(url, {},
+          function (response, textStatus, jqXHR) {
+            if (textStatus == "success") {
+              $('#parent').attr("name", response);
+              $('#activeState').text(response);
+              checkState();
+
+              var alertMsg = "Account state now is: " + response;
+              var alertPattern =
+                '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span>' +
+                '<span class="sr-only">Close</span>' +
+                '</button>' +
+                '<strong>' +
+                alertMsg +
+                '</strong>' +
+                '</div>';
+              $('#alertHTML').html(alertPattern);
+            }
+          },
+          "text"
+        );
+      }
+
+      $('#warning-btn').click(function (e) {
+        callAjax("warning");
+      });
+
+      $('#unwarning-btn').click(function (e) {
+        callAjax("unwarning");
+      });
+
+      $('#block-btn').click(function (e) {
+        callAjax("block");
+      });
+
+      $('#unblock-btn').click(function (e) {
+        callAjax("unblock");
+      });
+
+    });
+  </script>
 </body>
 
 </html>

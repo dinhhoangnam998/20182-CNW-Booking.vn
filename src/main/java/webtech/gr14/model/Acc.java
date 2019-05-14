@@ -57,7 +57,6 @@ public class Acc {
 	// ratting score average
 	private double guestScore;
 	private int numOfVoteG;
-	private double hotelScore;
 	private int numOfVoteH;
 	// admin manage guest info
 	@Enumerated(EnumType.STRING)

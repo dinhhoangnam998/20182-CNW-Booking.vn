@@ -2,7 +2,6 @@ package webtech.gr14.repository.reserve;
 
 import java.util.List;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,8 +14,16 @@ public interface ReserveOrderR extends JpaRepository<ReserveOrder, Integer> {
 
 	List<ReserveOrder> findTop5ByAcc_IdOrderByDateDesc(int gid);
 
-	List<ReserveOrder> findByAcc_IdOrderByDateDesc(int gid, PageRequest of);
+	List<ReserveOrder> findByAcc_IdOrderByDateDesc(int gid, Pageable pageable);
 
 	List<ReserveOrder> findByAcc_IdAndStateNotOrderByDateDesc(int id, ReserveOrderState temp);
+
+	List<ReserveOrder> findByVoteByGuest(int oNE_STAR, Pageable pageable);
+
+	List<ReserveOrder> findTop10ByHotel_IdOrderByDateDesc(int hid);
+
+	List<ReserveOrder> findByHotel_IdOrderByDateDesc(int hid, Pageable pageable);
+
+	List<ReserveOrder> findTop1ByHotel_IdOrderByDateDesc(int hid);
 
 }

@@ -50,49 +50,34 @@ public class GuestC {
 		return gS.getMoreTransactions(gid, ith);
 	}
 
+	@ResponseBody
 	@GetMapping("/{gid}/warning")
 	public String warning(@PathVariable int gid) {
-		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setActiveState(ActiveState.WARNING);
-		guestAcc.setHandelDate(new Date());
-		gS.aR.save(guestAcc);
-		return "redirect:/admin/manage/guests/" + gid;
+		return gS.warning(gid);
 	}
 
+	@ResponseBody
 	@GetMapping("/{gid}/unwarning")
-	public String unwarning(Model model, @PathVariable int gid) {
-		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setActiveState(ActiveState.ACTIVE);
-		gS.aR.save(guestAcc);
-		return "redirect:/admin/manage/guests/" + gid;
+	public String unwarning(@PathVariable int gid) {
+		return gS.unwarning(gid);
 	}
 
+	@ResponseBody
 	@GetMapping("/{gid}/block")
-	public String block(Model model, @PathVariable int gid) {
-		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setActiveState(ActiveState.BLOCKED);
-		guestAcc.setRole(AccRole.BLOCKED);
-		guestAcc.setHandelDate(new Date());
-		gS.aR.save(guestAcc);
-		return "redirect:/admin/manage/guests/" + gid;
+	public String block(@PathVariable int gid) {
+		return gS.block(gid);
 	}
 
+	@ResponseBody
 	@GetMapping("/{gid}/unblock")
-	public String unblock(Model model, @PathVariable int gid) {
-		Acc guestAcc = gS.aR.getOne(gid);
-		guestAcc.setActiveState(ActiveState.ACTIVE);
-		guestAcc.setRole(AccRole.GUEST);
-		gS.aR.save(guestAcc);
-		return "redirect:/admin/manage/guests/" + gid;
+	public String unblock(@PathVariable int gid) {
+		return gS.unblock(gid);
 	}
 
 	@ResponseBody
 	@GetMapping("/bad-transactions/{tid}/checked")
 	public String checked(Model model, @PathVariable int tid) {
-		ReserveOrder rO = gS.roR.getOne(tid);
-		rO.setCheckedGuest(true);
-		gS.roR.save(rO);
-		return "";
+		return gS.markChecked(tid);
 	}
 
 }

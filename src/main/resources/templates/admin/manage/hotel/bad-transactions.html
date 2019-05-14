@@ -3,7 +3,7 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
-  <script th:src="@{/js/admin/manage/guest/bad-transaction/mark-checked.js}"></script>
+  <script th:src="@{/js/admin/manage/hotel/bad-transaction/mark-checked.js}"></script>
 </head>
 
 <body>
@@ -13,26 +13,24 @@
   <!-- main -->
   <main>
     <div class="container-fluid">
-
       <div class="row">
         <!-- navside -->
         <div class="col-md-3">
           <div th:replace="~{/layout/admin-base::nav}"></div>
         </div>
-
-        <!-- transactions info -->
+        <!-- transaction info -->
         <div class="col-md-9">
           <div th:each="ro : ${trans}" class="my-3" th:id="${ro.id}">
             <!-- ro id and guest info btn -->
             <h4 class="clearfix">[[${ro.id}]]
-              <a th:href="@{/admin/manage/guests/{gid}(gid=${ro.acc.id})}"
-                class="btn btn-outline-info btn-sm float-right">Guest Info <i class="fas fa-external-link-alt"></i></a>
+              <a th:href="@{/admin/manage/hotels/{hid}(hid=${ro.hotel.id})}"
+                class="btn btn-outline-info btn-sm float-right">Hotel Info <i class="fas fa-external-link-alt"></i></a>
             </h4>
 
             <!-- ro info -->
             <div>
               <div>
-                  Date: [[${ro.date}]]
+                Date: [[${ro.date}]]
               </div>
             </div>
 
@@ -40,35 +38,34 @@
             <div class="contanier-fluid">
               <div class="row">
                 <div class="col-md-6">
-                  <div>Guest Id: [[${ro.acc.id}]]</div>
-                  <div>Guest Name: [[${ro.acc.name}]]</div>
-                </div>
-                <div class="col-md-6">
                   <div>Hotel Id: [[${ro.hotel.id}]]</div>
                   <div>Hotel Name: [[${ro.hotel.name}]]</div>
+                </div>
+                <div class="col-md-6">
+                  <div>Guest Id: [[${ro.acc.id}]]</div>
+                  <div>Guest Name: [[${ro.acc.name}]]</div>
                 </div>
               </div>
             </div>
 
+
             <!-- check status -->
-            <div th:if="${ro.checkedGuest} == false" class="clearfix">
+            <div th:if="${ro.checkedHotel} == false" class="clearfix">
               <button type="button" class="btn btn-primary btn-sm float-right mark-checked-btn">Mark checked</button>
             </div>
-            <div th:if="${ro.checkedGuest} == true" class="clearfix">
+            <div th:if="${ro.checkedHotel} == true" class="clearfix">
               <i class="float-right">checked</i>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
   </main>
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
   <script>
-  
+
   </script>
 </body>
 

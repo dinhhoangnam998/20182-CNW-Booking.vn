@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <!-- slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
+  <script th:src="@{/js/admin/manage/hotel/hotel-info/action.js}"></script>
+  <script th:src="@{/js/share/slider/hotel-gallery.js}"></script>
+  <script th:src="@{/js/admin/manage/hotel/hotel-info/load-more-transaction.js}"></script>
+</head>
+
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main th:id="${hotel.id}">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- navside -->
+        <div class="col-md-3">
+          <div th:replace="~{/layout/admin-base::nav}"></div>
+        </div>
+        <!-- hotel info -->
+        <div class="col-md-9">
+          <!-- basic info -->
+          <div class="container-fluid px-0">
+            <div id="alertHTML"></div>
+            <h3>
+              <div style="display: inline-block;">Hotel Id: [[${hotel.id}]]</div>
+              <div id="activeState" style="display: inline-block;" class="float-right">[[${hotel.activeState}]]</div>
+            </h3>
+            <div class="row">
+              <div class="col-md-3">Hotel name:</div>
+              <div class="col-md-9">[[${hotel.name}]]</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Address</div>
+              <div class="col-md-9">[[${hotel.address}]]</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Score</div>
+              <div class="col-md-9">[[${hotel.score}]]</div>
+            </div>
+            <!-- btn -->
+            <div id="parent" th:name="${hotel.activeState}">
+              <button id="warning-btn" type="button" class="btn btn-warning" style="display: none">Warning</button>
+              <button id="unwarning-btn" type="button" class="btn btn-primary" style="display: none">Unwarning</button>
+              <button id="block-btn" type="button" class="btn btn-danger" style="display: none">Block</button>
+              <button id="unblock-btn" type="button" class="btn btn-primary" style="display: none">Unblock</button>
+            </div>
+          </div>
+
+          <!-- imgGalerry -->
+          <div class="my-2">
+            <ul id="imgGallery">
+              <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
+                <img style="height: 450px; width: 100%; object-fit: cover" th:src="@{${imgURL}}" alt="img not found" />
+              </li>
+            </ul>
+          </div>
+
+          <!-- description -->
+          <div class="my-2">
+            [[${hotel.description}]]
+          </div>
+
+          <!-- recently transaction -->
+          <div id="transacions" class="my-2">
+            <div th:each="ro: ${reserveOrders}" class="bg-secondary my-1">
+              <div>RO Id: [[${ro.id}]]</div>
+              <div>RO Date: [[${ro.date}]]</div>
+              <div>Vote by Guest: [[${ro.voteByGuest}]]</div>
+            </div>
+          </div>
+          
+          <div style="text-align: center" class="my-2">
+            <button id="load-more-btn" type="button" class="btn btn-outline-primary">Load more transaction</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+
+  </script>
+
+</body>
+
+</html>

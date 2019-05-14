@@ -1,0 +1,60 @@
+<nav
+  th:fragment="navside" 
+  class=""
+  id="navside"
+  style="background-color: #ecf0f1"
+>
+  <ul class="nav justify-content-center pt-0 flex-column">
+    <li class="nav-item">
+      <h4>Manage</h4>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/admin/manage/guests/bad-transactions}"
+        >Guest Management</a
+      >
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin/manage/hotels/bad-transactions}"
+          >Hotel Management</a
+        >
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" th:href="@{/admin/manage/submits}"
+            >Handle Hotel Submits</a
+          >
+        </li>
+
+    
+    <li class="nav-item">
+      <h4 class="mt-3">Creative</h4>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/host/manage/hotels/{hid}/floors(hid=${hid})}">Location Article</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/host/manage/hotels/{hid}/floors/adjust(hid=${hid})}">Festival Article</a>
+    </li>
+
+
+    <li class="nav-item">
+      <h4 class="mt-3">Statistic</h4>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/host/statistic/general#navbar}"
+        >General info</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/host/statistic/storage#navbar}"
+        >Reserve Order</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/host/statistic/receipt#navbar}"
+        >Receipt</a
+      >
+    </li>
+  </ul>
+</nav>
