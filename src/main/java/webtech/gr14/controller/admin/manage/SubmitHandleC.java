@@ -37,28 +37,28 @@ public class SubmitHandleC {
 	@GetMapping("/{sid}")
 	public String showSubmitInfo(Model model, @PathVariable int sid) {
 		model.addAttribute("hotel", shS.hR.getOne(sid));
-		return "/admin/manage/submit/show";
+		return "/admin/manage/submit/hotel-info";
 	}
 
 	@ResponseBody
 	@GetMapping("/{sid}/checked")
 	public String markChecked(@PathVariable int sid) {
 		Hotel hotel = shS.hR.getOne(sid);
-		hotel.setSubmitState(SubmitState.CHECKED);
+		hotel.setSubmitState(SubmitState.PROCESSING);
 		hotel.setHandleSubmitDate(new Date());
 		shS.hR.save(hotel);
-		return "";
+		return "PROCESSING";
 	}
 
 	@ResponseBody
 	@GetMapping("/{sid}/approval")
 	public String markApprovaled(@PathVariable int sid) {
 		Hotel hotel = shS.hR.getOne(sid);
-		hotel.setSubmitState(SubmitState.APPROVAL);
+		hotel.setSubmitState(SubmitState.APPROVALED);
 		hotel.setActiveState(ActiveState.ACTIVE);
 		hotel.setHandleSubmitDate(new Date());
 		shS.hR.save(hotel);
-		return "";
+		return "APPROVALED";
 	}
 
 	@ResponseBody
@@ -69,7 +69,7 @@ public class SubmitHandleC {
 		hotel.setActiveState(ActiveState.BLOCKED);
 		hotel.setHandleSubmitDate(new Date());
 		shS.hR.save(hotel);
-		return "";
+		return "DECLINED";
 	}
 
 }

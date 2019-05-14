@@ -1,28 +1,137 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  
-  <head>
-    <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
-  </head>
 
-  <body>
-    <!-- header -->
-    <header th:replace="~{/layout/base::header}"></header>
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+</head>
 
-    <!-- main -->
-    <main>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-            <div th:replace="~{/layout/admin-base::nav}"></div>
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div th:replace="~{/layout/admin-base::nav}"></div>
+        </div>
+        <div class="col-md-9">
+
+          <!-- hotels -->
+          <div th:each="hotel : ${submits}" class="my-2" th:id="${hotel.id}">
+            <!-- title -->
+            <h4 class="clearfix">Submit id: [[${hotel.id}]]
+              <a th:href="@{/admin/manage/submits/{sid}(sid=${hotel.id})}"
+                class="btn btn-outline-info btn-sm float-right">Hotel Info <i class="fas fa-external-link-alt"></i></a>
+            </h4>
+
+            <!-- submit date -->
+            <div>
+              <div>Submit Date: [[${hotel.submitDate}]]</div>
+            </div>
+
+            <!-- hotel info -->
+            <div>
+              <div>Hotel name: [[${hotel.name}]]</div>
+              <div>Address: [[${hotel.address}]]</div>
+            </div>
+
+            <!-- handle info -->
+            <div style="text-align: right">
+              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).NEW} ">NEW</i>
+              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).PROCESSING}">PROCESSING</i>
+              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).APPROVALED}">APPROVALED</i>
+              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).DECLINED} ">DECLINED</i>
+              <div>[[${hotel.handleSubmitDate}]]</div>
+            </div>
+
+
+            <!-- handle action btn -->
+            <!-- <div id="parent" th:name="${hotel.submitState}">
+              <button type="button" class="btn btn-primary btn-sm checked-btn" style="display: none;">Checked</button>
+              <button type="button" class="btn btn-success btn-sm approval-btn" style="display: none;">Approval</button>
+              <button type="button" class="btn btn-danger btn-sm decline-btn" style="display: none;">Decline</button>
+            </div> -->
+
           </div>
-          <div class="col-md-9">dashboar</div>
         </div>
       </div>
-    </main>   
+    </div>
+  </main>
 
-    <!-- footer -->
-    <footer th:replace="~{/layout/base::footer}"></footer>
-  </body>
-  
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+  <!-- <script>
+    $(document).ready(function () {
+      function checkState() {
+        var state = $('#parent').attr("name");
+        if (state == "NEW") {
+          $('#checked-btn').show();
+          $('#approval-btn').show();
+          $('#decline-btn').show();
+        } else if (state == "PROCESSING") {
+          $('#checked-btn').hide();
+          $('#approval-btn').show();
+          $('#decline-btn').show();
+        } else if (state == "APPROVALED") {
+          $('#checked-btn').hide();
+          $('#approval-btn').hide();
+          $('#decline-btn').hide();
+        } else if (state == "DECLINED") {
+          $('#checked-btn').hide();
+          $('#approval-btn').hide();
+          $('#decline-btn').hide();
+        }
+      }
+
+      checkState();
+
+      function callAjax(hotelId, action) {
+        var url = "/admin/manage/submits/" + hotelId + "/" + action;
+        $.get(url, {},
+          function (response, textStatus, jqXHR) {
+            if (textStatus == "success") {
+              $('#parent').attr("name", response);
+              $('#submitState').text(response);
+              checkState();
+
+              var alertMsg = "Submit state now is: " + response;
+              var alertPattern =
+                '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span>' +
+                '<span class="sr-only">Close</span>' +
+                '</button>' +
+                '<strong>' +
+                alertMsg +
+                '</strong>' +
+                '</div>';
+              $('#alertHTML').html(alertPattern);
+            }
+          },
+          "text"
+        );
+      }
+
+      $('.checked-btn').click(function (e) {
+        var hid = $(this).parent().parent().attr("id");
+        callAjax(hid, "checked");
+      });
+
+      $('.approval-btn').click(function (e) {
+        var hid = $(this).parent().parent().attr("id");
+        callAjax(hid, "approval");
+      });
+
+      $('.decline-btn').click(function (e) {
+        var hid = $(this).parent().parent().attr("id");
+        callAjax(hid, "decline");
+      });
+
+
+    });
+  </script> -->
+</body>
+
 </html>

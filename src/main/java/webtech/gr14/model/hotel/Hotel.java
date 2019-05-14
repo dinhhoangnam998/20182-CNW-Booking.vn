@@ -41,7 +41,7 @@ public class Hotel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	// need replace 
+	// need replace
 	private String address;
 	private String imgURL;
 	@ElementCollection
@@ -57,18 +57,23 @@ public class Hotel {
 	// admin manage info
 	@Enumerated(EnumType.STRING)
 	private ActiveState activeState;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date handelDate;
-	
+
 	@Enumerated(EnumType.STRING)
 	private SubmitState submitState;
-	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date submitDate;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date handleSubmitDate;
-
+	//
+	
 	@ManyToOne
 	private Acc acc;
 
@@ -80,7 +85,7 @@ public class Hotel {
 
 	@Embedded
 	private HouseRule houseRule = new HouseRule();
-	
+
 	@ManyToOne
 	private Commune commune;
 

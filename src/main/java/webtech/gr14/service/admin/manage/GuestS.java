@@ -75,7 +75,7 @@ public class GuestS {
 
 	public String markChecked(int tid) {
 		ReserveOrder ro = roR.getOne(tid);
-		ro.setCheckedHotel(true);
+		ro.setCheckedGuest(true);
 		roR.save(ro);
 		return "";
 	}

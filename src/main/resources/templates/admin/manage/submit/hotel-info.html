@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <script th:src="@{/js/admin/manage/submit/hotel-info/action.js}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
+  <script th:src="@{/js/share/slider/hotel-gallery.js}"></script>
+</head>
+
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div th:replace="~{/layout/admin-base::nav}"></div>
+        </div>
+        <div class="col-md-9">
+          <!-- basic info -->
+          <div th:id="${hotel.id}" class="my-container">
+            <div id="alert-container"></div>
+            <h4 class="clearfix">
+              Hotel Id: [[${hotel.id}]]
+              <div id="submit-state" style="float: right;">[[${hotel.submitState}]]</div>
+            </h4>
+            <div>
+              [[${hotel.name}]]
+            </div>
+            <div>
+              [[${hotel.address}]]
+            </div>
+            <div>
+              [[${hotel.submitDate}]]
+            </div>
+            <div style="text-align: right">
+              <button id="checked-btn" type="button" class="btn btn-primary btn-sm"
+                style="display: none;">Checked</button>
+              <button id="approval-btn" type="button" class="btn btn-success btn-sm"
+                style="display: none;">Approval</button>
+              <button id="decline-btn" type="button" class="btn btn-danger btn-sm"
+                style="display: none;">Decline</button>
+            </div>
+          </div>
+
+          <!-- img gallery -->
+          <div>
+              <h3>Img gallery</h3>
+              <ul id="imgGallery">
+                <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
+                  <img style="height: 450px; width: 100%; object-fit: cover" th:src="@{${imgURL}}" alt="img not found" />
+                </li>
+              </ul>
+          </div>
+
+          <!-- description -->
+          <div>
+            [[${hotel.description}]]
+          </div>
+
+          <!-- num of room -->
+          <div></div>
+
+          <!-- facility -->
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+   
+  </script>
+</body>
+
+</html>

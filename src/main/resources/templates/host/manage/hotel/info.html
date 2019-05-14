@@ -5,6 +5,7 @@
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
+  <script th:src="/js/share/slider/hotel-gallery.js"></script>
 </head>
 
 <body>
@@ -52,16 +53,7 @@
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
   <script>
-      $(document).ready(function() {
-        $("#imgGallery").lightSlider({
-          gallery: true,
-          item: 1,
-          loop: true,
-          thumbItem: 9,
-          keyPress: true,
-          controls: true
-        });
-      });
+  
     </script>
 </body>
 
