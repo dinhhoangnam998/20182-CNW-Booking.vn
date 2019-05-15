@@ -19,12 +19,12 @@
         <div class="col-md-9">
 
           <!-- hotels -->
-          <div th:each="hotel : ${submits}" class="my-2" th:id="${hotel.id}">
+          <div th:each="hotel : ${submits}" class="my-container" th:id="${hotel.id}">
             <!-- title -->
-            <h4 class="clearfix">Submit id: [[${hotel.id}]]
+            <h5 class="clearfix">Submit id: [[${hotel.id}]]
               <a th:href="@{/admin/manage/submits/{sid}(sid=${hotel.id})}"
                 class="btn btn-outline-info btn-sm float-right">Hotel Info <i class="fas fa-external-link-alt"></i></a>
-            </h4>
+            </h5>
 
             <!-- submit date -->
             <div>
@@ -46,14 +46,6 @@
               <div>[[${hotel.handleSubmitDate}]]</div>
             </div>
 
-
-            <!-- handle action btn -->
-            <!-- <div id="parent" th:name="${hotel.submitState}">
-              <button type="button" class="btn btn-primary btn-sm checked-btn" style="display: none;">Checked</button>
-              <button type="button" class="btn btn-success btn-sm approval-btn" style="display: none;">Approval</button>
-              <button type="button" class="btn btn-danger btn-sm decline-btn" style="display: none;">Decline</button>
-            </div> -->
-
           </div>
         </div>
       </div>
@@ -62,76 +54,22 @@
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
-  <!-- <script>
-    $(document).ready(function () {
-      function checkState() {
-        var state = $('#parent').attr("name");
-        if (state == "NEW") {
-          $('#checked-btn').show();
-          $('#approval-btn').show();
-          $('#decline-btn').show();
-        } else if (state == "PROCESSING") {
-          $('#checked-btn').hide();
-          $('#approval-btn').show();
-          $('#decline-btn').show();
-        } else if (state == "APPROVALED") {
-          $('#checked-btn').hide();
-          $('#approval-btn').hide();
-          $('#decline-btn').hide();
-        } else if (state == "DECLINED") {
-          $('#checked-btn').hide();
-          $('#approval-btn').hide();
-          $('#decline-btn').hide();
-        }
+
+  <style>
+      .hover-background {
+        background-color: #e9f0fa;
       }
-
-      checkState();
-
-      function callAjax(hotelId, action) {
-        var url = "/admin/manage/submits/" + hotelId + "/" + action;
-        $.get(url, {},
-          function (response, textStatus, jqXHR) {
-            if (textStatus == "success") {
-              $('#parent').attr("name", response);
-              $('#submitState').text(response);
-              checkState();
-
-              var alertMsg = "Submit state now is: " + response;
-              var alertPattern =
-                '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                '<span aria-hidden="true">&times;</span>' +
-                '<span class="sr-only">Close</span>' +
-                '</button>' +
-                '<strong>' +
-                alertMsg +
-                '</strong>' +
-                '</div>';
-              $('#alertHTML').html(alertPattern);
-            }
-          },
-          "text"
-        );
+    
+      .my-container {
+        margin-bottom: 0.5rem;
+        padding: 1rem;
       }
-
-      $('.checked-btn').click(function (e) {
-        var hid = $(this).parent().parent().attr("id");
-        callAjax(hid, "checked");
-      });
-
-      $('.approval-btn').click(function (e) {
-        var hid = $(this).parent().parent().attr("id");
-        callAjax(hid, "approval");
-      });
-
-      $('.decline-btn').click(function (e) {
-        var hid = $(this).parent().parent().attr("id");
-        callAjax(hid, "decline");
-      });
-
-
-    });
-  </script> -->
+    </style>
+    <script>
+      $('.my-container').hover(function () {
+        $(this).toggleClass('hover-background');
+      })
+    </script>
 </body>
 
 </html>

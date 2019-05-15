@@ -18,7 +18,7 @@ public class SubmitHandleS {
 	public HotelR hR;
 
 	public List<Hotel> getSubmits(int p, int pS) {
-		return hR.findAll(PageRequest.of(p - 1, pS, Sort.by(Direction.ASC, "submitState"))).getContent();
+		return hR.findAll(PageRequest.of(p - 1, pS, Sort.by(Direction.DESC, "submitDate"))).getContent();
 	}
 
 	public List<Integer> getPageList(int p, int pS) {

@@ -11,7 +11,7 @@ $(document).ready(function () {
           if (ros.length > 0) {
             ros.forEach(ro => {
               var content =
-                '<div>' +
+                '<div class="my-2 ro-container">' +
                 '<div>RO Id: ' +
                 ro.id +
                 '</div>' +

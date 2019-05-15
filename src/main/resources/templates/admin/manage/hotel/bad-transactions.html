@@ -20,12 +20,12 @@
         </div>
         <!-- transaction info -->
         <div class="col-md-9">
-          <div th:each="ro : ${trans}" class="my-3" th:id="${ro.id}">
+          <div th:each="ro : ${trans}" class=" my-container" th:id="${ro.id}">
             <!-- ro id and guest info btn -->
-            <h4 class="clearfix">[[${ro.id}]]
+            <h5 class="clearfix">Reserve id: [[${ro.id}]]
               <a th:href="@{/admin/manage/hotels/{hid}(hid=${ro.hotel.id})}"
                 class="btn btn-outline-info btn-sm float-right">Hotel Info <i class="fas fa-external-link-alt"></i></a>
-            </h4>
+            </h5>
 
             <!-- ro info -->
             <div>
@@ -64,9 +64,21 @@
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
-  <script>
-
-  </script>
+  <style>
+      .hover-background {
+        background-color: #e9f0fa;
+      }
+  
+      .my-container {
+        margin-bottom: 0.5rem;
+        padding: 1rem;
+      }
+    </style>
+    <script>
+      $('.my-container').hover(function () {
+        $(this).toggleClass('hover-background');
+      })
+    </script>
 </body>
 
 </html>
