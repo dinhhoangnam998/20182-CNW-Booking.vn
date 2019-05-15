@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/acc/profiles/**").hasRole("GUEST")
+                .antMatchers("/guest/reserve**").hasRole("GUEST")
                 .antMatchers("/host/**").hasRole("HOST")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()

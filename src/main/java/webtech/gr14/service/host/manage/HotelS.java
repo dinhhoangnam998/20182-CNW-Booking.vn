@@ -110,6 +110,7 @@ public class HotelS {
 		newHotel.setAddress(origin.getAddress());
 		newHotel.setCommune(origin.getCommune());
 		newHotel.setSubmitDate(origin.getSubmitDate());
+//		newHotel.setStar(origin.getStar());
 		newHotel.setAcc(aS.getAcc());
 
 		String hotelName = newHotel.getName();

@@ -1,0 +1,53 @@
+<div th:fragment="search-vertical">
+  <h4>Search</h4>
+  <form th:action="@{/guest/search-hotels}" method="post" id="myform">
+    <div class="form-group">
+      <label for="search-box">Destination</label>
+      <input type="text" name="address" id="search-box" class="form-control" placeholder="">
+      <div
+        style="position: absolute; overflow: auto; max-height: 250px; width: 100%; background-color:white; z-index: 9;"
+        id="search-result"></div>
+    </div>
+    <div class="form-group">
+      <label for="ci-co">Check in - Check out</label>
+      <input type="text" name="dateRange" id="ci-co" class="form-control  datepicker" placeholder="">
+    </div>
+
+    <div class="container-fluid px-0">
+      <div class="row">
+        <div class="col-md-6">
+          <input class="form-control" type="number" name="numOfRoom" placeholder="room">
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="number" name="numOfPeople" placeholder="people">
+        </div>
+      </div>
+    </div>
+    <button class="form-control btn btn-primary mt-3" type="submit" form="myform">Search</button>
+  </form>
+</div>
+
+<div th:fragment="gg-map">
+  <h5>Map</h5>
+  <div class="mapouter">
+    <div class="gmap_canvas"><iframe width="100%" height="200px;" id="gmap_canvas"
+        src="https://maps.google.com/maps?q=B%C3%A1ch%20Khoa%2C%20H%C3%A0%20N%E1%BB%99i&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a
+        href="https://www.embedgooglemap.net">embedgooglemap.net</a></div>
+    <style>
+      .mapouter {
+        position: relative;
+        text-align: right;
+        height: 200px;
+        width: 100%;
+      }
+
+      .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 200px;
+        width: 100%;
+      }
+    </style>
+  </div>
+</div>

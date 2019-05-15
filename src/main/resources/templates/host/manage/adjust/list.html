@@ -8,6 +8,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
   <script src="/js/host/manage/adjust/list/adjust.js"></script>
+  <script src="/js/host/manage/adjust/list/switch.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@
         <div class="col-md-9">
           <div th:each="floor : ${floors}" class="container-fluid">
 
-            <h3>[[${floor.id}]] - [[${floor.name}]]</h3>
+            <h5>[[${floor.id}]] - [[${floor.name}]]</h5>
 
             <div></div>
             <div class="custom-control custom-switch float-right" style="display: inline-block;">
@@ -36,8 +37,8 @@
             </div>
     
                 <div>
-                  <p>[[${floor.roomType}]] [[${floor.roomQuality}]]</p>
-                  <p>[[${floor.numOfRoom}]] Rooms</p>
+                  <div>[[${floor.roomType}]] [[${floor.roomQuality}]]</div>
+                  <div>[[${floor.numOfRoom}]] Rooms</div>
                 </div>
     
                 <div th:id="${floor.id}">
@@ -46,7 +47,7 @@
                   <div style="display: inline-block">Price: <input type="number" name="price" readonly="true"
                       th:value="${floor.price}"></div>
                   <button class="btn btn-warning adjust-btn">Adjust</button>
-                  <button class="btn btn-primary save-btn">Save</button>
+                  <button class="btn btn-primary save-btn" style="display: none">Save</button>
                 </div>
               </div>
         </div>

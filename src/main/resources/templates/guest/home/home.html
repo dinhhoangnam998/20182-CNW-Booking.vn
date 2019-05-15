@@ -48,7 +48,7 @@
           <div class="row ">
             <div class="col-md-5 px-1">
               <div style="position: relative;">
-                <input type="search" name="address" id="search-box" class="form-control" placeholder="...Ha Noi" />
+                <input type="search" name="address" id="search-box" class="form-control" placeholder="...Ha Noi" required/>
                 <div
                   style="position: absolute; overflow: auto; max-height: 250px; width: 100%; background-color:white; z-index: 9;"
                   id="search-result"></div>
@@ -56,14 +56,14 @@
             </div>
 
             <div class="col-md-4 px-1">
-              <input class="form-control datepicker" type="text" name="dateRange">
+              <input class="form-control datepicker" type="text" name="dateRange" required>
             </div>
 
             <div class="col-md-1 px-1">
-              <input class="form-control" type="number" name="numOfRoom" placeholder="room">
+              <input class="form-control" type="number" name="numOfRoom" placeholder="room" required>
             </div>
             <div class="col-md-1 px-1">
-              <input class="form-control" type="number" name="numOfPeople" placeholder="people">
+              <input class="form-control" type="number" name="numOfPeople" placeholder="people" required>
             </div>
             <div class="col-md-1 px-1">
               <button class="form-control btn btn-primary" type="submit" form="myform">Search</button>
@@ -106,7 +106,7 @@
             <div class="card-body">
               <h4 class="card-title">[[${hotel.name}]]</h4>
               <p class="card-text">[[${hotel.score}]]</p>
-              <a href="#" class="card-link stretched-link"></a>
+              <a th:href="@{/guest/hotels/{hid}(hid=${hotel.id})}" class="card-link stretched-link"></a>
             </div>
           </div>
         </li>

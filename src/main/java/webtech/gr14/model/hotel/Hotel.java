@@ -46,6 +46,7 @@ public class Hotel {
 	private String name;
 	// need replace
 	private String address;
+	private int star;
 	private String imgURL;
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
@@ -76,7 +77,7 @@ public class Hotel {
 	@Temporal(TemporalType.DATE)
 	private Date handleSubmitDate;
 	//
-	
+
 	@ManyToOne
 	private Acc acc;
 
@@ -91,7 +92,7 @@ public class Hotel {
 
 	@ManyToOne
 	private Commune commune;
-	
+
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
 	private List<Floor> floors;
 
