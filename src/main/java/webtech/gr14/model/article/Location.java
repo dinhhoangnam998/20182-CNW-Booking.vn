@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import webtech.gr14.model.address.Province;
 
 @Entity
 @Getter
@@ -18,10 +19,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Proxy(lazy = false)
-public class LocationArticle {
+public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String desciption;
+	private Province provice;
+	private String imgURL;
+	private boolean active;
 }

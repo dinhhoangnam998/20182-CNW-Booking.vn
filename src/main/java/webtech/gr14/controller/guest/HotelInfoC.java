@@ -16,13 +16,13 @@ import webtech.gr14.model.hotel.Hotel;
 import webtech.gr14.service.guest.HotelInfoS;
 
 @Controller
-@RequestMapping("/guest")
+@RequestMapping
 public class HotelInfoC {
 
 	@Autowired
 	private HotelInfoS hiS;
 
-	@GetMapping("/hotels/{hid}")
+	@GetMapping("/guest/hotels/{hid}")
 	public String hotelInfo(Model model, HttpSession ss, @PathVariable int hid) {
 		ss.setAttribute("hotelId", hid);
 		Hotel hotel = hiS.hR.getOne(hid);
@@ -34,5 +34,12 @@ public class HotelInfoC {
 		model.addAttribute("remainRoomOfEachFloor", remainRoomOfEachFloor);
 		
 		return "/guest/hotel/hotel-info";
+	}
+	
+	@GetMapping("/hotels/{hid}")
+	public String hotel(Model model, @PathVariable int hid) {
+		Hotel hotel = hiS.hR.getOne(hid);
+		model.addAttribute("hotel", hotel);
+		return "/guest/hotel/hotel";
 	}
 }

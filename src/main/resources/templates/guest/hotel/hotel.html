@@ -114,45 +114,6 @@
             [[${hotel.description}]]
           </div>
           <!-- room remain -->
-          <div class="container-fluid">
-            <!-- reserve info -->
-            <div></div>
-            <form th:action="@{/guest/reserve}" method="POST" id="reserve-form">
-              <div class="row">
-
-                <!-- floor info -->
-                <div class="col-md-9 border border-danger">
-                  <div class="row" th:each="remain, i : ${remainRoomOfEachFloor}" th:if="${remain} > 0">
-                    <div class="col-md-4">
-                      [[${floors[__${i.index}__].name}]]
-                    </div>
-                    <div class="col-md-1">
-                      max people
-                    </div>
-                    <div class="col-md-2">
-                      [[${floors[__${i.index}__].price}]]
-                    </div>
-                    <div class="col-md-4">
-                      choose service or not
-                    </div>
-                    <div class="col-md-1 border border-warning">
-                      <input type="hidden" name="floorsId" th:value="${floors[__${i.index}__].id}" multiple>
-                      <input type="number" min="0" th:max="${remain}" value="0" style="width:100%" name="numOfReserveRoom" multiple>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- reserve button -->
-                <div class="col-md-3 border border-primary">
-                  <button type="submit" class="btn btn-primary" form="reserve-form">I'll Reserve</button>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
-
           <!-- facility -->
           <div>
 

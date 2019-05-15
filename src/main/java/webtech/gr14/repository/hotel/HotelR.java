@@ -2,6 +2,7 @@ package webtech.gr14.repository.hotel;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import webtech.gr14.model.hotel.Hotel;
@@ -20,5 +21,7 @@ public interface HotelR extends JpaRepository<Hotel, Integer> {
 	Hotel findByNameAndDeletedAndIdNot(String name, boolean b, int id);
 
 	List<Hotel> findByCommune_District_IdAndDeletedAndActiveStateNot(int did, boolean b, ActiveState blocked);
+
+	List<Hotel> findByCommune_District_Province_Id(int provinceId, Pageable of);
 
 }

@@ -46,7 +46,7 @@
   <!-- main -->
   <main>
     <!-- search box -->
-    <div class="container-fluid py-3">
+    <div class="container-fluid">
       <h3>Find your best deal</h3>
       <form th:action="@{/guest/search-hotels}" method="post" id="myform">
         <div class="container-fluid">
@@ -113,7 +113,7 @@
             <div class="card-body">
               <h4 class="card-title">[[${hotel.name}]]</h4>
               <p class="card-text">[[${hotel.score}]]</p>
-              <a th:href="@{/guest/hotels/{hid}(hid=${hotel.id})}" class="card-link stretched-link"></a>
+              <a th:href="@{/hotels/{hid}(hid=${hotel.id})}" class="card-link stretched-link"></a>
             </div>
           </div>
         </li>

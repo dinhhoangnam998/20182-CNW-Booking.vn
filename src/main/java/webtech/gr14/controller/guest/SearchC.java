@@ -38,4 +38,11 @@ public class SearchC {
 		model.addAttribute("hotels", hotels);
 		return "/guest/search/search-results";
 	}
+	
+	@GetMapping("/search/hotels")
+	public String searchHotelInProvince(Model model, @RequestParam int provinceId) {
+		List<Hotel> hotels = sS.getHotelInProvince(provinceId);
+		model.addAttribute("hotels", hotels);
+		return "/guest/search/hotel-in-province";
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import webtech.gr14.model.address.District;
@@ -73,6 +74,11 @@ public class SearchS {
 
 	public List<District> getRecomment(String querry) {
 		return dR.findByNameContaining(querry);
+	}
+
+	public List<Hotel> getHotelInProvince(int provinceId) {
+		
+		return hR.findByCommune_District_Province_Id(provinceId, PageRequest.of(0, 15));
 	}
 
 }
