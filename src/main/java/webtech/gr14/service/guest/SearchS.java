@@ -76,9 +76,6 @@ public class SearchS {
 		return dR.findByNameContaining(querry);
 	}
 
-	public List<Hotel> getHotelInProvince(int provinceId) {
-		
-		return hR.findByCommune_District_Province_Id(provinceId, PageRequest.of(0, 15));
-	}
+
 
 }

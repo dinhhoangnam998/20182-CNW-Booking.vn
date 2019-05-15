@@ -125,36 +125,56 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+          <a href="">
+            <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
         </div>
         <div class="col-md-6">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+          <a href="">
+            <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+
+          </a>
+        </div>
+      </div>
+      <div class="row" th:if="${#lists.size(locations)} == 7">
+          <div class="col-md-3">
+              <a th:href="@{/hotels(provinceId=${locations[0].province.id})}">
+                <img th:src="@{${locations[0].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+              </a>
+            </div>
+        <div class="col-md-4">
+          <a th:href="@{/hotels(provinceId=${locations[1].province.id})}">
+            <img th:src="@{${locations[1].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a th:href="@{/hotels(provinceId=${locations[2].province.id})}">
+            <img th:src="@{${locations[2].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a th:href="@{/hotels(provinceId=${locations[3].province.id})}">
+            <img th:src="@{${locations[3].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
-        </div>
-        <div class="col-md-4">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
-        </div>
-        <div class="col-md-4">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-3">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+          <a th:href="@{/hotels(provinceId=${locations[4].province.id})}">
+            <img th:src="@{${locations[4].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
         </div>
         <div class="col-md-3">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+          <a th:href="@{/hotels(provinceId=${locations[5].province.id})}">
+            <img th:src="@{${locations[5].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
         </div>
         <div class="col-md-3">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
+          <a th:href="@{/hotels(provinceId=${locations[6].province.id})}">
+            <img th:src="@{${locations[6].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
+          </a>
         </div>
-        <div class="col-md-3">
-          <img src="/images/location/sapa.jpg" style="width: 100%; height: auto; object-fit: cover" alt="">
-        </div>
+
       </div>
     </div>
 
