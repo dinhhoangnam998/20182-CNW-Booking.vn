@@ -36,6 +36,7 @@ public class HomeC {
 //			ss.setAttribute("address", address);
 //			ss.setAttribute("numOfRoom", 1);
 //			ss.setAttribute("numOfPeople", 1);
+			ss.setAttribute("firstTime", true);
 		}
 
 		List<Hotel> hotels = hS.getBestHotel();

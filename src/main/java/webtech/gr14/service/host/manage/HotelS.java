@@ -102,15 +102,19 @@ public class HotelS {
 
 	public void saveChange(Hotel newHotel, MultipartFile img, MultipartFile[] imgs, MultipartFile[] thumbs) {
 		Hotel origin = hR.getOne(newHotel.getId());
+
+		newHotel.setAddress(origin.getAddress());
+		newHotel.setStar(origin.getStar());
+		newHotel.setScore(origin.getScore());
+		newHotel.setReviewRank(origin.getReviewRank());
+		newHotel.setNumOfReview(origin.getNumOfReview());
 		newHotel.setDeleted(origin.isDeleted());
 		newHotel.setActiveState(origin.getActiveState());
 		newHotel.setHandelDate(origin.getHandelDate());
 		newHotel.setSubmitState(origin.getSubmitState());
 		newHotel.setHandleSubmitDate(origin.getHandleSubmitDate());
-		newHotel.setAddress(origin.getAddress());
-		newHotel.setCommune(origin.getCommune());
 		newHotel.setSubmitDate(origin.getSubmitDate());
-//		newHotel.setStar(origin.getStar());
+		newHotel.setCommune(origin.getCommune());
 		newHotel.setAcc(aS.getAcc());
 
 		String hotelName = newHotel.getName();

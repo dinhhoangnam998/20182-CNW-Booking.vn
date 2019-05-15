@@ -18,79 +18,88 @@
         <!-- search colapse & map & facility... -->
         <div class="col-md-3">
 
-            <div th:replace="~{/layout/guest-base::search-vertical}"></div>
-
-            <div th:replace="~{/layout/guest-base::gg-map}"></div>
+          <div th:replace="~{/layout/guest-base::search-vertical}"></div>
 
 
+
+          <div>
+            <h4>What guest love</h4>
+
+            <!-- each comment -->
             <div>
-              <h4>What guest love</h4>
-              
-              <!-- each comment -->
+              <!-- commnent -->
+              <div style="font-size: 0.8em" class="my-1">
+                “Spent one night during our vacation. The hotel is well situated for sightseeing, shopping and good
+                local res. The hotel has a great atmosphere and lots of character. Our room was massive and extremely
+                comfortable. The staff were very helpful and accommodating. They are deserved for very good review after
+                our nice stay.”
+              </div>
+              <!-- media object -->
               <div>
-                <!-- commnent -->
-                <div style="font-size: 0.8em" class="my-1">
-                    “Spent one night during our vacation. The hotel is well situated for sightseeing, shopping and good local res. The hotel has a great atmosphere and lots of character. Our room was massive and extremely comfortable. The staff were very helpful and accommodating. They are deserved for very good review after our nice stay.”
-                </div>
-                <!-- media object -->
-                <div>
-                  <div class="media">
-                    <a class="d-flex align-self-center mr-2" href="#">
-                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-warning">
-                    </a>
-                    <div class="media-body">
-                      <div style="font-size: 1em">Mr. Abc</div>
-                      <div style="font-size: 0.7em">From England</div>
-                    </div>
+                <div class="media">
+                  <a class="d-flex align-self-center mr-2" href="#">
+                    <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-warning">
+                  </a>
+                  <div class="media-body">
+                    <div style="font-size: 1em">Mr. Abc</div>
+                    <div style="font-size: 0.7em">From England</div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- each comment -->
+            <!-- each comment -->
+            <div>
+              <!-- commnent -->
+              <div style="font-size: 0.8em" class="my-1">
+                “We booked another hotel before but We got nightmare. We decided to change to this hotel and we were
+                definitely happy. The room was very attractive and well furnished with bathtub. Location was quiet as
+                advertising.
+                The staff was always cheerful and very helpful. Marcus and Kelly provided excellent services.”
+              </div>
+              <!-- media object -->
               <div>
-                <!-- commnent -->
-                <div style="font-size: 0.8em" class="my-1">
-                    “We booked another hotel before but We got nightmare. We decided to change to this hotel and we were definitely happy. The room was very attractive and well furnished with bathtub. Location was quiet as advertising.
-                    The staff was always cheerful and very helpful. Marcus and Kelly provided excellent services.”
-                </div>
-                <!-- media object -->
-                <div>
-                  <div class="media">
-                    <a class="d-flex align-self-center mr-2" href="#">
-                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-info">
-                    </a>
-                    <div class="media-body">
-                      <div style="font-size: 1em">Mrs. QWE</div>
-                      <div style="font-size: 0.7em">From Germany</div>
-                    </div>
+                <div class="media">
+                  <a class="d-flex align-self-center mr-2" href="#">
+                    <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-info">
+                  </a>
+                  <div class="media-body">
+                    <div style="font-size: 1em">Mrs. QWE</div>
+                    <div style="font-size: 0.7em">From Germany</div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- each comment -->
+            <!-- each comment -->
+            <div>
+              <!-- commnent -->
+              <div style="font-size: 0.8em" class="my-1">
+                “This hotel was fantastic. Best hotel room we have ever stayed during this holiday and staff was very
+                friendly and helpful. Try to stay on upper floor. Can walk to the most local areas having vietnamese
+                foods and fresh beer ( BIA HOI ). Airport transfer was arranged on time and driver was also great. Would
+                definitely eveyone book a trip to Halong bay with hotel. It was such amazing and reasonable together
+                with quality. Nice hotel !!!”
+              </div>
+              <!-- media object -->
               <div>
-                <!-- commnent -->
-                <div style="font-size: 0.8em" class="my-1">
-                    “This hotel was fantastic. Best hotel room we have ever stayed during this holiday and staff was very friendly and helpful. Try to stay on upper floor. Can walk to the most local areas having vietnamese foods and fresh beer ( BIA HOI ). Airport transfer was arranged on time and driver was also great. Would definitely eveyone book a trip to Halong bay with hotel. It was such amazing and reasonable together with quality. Nice hotel !!!”
-                </div>
-                <!-- media object -->
-                <div>
-                  <div class="media">
-                    <a class="d-flex align-self-center mr-2" href="#">
-                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-success">
-                    </a>
-                    <div class="media-body">
-                      <div style="font-size: 1em">Mr. ASD</div>
-                      <div style="font-size: 0.7em">From Austria</div>
-                    </div>
+                <div class="media">
+                  <a class="d-flex align-self-center mr-2" href="#">
+                    <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-success">
+                  </a>
+                  <div class="media-body">
+                    <div style="font-size: 1em">Mr. ASD</div>
+                    <div style="font-size: 0.7em">From Austria</div>
                   </div>
                 </div>
               </div>
-
-
             </div>
 
 
+          </div>
+
+
+          <div th:replace="~{/layout/guest-base::gg-map}"></div>
         </div>
 
         <!-- hotel info -->
@@ -137,7 +146,8 @@
                     </div>
                     <div class="col-md-1 border border-warning">
                       <input type="hidden" name="floorsId" th:value="${floors[__${i.index}__].id}" multiple>
-                      <input type="number" min="0" th:max="${remain}" value="0" style="width:100%" name="numOfReserveRoom" multiple>
+                      <input type="number" min="0" th:max="${remain}" value="0" style="width:100%"
+                        name="numOfReserveRoom" multiple>
                     </div>
                   </div>
                 </div>

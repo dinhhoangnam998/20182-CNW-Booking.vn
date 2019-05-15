@@ -18,7 +18,7 @@ public class HomeS {
 
 	private final int NUM_OF_SLIDE = 7;
 
-	private final int NUM_OF_LOCATION = 7;
+	private final int NUM_OF_LOCATION = 9;
 	@Autowired
 	public HotelR hR;
 

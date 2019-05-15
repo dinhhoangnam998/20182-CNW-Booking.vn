@@ -55,6 +55,7 @@
                   <th>name</th>
                   <th>create date</th>
                   <th>img url</th>
+                  <th>province</th>
                   <th>edit</th>
                   <th>on/off</th>
                 </tr>
@@ -65,6 +66,7 @@
                   <td>[[${location.name}]]</td>
                   <td>[[${location.createDate}]]</td>
                   <td>[[${location.imgURL}]]</td>
+                  <td>[[${location.province.name}]]</td>
                   <td class="text-center">
                     <a th:href="@{/admin/creation/locations/{lid}/edit(lid = ${location.id})}">
                       <i class="fas fa-pencil-alt text-dark"></i>
@@ -73,8 +75,8 @@
                   <td class="text-center">
                     <div class="custom-control custom-switch">
                       <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="switch1" th:checked="${location.active}">
-                        <label class="custom-control-label" for="switch1"></label>
+                        <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('switch')}" th:checked="${location.active}" th:name="${location.id}">
+                        <label class="custom-control-label" th:for="${#ids.prev('switch')}"></label>
                       </div>
                     </div>
                   </td>
@@ -95,7 +97,21 @@
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
-
+<script>
+  $(document).ready(function () {
+    $('input.custom-control-input').change(function (e) {
+      var lid = $(this).attr("name");
+      var url = "/locations/"+ lid + "/toggle";
+      $.get(url, {},
+        function (data, textStatus, jqXHR) {
+          if (textStatus == "success") {
+          }
+        },
+        "text"
+      );
+    });
+  });
+</script>
 
 </body>
 

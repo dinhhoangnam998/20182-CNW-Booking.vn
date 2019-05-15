@@ -36,6 +36,8 @@ public class SearchC {
 			@RequestParam(required = false, defaultValue = "1") int numOfPeople) {
 		List<Hotel> hotels = sS.getSearchResults(ss, address, dateRange, numOfRoom, numOfPeople);
 		model.addAttribute("hotels", hotels);
+		model.addAttribute("numOfResult", hotels.size());
+		model.addAttribute("address", address);
 		return "/guest/search/search-results";
 	}
 	

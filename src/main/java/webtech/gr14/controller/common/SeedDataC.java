@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -36,6 +37,7 @@ import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.util.date.DateCommonUtil;
 import webtech.gr14.util.enums.AccRole;
 import webtech.gr14.util.enums.ActiveState;
+import webtech.gr14.util.enums.ReviewRank;
 import webtech.gr14.util.enums.RoomQuality;
 import webtech.gr14.util.enums.RoomType;
 import webtech.gr14.util.enums.SubmitState;
@@ -66,6 +68,11 @@ public class SeedDataC {
 
 	@Autowired
 	private PasswordEncoder pwe;
+
+	public int rd(int min, int max) {
+		return min + (int) Math.floor(Math.random() * (max - min + 1));
+	}
+	
 
 	@GetMapping("/seed-user")
 	public String seedRole() {
@@ -156,6 +163,9 @@ public class SeedDataC {
 
 	@GetMapping("/seed-hotel")
 	public String seedHotel() {
+		List<ReviewRank> reviewRanks = Arrays.asList(ReviewRank.values());
+		List<SubmitState> submitStates = Arrays.asList(SubmitState.values());
+		List<ActiveState> activeStates = Arrays.asList(ActiveState.values());
 		HotelGeneralFacility hotelGeneralFacility = new HotelGeneralFacility();
 		HotelService hotelService = new HotelService();
 		HouseRule houseRule = new HouseRule();
@@ -166,6 +176,7 @@ public class SeedDataC {
 		hotelService.setHousekeeping(true);
 		houseRule.setNoise(true);
 		houseRule.setPet(true);
+		String shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet erat nec augue pellentesque porta. Donec consectetur egestas libero id pretium. Mauris aliquam justo urna, aliquam lobortis tortor maximus ut. Proin sit amet ipsum lobortis dui convallis vehicula. Nullam consectetur tempor ullamcorper. Quisque nec leo nisl. Integer dictum malesuada ex aliquet accumsan. Sed commodo arcu vel dui sagittis accumsan.";
 		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a eros quis dui tincidunt pretium id non turpis. Nullam mollis quis quam vitae imperdiet. Aenean maximus lacus a eros rhoncus, sit amet porttitor ipsum eleifend. Aliquam sit amet varius orci. Fusce sit amet gravida mauris. Donec mattis elementum lobortis. Sed cursus sem ut leo consectetur, sit amet suscipit felis tristique. Sed malesuada ullamcorper libero sed fringilla. Donec lobortis volutpat imperdiet. Proin eget magna a urna consequat sagittis. Vivamus porttitor quam in faucibus dapibus. Nunc porttitor, nisi venenatis sagittis pellentesque, mi lorem pretium sapien, nec ultricies elit ante nec lorem.\r\n"
 				+ "\r\n"
 				+ "Nunc sed felis finibus, eleifend lorem eu, porta arcu. Vivamus facilisis sollicitudin metus ac sagittis. Duis ac laoreet velit. Ut at varius sem. Quisque vitae ipsum dolor. Vivamus sed ultrices massa. Quisque rhoncus, tellus at efficitur blandit, nunc diam ultrices tellus, ac fringilla neque lectus nec lectus.\r\n"
@@ -173,12 +184,17 @@ public class SeedDataC {
 				+ "Suspendisse neque ex, euismod quis metus imperdiet, laoreet venenatis nisi. Etiam enim dolor, consectetur nec convallis at, ullamcorper eget lacus. Quisque vestibulum dui eget porta vestibulum. Ut sit amet nisi vitae magna tempus cursus. Nam et finibus massa. Vivamus metus sapien, ultricies nec cursus vitae, lobortis at sapien. Nam sodales purus eu interdum semper. Ut eu rutrum nulla. Donec iaculis sem ligula, et molestie metus consequat et. Aliquam at luctus enim, fringilla malesuada sem. Vivamus quis risus lectus. Nunc accumsan tortor non commodo sollicitudin. Duis cursus condimentum ornare. Integer in augue non nisi dapibus facilisis. Aliquam rutrum nibh at nibh ultrices sagittis vel sed enim. Fusce fringilla a arcu eget sollicitudin.";
 		for (int i = 1; i <= 40; i++) {
 			Hotel hotel = new Hotel();
-			hotel.setName("My name is hotel " + i);
+			hotel.setName("I'm hotel " + i);
+			hotel.setReviewRank(reviewRanks.get(rd(0, 3)));
+			hotel.setNumOfReview(rd(300, 2500));
+			hotel.setStar(rd(1, 5));
+			hotel.setScore(rd(70, 95) / 100.0);
 			hotel.setAcc(aR.getOne((3 + i) / 4));
+			hotel.setShortDescription(shortDescription);
 			hotel.setDescription(description);
-			hotel.setActiveState(ActiveState.ACTIVE);
+			hotel.setActiveState(activeStates.get(rd(0, 3)));
 			hotel.setSubmitDate(new Date());
-			hotel.setSubmitState(SubmitState.APPROVALED);
+			hotel.setSubmitState(submitStates.get(rd(0, 3)));
 			hotel.setHandleSubmitDate(new Date());
 			Commune commune = cR.getOne(i);
 			hotel.setCommune(commune);

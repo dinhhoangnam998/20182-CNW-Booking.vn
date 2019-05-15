@@ -30,6 +30,7 @@ import webtech.gr14.model.Acc;
 import webtech.gr14.model.address.Commune;
 import webtech.gr14.model.floor.Floor;
 import webtech.gr14.util.enums.ActiveState;
+import webtech.gr14.util.enums.ReviewRank;
 import webtech.gr14.util.enums.SubmitState;
 
 @Entity
@@ -46,7 +47,6 @@ public class Hotel {
 	private String name;
 	// need replace
 	private String address;
-	private int star;
 	private String imgURL;
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
@@ -54,7 +54,14 @@ public class Hotel {
 	private List<String> thumbURLs = new ArrayList<String>();
 	@Column(columnDefinition = "varchar(4095)")
 	private String description;
+	@Column(columnDefinition = "varchar(2047)")
+	private String shortDescription;
+
+	private int star;
 	private double score;
+	@Enumerated(EnumType.STRING)
+	private ReviewRank reviewRank;
+	private int numOfReview;
 	private boolean deleted;
 	// coordinate??
 
