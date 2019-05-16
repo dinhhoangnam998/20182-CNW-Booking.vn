@@ -26,25 +26,25 @@
                 class="btn btn-outline-info btn-sm float-right">Hotel Info <i class="fas fa-external-link-alt"></i></a>
             </h5>
 
-            <!-- submit date -->
-            <div>
-              <div>Submit Date: [[${hotel.submitDate}]]</div>
+            <div class="row">
+              <div class="col-md-9">
+                <div>Submit Date: [[${hotel.submitDate}]]</div>
+                <div>Hotel name: [[${hotel.name}]]</div>
+                <div>Address: [[${hotel.address}]]</div>
+              </div>
+              <div class="col-md-3">
+                <!-- handle info -->
+                <div style="text-align: right;" class="align-self-end">
+                  <i style="font-size: 0.8rem" th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).NEW} ">NEW <i class="fas fa-certificate text-warning"></i></i>
+                  <i style="font-size: 0.8rem" th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).PROCESSING}">PROCESSING <i class="fas fa-bolt text-primary"></i> </i>
+                  <i style="font-size: 0.8rem" th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).APPROVALED}">APPROVALED <i class="fas fa-check-circle text-success"></i> </i>
+                  <i style="font-size: 0.8rem" th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).DECLINED} ">DECLINED <i class="fas fa-window-close text-danger"></i> </i>
+                  <div><i style="font-size: 0.8rem">[[${hotel.handleSubmitDate}]]</i></div>
+                </div>
+              </div>
             </div>
 
-            <!-- hotel info -->
-            <div>
-              <div>Hotel name: [[${hotel.name}]]</div>
-              <div>Address: [[${hotel.address}]]</div>
-            </div>
 
-            <!-- handle info -->
-            <div style="text-align: right">
-              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).NEW} ">NEW</i>
-              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).PROCESSING}">PROCESSING</i>
-              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).APPROVALED}">APPROVALED</i>
-              <i th:if="${hotel.submitState} == ${T(webtech.gr14.util.enums.SubmitState).DECLINED} ">DECLINED</i>
-              <div>[[${hotel.handleSubmitDate}]]</div>
-            </div>
 
           </div>
         </div>
@@ -56,20 +56,20 @@
   <footer th:replace="~{/layout/base::footer}"></footer>
 
   <style>
-      .hover-background {
-        background-color: #e9f0fa;
-      }
-    
-      .my-container {
-        margin-bottom: 0.5rem;
-        padding: 1rem;
-      }
-    </style>
-    <script>
-      $('.my-container').hover(function () {
-        $(this).toggleClass('hover-background');
-      })
-    </script>
+    .hover-background {
+      background-color: #e9f0fa;
+    }
+
+    .my-container {
+      margin-bottom: 0.5rem;
+      padding: 1rem;
+    }
+  </style>
+  <script>
+    $('.my-container').hover(function () {
+      $(this).toggleClass('hover-background');
+    })
+  </script>
 </body>
 
 </html>

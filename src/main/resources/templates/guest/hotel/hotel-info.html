@@ -185,13 +185,13 @@
               <!-- table -->
 
               <div class="container-fluid">
-                <div class="row" style="background-color: #4c76b2">
+                <div class="row" style="background-color: #4c76b2; color: white; font-weight: 500">
                   <div class="col-md-10">
                     <div class="row">
-                      <div class="col-md-5">Room Type</div>
-                      <div class="col-md-2">Sleep</div>
-                      <div class="col-md-3">Today's Price</div>
-                      <div class="col-md-2">Select Rooms</div>
+                      <div class="col-md-5 border border-info py-2">Room Type</div>
+                      <div class="col-md-2 border border-info py-2">Sleep</div>
+                      <div class="col-md-3 border border-info py-2">Today's Price</div>
+                      <div class="col-md-2 border border-info py-2">Select Rooms</div>
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -202,9 +202,9 @@
                 <form th:action="@{/guest/reserve}" method="POST" id="reserve-form">
                   <div class="row">
                     <!-- floor info -->
-                    <div class="col-md-10 border border-danger">
+                    <div class="col-md-10 border border-info">
                       <div class="row" th:each="remain, i : ${remainRoomOfEachFloor}" th:if="${remain} > 0">
-                        <div class="col-md-5 border border-danger">
+                        <div class="col-md-5 border border-info">
                           <div>On floor: [[${floors[__${i.index}__].ithFloor}]] </div>
                           <div>[[${floors[__${i.index}__].roomQuality}]] [[${floors[__${i.index}__].roomType}]]</div>
                           <div style="font-size: 0.8rem" class="text-success">
@@ -235,15 +235,15 @@
                               Included: 10 % VAT, 5 % Property service charge, Breakfast
                           </i>
                         </div>
-                        <div class="col-md-2 border border-danger">
+                        <div class="col-md-2 border border-info">
                             [[${floors[__${i.index}__].maxPeople}]] x <i class="fas fa-user-alt"></i>
                         </div>
 
-                        <div class="col-md-3 border border-danger ">
+                        <div class="col-md-3 border border-info ">
                              <b class="text-success" style="font-size: 1.3rem"> VND  [[${floors[__${i.index}__].price}]],000   </b>
                              <small style="text-align: center">includes taxes and charges</small>
                         </div>
-                        <div class="col-md-2 border border-danger">
+                        <div class="col-md-2 border border-info">
                             <input type="hidden" name="floorsId" th:value="${floors[__${i.index}__].id}" multiple>
                             <div class="form-group">
                               <select name="numOfReserveRoom" class="form-control" id="numOfRoom">
