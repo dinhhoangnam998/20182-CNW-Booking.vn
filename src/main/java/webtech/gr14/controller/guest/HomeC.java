@@ -29,14 +29,17 @@ public class HomeC {
 	public String home(Model model, HttpSession ss) {
 		if (ss.getAttribute("firstTime") == null) {
 			Date today = Calendar.getInstance().getTime();
-			DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 			String strDate = dateFormat.format(today);
 			String dateRange = strDate + "-" + strDate;
+			System.out.println("dateRange: ---------------> " + dateRange);
 			ss.setAttribute("dateRange", dateRange);
 //			ss.setAttribute("address", address);
-//			ss.setAttribute("numOfRoom", 1);
-//			ss.setAttribute("numOfPeople", 1);
+			ss.setAttribute("numOfRoom", 1);
+			ss.setAttribute("numOfPeople", 1);
 			ss.setAttribute("firstTime", true);
+		} else {
+			System.out.println(" -----------------> firstTime == " + ss.getAttribute("firstTime"));
 		}
 
 		List<Hotel> hotels = hS.getBestHotel();

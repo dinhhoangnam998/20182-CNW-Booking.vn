@@ -49,7 +49,7 @@ public class AdjustFloorS {
 		List<Date> openDateList = new ArrayList<>();
 		String[] array = openDates.split("\\,");
 		for (String s : array) {
-			openDateList.add(DateCommonUtil.stringToDate("dd-mm-yyyy", s));
+			openDateList.add(DateCommonUtil.stringToDate("dd-MM-yyyy", s));
 		}
 
 		List<Room> rooms = rR.findByFloor_IdAndDeleted(floor.getId(), false);

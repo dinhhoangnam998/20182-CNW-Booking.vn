@@ -3,6 +3,16 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <style>
+    main div div div.col-md-3 section {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+    }
+
+    div.col-md-3 section>div {
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,17 +26,17 @@
         <!-- col-3 -->
         <div class="col-md-3">
           <!-- search-box-vertical -->
-          <section>
+          <section class="bg-warning">
             <div th:replace="~{/layout/guest-base::search-vertical}"></div>
           </section>
 
           <!-- filter -->
-          <section>
+          <section class="border">
             <h4>Filter by</h4>
 
             <!--  -->
             <div>
-              <h5>Star</h5>
+              <b>Star</b>
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1">
                 <label class="custom-control-label" th:for="${#ids.prev('star')}">One Star</label>
@@ -51,7 +61,7 @@
 
             <!--  -->
             <div>
-                <h5>Distance from center</h5>
+                <b>Distance from center</b>
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('distance')}" name="example1">
                   <label class="custom-control-label" th:for="${#ids.prev('distance')}">Less than 1 km</label>
@@ -68,7 +78,7 @@
 
               <!--  -->
               <div>
-                  <h5>Fun Things To Do</h5>
+                  <b>Fun Things To Do</b>
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('fun')}" name="example1">
                     <label class="custom-control-label" th:for="${#ids.prev('fun')}">Bicycle rental</label>
@@ -94,7 +104,7 @@
                 <!--  -->
 
                 <div>
-                    <h5>Facilities</h5>
+                    <b>Facilities</b>
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('Facilities')}" name="example1">
                       <label class="custom-control-label" th:for="${#ids.prev('Facilities')}">Parking</label>
@@ -154,37 +164,7 @@
                     <div class="col-md-9 pl-0">
                       <!--  -->
                   <div>
-                      <div class="container-fluid px-0">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <div>
-                                <b  style="font-size: 1.5rem; color: #07c"> [[${hotel.name}]] </b>
-                                <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <i class="far fa-thumbs-up text-warning"></i>
-                              </div>
-                              <div>
-                                <i class="fas fa-map-marker-alt"></i>
-                              [[${hotel.address}]]
-                            </div>
-                            </div>
-                            <div class="col-md-4">
-                            <div class="container-fluid">
-                                <div class="row" style="text-align: right">
-                                    <div class="col-md-8 px-0">
-                                      <!-- <div>[[${hotel.reviewRank}]]</div> -->
-                                      <div>Very Good</div>
-                                      <div>[[${hotel.numOfReview}]] reviews</div>
-                                    </div>
-                                    <div class="col-md-4 my-auto px-0">
-                                        <div class="px-1 rounded-lg " style="font-size: 1.5em; display: inline-block; background-color: #003580; color: #fff">
-                                            [[${hotel.score}]]
-                                        </div>
-                                    </div>
-                                  </div>
-                            </div>
-                            </div>
-                          </div>
-                       
-                      </div>
+                    <div th:replace="~{/layout/guest-base::hotel-name}"></div>
                   </div>
                    <!--  -->
                    <div style="font-size: 0.85rem">

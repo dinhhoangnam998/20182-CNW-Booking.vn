@@ -1,4 +1,6 @@
+
 <div th:fragment="search-vertical">
+
   <h4>Search</h4>
   <form th:action="@{/guest/search-hotels}" method="post" id="myform">
     <div class="form-group">
@@ -50,4 +52,36 @@
       }
     </style>
   </div>
+</div>
+
+<div th:fragment="hotel-name" class="container-fluid px-0">
+    <div class="row">
+      <div class="col-md-8">
+        <div>
+          <b  style="font-size: 1.5rem; color: #07c"> [[${hotel.name}]] </b>
+          <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <i class="far fa-thumbs-up text-warning"></i>
+        </div>
+        <div>
+          <i class="fas fa-map-marker-alt"></i>
+        [[${hotel.address}]]
+      </div>
+      </div>
+      <div class="col-md-4">
+      <div class="container-fluid">
+          <div class="row" style="text-align: right">
+              <div class="col-md-9 px-0">
+                <!-- <div>[[${hotel.reviewRank}]]</div> -->
+                <div>Very Good</div>
+                <div>[[${hotel.numOfReview}]] reviews</div>
+              </div>
+              <div class="col-md-3 my-auto px-0">
+                  <div class="px-1 rounded-lg " style="font-size: 1.5em; display: inline-block; background-color: #003580; color: #fff">
+                      [[${hotel.score}]]
+                  </div>
+              </div>
+            </div>
+      </div>
+      </div>
+    </div>
+                       
 </div>

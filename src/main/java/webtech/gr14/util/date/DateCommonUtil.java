@@ -20,17 +20,18 @@ public class DateCommonUtil {
 		}
 		return parsedDate;
 	}
-	
+
 	public static Date getBeginDateFromDateRange(String dateRange) {
 		String[] part = dateRange.split("-");
 		String dateInStr = part[0];
-		return DateCommonUtil.stringToDate("MM/DD/YYYY", dateInStr);
+		System.out.println("----------> part1 - datebegin : " + dateInStr);
+		return DateCommonUtil.stringToDate("MM/dd/yyyy", dateInStr);
 	}
 
 	public static Date getEndDateFromDateRange(String dateRange) {
 		String[] part = dateRange.split("-");
 		String dateInStr = part[1];
-		return DateCommonUtil.stringToDate("MM/DD/YYYY", dateInStr);
+		return DateCommonUtil.stringToDate("MM/dd/yyyy", dateInStr);
 	}
 
 	public static List<Date> getDatesBetweenBeginAndEnd(Date startDate, Date endDate) {
@@ -48,7 +49,7 @@ public class DateCommonUtil {
 		}
 		return datesInRange;
 	}
-	
+
 	public static List<Date> getDatesFromStringDateRange(String dateRange) {
 		Date start = getBeginDateFromDateRange(dateRange);
 		Date end = getEndDateFromDateRange(dateRange);

@@ -46,4 +46,25 @@ public class HotelInfoS {
 		return result;
 	}
 
+	public Date getBeginDate(HttpSession ss) {
+		String dateRange = (String) ss.getAttribute("dateRange");
+		System.out.println("-----------------> dateRange store in sessionn by searchS: " + dateRange);
+		Date begin = DateCommonUtil.getBeginDateFromDateRange(dateRange);
+		System.out.println("-----------------> begin date when use DatecommonUltil: " + begin);
+		return DateCommonUtil.getBeginDateFromDateRange(dateRange);
+	}
+
+	public Date getEndDate(HttpSession ss) {
+		String dateRange = (String) ss.getAttribute("dateRange");
+		return DateCommonUtil.getEndDateFromDateRange(dateRange);
+	}
+
+	public int getNumOfRoom(HttpSession ss) {
+		return (Integer) ss.getAttribute("numOfRoom");
+	}
+
+	public int getNumOfPeople(HttpSession ss) {
+		return (Integer) ss.getAttribute("numOfPeople");
+	}
+
 }

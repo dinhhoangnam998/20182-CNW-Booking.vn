@@ -33,6 +33,11 @@ public class HotelInfoC {
 		model.addAttribute("floors", floors);
 		model.addAttribute("remainRoomOfEachFloor", remainRoomOfEachFloor);
 		
+		model.addAttribute("beginDate", hiS.getBeginDate(ss));
+		model.addAttribute("endDate", hiS.getEndDate(ss));
+		model.addAttribute("numOfRoom", hiS.getNumOfRoom(ss));
+		model.addAttribute("numOfPeople", hiS.getNumOfPeople(ss));
+		
 		return "/guest/hotel/hotel-info";
 	}
 	

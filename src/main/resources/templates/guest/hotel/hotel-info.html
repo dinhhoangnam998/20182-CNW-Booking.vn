@@ -17,156 +17,260 @@
       <div class="row">
         <!-- search colapse & map & facility... -->
         <div class="col-md-3">
+          <section>
+            <div th:replace="~{/layout/guest-base::search-vertical}"></div>
+          </section>
 
-          <div th:replace="~{/layout/guest-base::search-vertical}"></div>
 
-
-
-          <div>
-            <h4>What guest love</h4>
-
-            <!-- each comment -->
+          <section>
             <div>
-              <!-- commnent -->
-              <div style="font-size: 0.8em" class="my-1">
-                “Spent one night during our vacation. The hotel is well situated for sightseeing, shopping and good
-                local res. The hotel has a great atmosphere and lots of character. Our room was massive and extremely
-                comfortable. The staff were very helpful and accommodating. They are deserved for very good review after
-                our nice stay.”
-              </div>
-              <!-- media object -->
+              <h4>What guest love</h4>
+
+              <!-- each comment -->
               <div>
-                <div class="media">
-                  <a class="d-flex align-self-center mr-2" href="#">
-                    <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-warning">
-                  </a>
-                  <div class="media-body">
-                    <div style="font-size: 1em">Mr. Abc</div>
-                    <div style="font-size: 0.7em">From England</div>
+                <!-- commnent -->
+                <div style="font-size: 0.8em" class="my-1">
+                  “Spent one night during our vacation. The hotel is well situated for sightseeing, shopping and good
+                  local res. The hotel has a great atmosphere and lots of character. Our room was massive and extremely
+                  comfortable. The staff were very helpful and accommodating. They are deserved for very good review
+                  after
+                  our nice stay.”
+                </div>
+                <!-- media object -->
+                <div>
+                  <div class="media">
+                    <a class="d-flex align-self-center mr-2" href="#">
+                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-warning">
+                    </a>
+                    <div class="media-body">
+                      <div style="font-size: 1em">Mr. Abc</div>
+                      <div style="font-size: 0.7em">From England</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- each comment -->
-            <div>
-              <!-- commnent -->
-              <div style="font-size: 0.8em" class="my-1">
-                “We booked another hotel before but We got nightmare. We decided to change to this hotel and we were
-                definitely happy. The room was very attractive and well furnished with bathtub. Location was quiet as
-                advertising.
-                The staff was always cheerful and very helpful. Marcus and Kelly provided excellent services.”
-              </div>
-              <!-- media object -->
+              <!-- each comment -->
               <div>
-                <div class="media">
-                  <a class="d-flex align-self-center mr-2" href="#">
-                    <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-info">
-                  </a>
-                  <div class="media-body">
-                    <div style="font-size: 1em">Mrs. QWE</div>
-                    <div style="font-size: 0.7em">From Germany</div>
+                <!-- commnent -->
+                <div style="font-size: 0.8em" class="my-1">
+                  “We booked another hotel before but We got nightmare. We decided to change to this hotel and we were
+                  definitely happy. The room was very attractive and well furnished with bathtub. Location was quiet as
+                  advertising.
+                  The staff was always cheerful and very helpful. Marcus and Kelly provided excellent services.”
+                </div>
+                <!-- media object -->
+                <div>
+                  <div class="media">
+                    <a class="d-flex align-self-center mr-2" href="#">
+                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-info">
+                    </a>
+                    <div class="media-body">
+                      <div style="font-size: 1em">Mrs. QWE</div>
+                      <div style="font-size: 0.7em">From Germany</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- each comment -->
-            <div>
-              <!-- commnent -->
-              <div style="font-size: 0.8em" class="my-1">
-                “This hotel was fantastic. Best hotel room we have ever stayed during this holiday and staff was very
-                friendly and helpful. Try to stay on upper floor. Can walk to the most local areas having vietnamese
-                foods and fresh beer ( BIA HOI ). Airport transfer was arranged on time and driver was also great. Would
-                definitely eveyone book a trip to Halong bay with hotel. It was such amazing and reasonable together
-                with quality. Nice hotel !!!”
-              </div>
-              <!-- media object -->
+              <!-- each comment -->
               <div>
-                <div class="media">
-                  <a class="d-flex align-self-center mr-2" href="#">
-                    <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-success">
-                  </a>
-                  <div class="media-body">
-                    <div style="font-size: 1em">Mr. ASD</div>
-                    <div style="font-size: 0.7em">From Austria</div>
+                <!-- commnent -->
+                <div style="font-size: 0.8em" class="my-1">
+                  “This hotel was fantastic. Best hotel room we have ever stayed during this holiday and staff was very
+                  friendly and helpful. Try to stay on upper floor. Can walk to the most local areas having vietnamese
+                  foods and fresh beer ( BIA HOI ). Airport transfer was arranged on time and driver was also great.
+                  Would
+                  definitely eveyone book a trip to Halong bay with hotel. It was such amazing and reasonable together
+                  with quality. Nice hotel !!!”
+                </div>
+                <!-- media object -->
+                <div>
+                  <div class="media">
+                    <a class="d-flex align-self-center mr-2" href="#">
+                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-success">
+                    </a>
+                    <div class="media-body">
+                      <div style="font-size: 1em">Mr. ASD</div>
+                      <div style="font-size: 0.7em">From Austria</div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+
             </div>
+          </section>
 
 
-          </div>
 
-
-          <div th:replace="~{/layout/guest-base::gg-map}"></div>
+          <section>
+            <div th:replace="~{/layout/guest-base::gg-map}"></div>
+          </section>
         </div>
 
         <!-- hotel info -->
         <div class="col-md-9">
           <!-- hotel name, address,  -->
-          <div>
-            <div>[[${hotel.name}]]</div>
-            <div>[[${hotel.address}]]</div>
-          </div>
-          <div></div>
+          <section>
+            <div class="container-fluid px-0">
+              <div class="row">
+                <div class="col-md-8">
+                  <div>
+                    <b style="font-size: 1.5rem; color: #07c"> [[${hotel.name}]] </b>
+                    <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i
+                      class="fas fa-star text-warning"></i> <i class="far fa-thumbs-up text-warning"></i>
+                  </div>
+                  <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    [[${hotel.address}]]
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="container-fluid">
+                    <div class="row" style="text-align: right">
+                      <div class="col-md-10 px-0">
+                        <!-- <div>[[${hotel.reviewRank}]]</div> -->
+                        <div>Very Good</div>
+                        <div>[[${hotel.numOfReview}]] reviews</div>
+                      </div>
+                      <div class="col-md-2 my-auto px-0">
+                        <div class="px-1 rounded-lg "
+                          style="font-size: 1.5em; display: inline-block; background-color: #003580; color: #fff">
+                          [[${hotel.score}]]
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
           <!-- gallery -->
-          <div>
+          <section>
             <ul id="imgGallery">
               <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
                 <img style="height: 450px; width: 100%; object-fit: cover" th:src="@{${imgURL}}" alt="img not found" />
               </li>
             </ul>
-          </div>
+          </section>
           <!-- description -->
-          <div>
-            [[${hotel.description}]]
-          </div>
-          <!-- room remain -->
-          <div class="container-fluid">
-            <!-- reserve info -->
-            <div></div>
-            <form th:action="@{/guest/reserve}" method="POST" id="reserve-form">
-              <div class="row">
+          <section>
+            <h4>Description</h4>
+            <div>
+              [[${hotel.description}]]
+            </div>
+          </section>
 
-                <!-- floor info -->
-                <div class="col-md-9 border border-danger">
-                  <div class="row" th:each="remain, i : ${remainRoomOfEachFloor}" th:if="${remain} > 0">
-                    <div class="col-md-4">
-                      [[${floors[__${i.index}__].name}]]
+          <!-- room availabe -->
+          <section>
+              <h4>Available</h4>
+            <!-- reserve info -->
+            <div class="container-fluid border bg-warning   py-3 my-3">
+              <div class="row">
+                <div class="col-md-4">Begin date</div>
+                <div class="col-md-4">End Date</div>
+                <div class="col-md-2">People</div>
+                <div class="col-md-2">Room</div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-4" th:text="${#dates.format(beginDate, 'EEE, MMM dd, yyyy')}"></div>
+                  <div class="col-md-4" th:text="${#dates.format(endDate, 'EEE, MMM dd, yyyy')}"></div>
+                  <div class="col-md-2">[[${numOfPeople}]] x <i class="fas fa-user-alt"></i></div>
+                  <div class="col-md-2">[[${numOfRoom}]]</div>
+                </div>
+              </div>
+              <!-- table -->
+
+              <div class="container-fluid">
+                <div class="row" style="background-color: #4c76b2">
+                  <div class="col-md-10">
+                    <div class="row">
+                      <div class="col-md-5">Room Type</div>
+                      <div class="col-md-2">Sleep</div>
+                      <div class="col-md-3">Today's Price</div>
+                      <div class="col-md-2">Select Rooms</div>
                     </div>
-                    <div class="col-md-1">
-                      max people
-                    </div>
-                    <div class="col-md-2">
-                      [[${floors[__${i.index}__].price}]]
-                    </div>
-                    <div class="col-md-4">
-                      choose service or not
-                    </div>
-                    <div class="col-md-1 border border-warning">
-                      <input type="hidden" name="floorsId" th:value="${floors[__${i.index}__].id}" multiple>
-                      <input type="number" min="0" th:max="${remain}" value="0" style="width:100%"
-                        name="numOfReserveRoom" multiple>
-                    </div>
+                  </div>
+                  <div class="col-md-2">
+
                   </div>
                 </div>
 
-                <!-- reserve button -->
-                <div class="col-md-3 border border-primary">
-                  <button type="submit" class="btn btn-primary" form="reserve-form">I'll Reserve</button>
-                </div>
+                <form th:action="@{/guest/reserve}" method="POST" id="reserve-form">
+                  <div class="row">
+                    <!-- floor info -->
+                    <div class="col-md-10 border border-danger">
+                      <div class="row" th:each="remain, i : ${remainRoomOfEachFloor}" th:if="${remain} > 0">
+                        <div class="col-md-5 border border-danger">
+                          <div>On floor: [[${floors[__${i.index}__].ithFloor}]] </div>
+                          <div>[[${floors[__${i.index}__].roomQuality}]] [[${floors[__${i.index}__].roomType}]]</div>
+                          <div style="font-size: 0.8rem" class="text-success">
+                            <div>
+                              <span th:if="${floors[__${i.index}__].roomGeneralFacility.airconditioning} == true"><i class="fas fa-snowflake"></i></span>
+                              <span th:if="${floors[__${i.index}__].roomGeneralFacility.heating} == true">heating</span>
+                              <span th:if="${floors[__${i.index}__].roomGeneralFacility.view} == true"><i class="fas fa-eye"></i></span>
+                              <span th:if="${floors[__${i.index}__].roomGeneralFacility.soundproof} == true">soundproof</span>
+                            </div>
+                            
+                            <div>
+                                <span th:if="${floors[__${i.index}__].bathroom.towel} == true">towel</span>
+                                <span th:if="${floors[__${i.index}__].bathroom.bathtub} == true">bathtub</span>
+                                <span th:if="${floors[__${i.index}__].bathroom.bathrobe} == true">bathrobe</span>
+                                <span th:if="${floors[__${i.index}__].bathroom.slipper} == true">slipper</span>
+                                <span th:if="${floors[__${i.index}__].bathroom.toiletPaper} == true">toiletPaper</span>
+                                <span th:if="${floors[__${i.index}__].bathroom.toilettries} == true">toilettries</span>
+                                <span th:if="${floors[__${i.index}__].bathroom.hairdryer} == true">hairdryer</span>
+                            </div>
+                            <div>
+                                <span th:if="${floors[__${i.index}__].media.flatTv} == true">flatTv</span>
+                                <span th:if="${floors[__${i.index}__].media.cableChannel} == true">cableChannel</span>
+                                <span th:if="${floors[__${i.index}__].media.highendSoundSystem} == true">highendSoundSystem</span>
+                            </div>
+                          </div>
+                          <i style="font-size: 0.8rem">
+                              Prices are per room
+                              Included: 10 % VAT, 5 % Property service charge, Breakfast
+                          </i>
+                        </div>
+                        <div class="col-md-2 border border-danger">
+                            [[${floors[__${i.index}__].maxPeople}]] x <i class="fas fa-user-alt"></i>
+                        </div>
 
+                        <div class="col-md-3 border border-danger ">
+                             <b class="text-success" style="font-size: 1.3rem"> VND  [[${floors[__${i.index}__].price}]],000   </b>
+                             <small style="text-align: center">includes taxes and charges</small>
+                        </div>
+                        <div class="col-md-2 border border-danger">
+                            <input type="hidden" name="floorsId" th:value="${floors[__${i.index}__].id}" multiple>
+                            <div class="form-group">
+                              <select name="numOfReserveRoom" class="form-control" id="numOfRoom">
+                                <option th:each="numOfRoom : ${#numbers.sequence(0,remain)}" th:text="${numOfRoom}">
+                                </option>
+                              </select>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- reserve button -->
+                    <div class="col-md-2 pl-0 border border-primary" style="text-align: right">
+                      <button type="submit" class="btn btn-primary px-4" form="reserve-form">I'll reserve</button>
+                    </div>
+
+                  </div>
+                </form>
               </div>
 
-            </form>
-
-          </div>
+            
+          </section>
 
           <!-- facility -->
-          <div>
+          <section>
 
-          </div>
+          </section>
         </div>
       </div>
     </div>

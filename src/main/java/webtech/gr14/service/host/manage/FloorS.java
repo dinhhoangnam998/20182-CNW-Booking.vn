@@ -71,11 +71,13 @@ public class FloorS {
 		floor.setHotel(origin.getHotel());
 		floor.setActive(origin.isActive());
 		floor.setDeleted(origin.isDeleted());
+		floor.setOpenDates(origin.getOpenDates());
+		floor.setPrice(origin.getPrice());
 
 		int originNumOfRoom = origin.getNumOfRoom();
 		int newNumOfRoom = floor.getNumOfRoom();
 		int numRoomChange = newNumOfRoom - originNumOfRoom;
-		if (numRoomChange > 0) {
+		if (numRoomChange >= 0) {
 			for (int i = originNumOfRoom + 1; i <= newNumOfRoom; i++) {
 				Room room = new Room();
 				room.setFloor(floor);
