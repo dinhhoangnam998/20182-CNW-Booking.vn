@@ -23,7 +23,10 @@ public class LocationC {
 	public String searchHotelInProvince(Model model, @RequestParam int provinceId) {
 		List<Hotel> hotels = lS.getHotelInProvince(provinceId);
 		model.addAttribute("hotels", hotels);
-		return "/guest/location/hotel-in-province";
+		model.addAttribute("numOfResult", hotels.size());
+		String address = lS.getAddress(provinceId);
+		model.addAttribute("address", address);
+		return "/guest/search/search-results";
 	}
 	
 	@ResponseBody

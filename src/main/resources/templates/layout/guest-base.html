@@ -54,12 +54,13 @@
   </div>
 </div>
 
-<div th:fragment="hotel-name" class="container-fluid px-0">
+<div th:fragment="hotel-name (hotel)" class="container-fluid px-0">
     <div class="row">
       <div class="col-md-8">
         <div>
           <b  style="font-size: 1.5rem; color: #07c"> [[${hotel.name}]] </b>
-          <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <i class="far fa-thumbs-up text-warning"></i>
+          <!-- <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>  -->
+          <i th:each="i :${#numbers.sequence(1, hotel.star)}" class="fas fa-star text-warning"></i> <i class="far fa-thumbs-up text-warning"></i>
         </div>
         <div>
           <i class="fas fa-map-marker-alt"></i>

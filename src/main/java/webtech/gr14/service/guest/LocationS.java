@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import webtech.gr14.model.article.Location;
 import webtech.gr14.model.hotel.Hotel;
+import webtech.gr14.repository.address.ProvinceR;
 import webtech.gr14.repository.article.LocationR;
 import webtech.gr14.repository.hotel.HotelR;
 
@@ -19,6 +20,9 @@ public class LocationS {
 
 	@Autowired
 	public LocationR lR;
+
+	@Autowired
+	public ProvinceR pR;
 
 	public List<Hotel> getHotelInProvince(int provinceId) {
 		return hR.findByCommune_District_Province_Id(provinceId, PageRequest.of(0, 15));
@@ -32,5 +36,9 @@ public class LocationS {
 			l.setActive(true);
 		}
 		lR.save(l);
+	}
+
+	public String getAddress(int provinceId) {
+		return pR.getOne(provinceId).getName();
 	}
 }

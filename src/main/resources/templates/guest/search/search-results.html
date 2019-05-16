@@ -2,202 +2,244 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
-  <style>
-    main div div div.col-md-3 section {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-    }
+<th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+<style>
+main div div div.col-md-3 section {
+	margin-bottom: 1.5rem;
+	padding: 1rem;
+}
 
-    div.col-md-3 section>div {
-      margin-bottom: 1rem;
-    }
-  </style>
+div.col-md-3 section>div {
+	margin-bottom: 1rem;
+}
+</style>
 </head>
 
 <body>
-  <!-- header -->
-  <header th:replace="~{/layout/base::header}"></header>
+	<!-- header -->
+	<header th:replace="~{/layout/base::header}"></header>
 
-  <!-- main -->
-  <main>
-    <div class="container-fluid">
-      <div class="row">
-        <!-- col-3 -->
-        <div class="col-md-3">
-          <!-- search-box-vertical -->
-          <section class="bg-warning">
-            <div th:replace="~{/layout/guest-base::search-vertical}"></div>
-          </section>
+	<!-- main -->
+	<main>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- col-3 -->
+			<div class="col-md-3">
+				<!-- search-box-vertical -->
+				<section class="bg-warning">
+					<div th:replace="~{/layout/guest-base::search-vertical}"></div>
+				</section>
 
-          <!-- filter -->
-          <section class="border">
-            <h4>Filter by</h4>
+				<!-- filter -->
+				<section class="border">
+					<h4>Filter by</h4>
 
-            <!--  -->
-            <div>
-              <b>Star</b>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1">
-                <label class="custom-control-label" th:for="${#ids.prev('star')}">One Star</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1">
-                <label class="custom-control-label" th:for="${#ids.prev('star')}">Two Star</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1">
-                <label class="custom-control-label" th:for="${#ids.prev('star')}">Three Star</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1">
-                <label class="custom-control-label" th:for="${#ids.prev('star')}">Four Star</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1">
-                <label class="custom-control-label" th:for="${#ids.prev('star')}">Five Star</label>
-              </div>
-            </div>
+					<!--  -->
+					<div>
+						<b>Star</b>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('star')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('star')}">One
+								Star</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('star')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('star')}">Two
+								Star</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('star')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('star')}">Three
+								Star</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('star')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('star')}">Four
+								Star</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('star')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('star')}">Five
+								Star</label>
+						</div>
+					</div>
 
-            <!--  -->
-            <div>
-                <b>Distance from center</b>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('distance')}" name="example1">
-                  <label class="custom-control-label" th:for="${#ids.prev('distance')}">Less than 1 km</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('distance')}" name="example1">
-                  <label class="custom-control-label" th:for="${#ids.prev('distance')}">Less than 3 km</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('distance')}" name="example1">
-                  <label class="custom-control-label" th:for="${#ids.prev('distance')}">Less than 5 km</label>
-                </div>
-              </div>
+					<!--  -->
+					<div>
+						<b>Distance from center</b>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('distance')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('distance')}">Less
+								than 1 km</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('distance')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('distance')}">Less
+								than 3 km</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('distance')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('distance')}">Less
+								than 5 km</label>
+						</div>
+					</div>
 
-              <!--  -->
-              <div>
-                  <b>Fun Things To Do</b>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('fun')}" name="example1">
-                    <label class="custom-control-label" th:for="${#ids.prev('fun')}">Bicycle rental</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('fun')}" name="example1">
-                    <label class="custom-control-label" th:for="${#ids.prev('fun')}">Walking tours</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('fun')}" name="example1">
-                    <label class="custom-control-label" th:for="${#ids.prev('fun')}">Bike tours</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('fun')}" name="example1">
-                    <label class="custom-control-label" th:for="${#ids.prev('fun')}">Cooking class</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('fun')}" name="example1">
-                    <label class="custom-control-label" th:for="${#ids.prev('fun')}">Local culture tour</label>
-                  </div>
-                </div>
-                
-                <!--  -->
+					<!--  -->
+					<div>
+						<b>Fun Things To Do</b>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('fun')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('fun')}">Bicycle
+								rental</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('fun')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('fun')}">Walking
+								tours</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('fun')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('fun')}">Bike
+								tours</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('fun')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('fun')}">Cooking
+								class</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('fun')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('fun')}">Local
+								culture tour</label>
+						</div>
+					</div>
 
-                <div>
-                    <b>Facilities</b>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('Facilities')}" name="example1">
-                      <label class="custom-control-label" th:for="${#ids.prev('Facilities')}">Parking</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('Facilities')}" name="example1">
-                      <label class="custom-control-label" th:for="${#ids.prev('Facilities')}">Restaurant</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('Facilities')}" name="example1">
-                      <label class="custom-control-label" th:for="${#ids.prev('Facilities')}">Pet friendly</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('Facilities')}" name="example1">
-                      <label class="custom-control-label" th:for="${#ids.prev('Facilities')}">Room service</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('Facilities')}" name="example1">
-                      <label class="custom-control-label" th:for="${#ids.prev('Facilities')}">Fitness center</label>
-                    </div>
-                  </div>
-          </section>
+					<!--  -->
 
-          <!-- google map -->
-          <section>
-              <div th:replace="~{/layout/guest-base::gg-map}"></div>
-          </section>
-        </div>
+					<div>
+						<b>Facilities</b>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('Facilities')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('Facilities')}">Parking</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('Facilities')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('Facilities')}">Restaurant</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('Facilities')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('Facilities')}">Pet
+								friendly</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('Facilities')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('Facilities')}">Room
+								service</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								th:id="${#ids.seq('Facilities')}" name="example1"> <label
+								class="custom-control-label" th:for="${#ids.prev('Facilities')}">Fitness
+								center</label>
+						</div>
+					</div>
+				</section>
 
-        
+				<!-- google map -->
+				<section>
+					<div th:replace="~{/layout/guest-base::gg-map}"></div>
+				</section>
+			</div>
 
-        <!-- results -->
-        <div class="col-md-9">
-          <!-- result summary -->
-          <section>
-            <strong style="font-size: 1.3rem">[[${address}]]: [[${numOfResult}]] properties found!</strong>
-          </section>
 
-          <!-- reason to go -->
-          <section>
-          </section>
 
-          <!-- filter -->
-          <section>
-          </section>
+			<!-- results -->
+			<div class="col-md-9">
+				<!-- result summary -->
+				<section>
+					<strong style="font-size: 1.3rem">[[${address}]]:
+						[[${numOfResult}]] properties found!</strong>
+				</section>
 
-          <!-- each hotel here -->
-          <section>
-              <div th:each="hotel : ${hotels}" class="container-fluid p-3 each-hotel">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <a th:href="@{/guest/hotels/{hid}(hid = ${hotel.id})}">
-                        <img th:src="@{${hotel.imgURL}}" alt="no img" style="height: 200px; width: 100%; max-width: 200px; object-fit: cover">
-                      </a>
-                    </div>
-                    
-                    <div class="col-md-9 pl-0">
-                      <!--  -->
-                  <div>
-                    <div th:replace="~{/layout/guest-base::hotel-name}"></div>
-                  </div>
-                   <!--  -->
-                   <div style="font-size: 0.85rem">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada odio nec turpis mollis, a convallis nulla mattis. Nunc sodales ligula a erat ultrices, vel lobortis tortor mollis. Sed placerat consequat tellus eu auctor. Duis mattis in mi a elementum. Aliquam pulvinar lectus a magna scelerisque sagittis. Integer semper iaculis nibh, vel volutpat libero vestibulum vitae. Proin dui arcu, dignissim et bibendum a, posuere auctor metus.
-                   </div>
-                      <!--  -->
-                   <div style="text-align: right">
-                        <a th:href="@{/guest/hotels/{hid}(hid = ${hotel.id})}" class="btn btn-primary ">See available rooms</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          </section>
-          
-        </div>
-      </div>
-    </div>
+				<!-- reason to go -->
+				<section></section>
 
-  </main>
+				<!-- filter -->
+				<section></section>
 
-  <!-- footer -->
-  <footer th:replace="~{/layout/base::footer}"></footer>
+				<!-- each hotel here -->
+				<section>
+					<div th:each="hotel : ${hotels}"
+						class="container-fluid p-3 each-hotel">
+						<div class="row">
+							<div class="col-md-3">
+								<a th:href="@{/guest/hotels/{hid}(hid = ${hotel.id})}"> <img
+									th:src="@{${hotel.imgURL}}" alt="no img"
+									style="height: 200px; width: 100%; max-width: 200px; object-fit: cover">
+								</a>
+							</div>
 
-  <style>
-    .hover-background {
-      background-color:#e9f0fa;
-    }
-  </style>
-  <script>
-    $('.each-hotel').hover(function () {
-      $(this).toggleClass('hover-background');
-    })
-  </script>
+							<div class="col-md-9 pl-0">
+								<!--  -->
+								<div>
+									<div th:replace="~{/layout/guest-base::hotel-name(${hotel})}"></div>
+								</div>
+								<!--  -->
+								<div style="font-size: 0.85rem">Lorem ipsum dolor sit
+									amet, consectetur adipiscing elit. Mauris malesuada odio nec
+									turpis mollis, a convallis nulla mattis. Nunc sodales ligula a
+									erat ultrices, vel lobortis tortor mollis. Sed placerat
+									consequat tellus eu auctor. Duis mattis in mi a elementum.
+									Aliquam pulvinar lectus a magna scelerisque sagittis. Integer
+									semper iaculis nibh, vel volutpat libero vestibulum vitae.
+									Proin dui arcu, dignissim et bibendum a, posuere auctor metus.
+								</div>
+								<!--  -->
+								<div style="text-align: right">
+									<a th:href="@{/guest/hotels/{hid}(hid = ${hotel.id})}"
+										class="btn btn-primary ">See available rooms</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			</div>
+		</div>
+	</div>
+
+	</main>
+
+	<!-- footer -->
+	<footer th:replace="~{/layout/base::footer}"></footer>
+
+	<style>
+.hover-background {
+	background-color: #e9f0fa;
+}
+</style>
+	<script>
+		$('.each-hotel').hover(function() {
+			$(this).toggleClass('hover-background');
+		})
+	</script>
 </body>
 
 </html>

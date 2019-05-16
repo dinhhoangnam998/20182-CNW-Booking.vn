@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  
-  <head>
-    <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
-  </head>
 
-  <body>
-    <!-- header -->
-    <header th:replace="~{/layout/base::header}"></header>
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+</head>
 
-    <!-- main -->
-    <main>
-      <div th:each="ro : ${ros}">
-        [[${ro.id}]]
-        [[${ro.state}]]
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+
+      <div th:each="ro : ${ros}" class="container-fluid">
+        <!-- hotel info -->
+        <div class="row">
+          <div class="col-md-3">
+            <img th:src="${ro.hotel.imgURL}" alt="no img found" style="height: 100px; object-fit: cover">
+          </div>
+          <div class="col-md-9">
+              <div th:replace="~{/layout/guest-base::hotel-name(${ro.hotel})}"></div>
+          </div>
+        </div>
+
+        <!-- booking order info -->
+        <div>
+          <div>booking date</div>
+          <div></div>
+        </div>
+        <!-- check in checkout info -->
+        <div>
+          <div>checkin</div>
+          <div>checkout</div>
+        </div>
+        <div>
+          total charge
+        </div>
       </div>
-    </main>   
 
-    <!-- footer -->
-    <footer th:replace="~{/layout/base::footer}"></footer>
-  </body>
-  
+
+
+
+    </div>
+
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+</body>
+
 </html>
