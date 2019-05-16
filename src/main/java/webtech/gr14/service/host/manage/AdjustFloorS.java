@@ -41,13 +41,24 @@ public class AdjustFloorS {
 	}
 
 	public void adjust(int fid, String openDates, int price) {
+
 		Floor floor = fR.getOne(fid);
 		floor.setOpenDates(openDates);
 		floor.setPrice(price);
 		fR.save(floor);
 
+		if (openDates.equals("")) {
+			List<Room> rooms = rR.findByFloor_IdAndDeleted(floor.getId(), false);
+			for (Room room : rooms) {
+				room.getRemainOpenDates().clear();
+				rR.save(room);
+			}
+			return;
+		}
+
 		List<Date> openDateList = new ArrayList<>();
 		String[] array = openDates.split("\\,");
+
 		for (String s : array) {
 			openDateList.add(DateCommonUtil.stringToDate("dd-MM-yyyy", s));
 		}

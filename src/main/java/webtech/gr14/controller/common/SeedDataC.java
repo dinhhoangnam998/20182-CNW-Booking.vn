@@ -72,7 +72,12 @@ public class SeedDataC {
 	public int rd(int min, int max) {
 		return min + (int) Math.floor(Math.random() * (max - min + 1));
 	}
-	
+
+	@SuppressWarnings("deprecation")
+	public Date rdD(int age, int var) {
+		return new Date(2019 - age - 1900 + (int) Math.floor(Math.random() * var), (int) Math.floor(Math.random() * 12),
+				(int) Math.floor(Math.random() * 28));
+	}
 
 	@GetMapping("/seed-user")
 	public String seedRole() {
@@ -130,13 +135,13 @@ public class SeedDataC {
 			List<String> mydistricts = Files
 					.readAllLines(Paths.get("src/main/resources/for-dev-only/addressTextDate/districts.txt"));
 			List<String> districts = new ArrayList<>(new LinkedHashSet<>(mydistricts));
-			int i = 10;
+			int i = 0;
 			for (String d : districts) {
-				i++;
 				District dis = new District();
 				dis.setName(d);
-				dis.setProvince(pR.getOne(i / 10));
+				dis.setProvince(pR.getOne((i / 4) + 1));
 				dR.save(dis);
+				i++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -146,13 +151,13 @@ public class SeedDataC {
 			List<String> mycommunes = Files
 					.readAllLines(Paths.get("src/main/resources/for-dev-only/addressTextDate/communes.txt"));
 			List<String> communes = new ArrayList<>(new LinkedHashSet<>(mycommunes));
-			int j = 1;
+			int j = 0;
 			for (String comm : communes) {
-				j++;
 				Commune commune = new Commune();
 				commune.setName(comm);
-				commune.setDistrict(dR.getOne(j / 2));
+				commune.setDistrict(dR.getOne((j / 4) + 1));
 				cR.save(commune);
+				j++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -185,17 +190,17 @@ public class SeedDataC {
 		for (int i = 1; i <= 40; i++) {
 			Hotel hotel = new Hotel();
 			hotel.setName("I'm hotel " + i);
-			hotel.setReviewRank(reviewRanks.get(rd(0, 3)));
-			hotel.setNumOfReview(rd(300, 2500));
-			hotel.setStar(rd(1, 5));
-			hotel.setScore(rd(70, 95) / 100.0);
-			hotel.setAcc(aR.getOne((3 + i) / 4));
 			hotel.setShortDescription(shortDescription);
 			hotel.setDescription(description);
+			hotel.setStar(rd(1, 5));
+			hotel.setScore(rd(70, 95) / 10.0);
+			hotel.setReviewRank(reviewRanks.get(rd(0, 3)));
+			hotel.setNumOfReview(rd(300, 2500));
 			hotel.setActiveState(activeStates.get(rd(0, 3)));
-			hotel.setSubmitDate(new Date());
+			hotel.setSubmitDate(rdD(2, 2));
 			hotel.setSubmitState(submitStates.get(rd(0, 3)));
 			hotel.setHandleSubmitDate(new Date());
+			hotel.setAcc(aR.getOne((3 + i) / 4));
 			Commune commune = cR.getOne(i);
 			hotel.setCommune(commune);
 			String address = commune.getName() + ", " + commune.getDistrict().getName() + ", "
@@ -216,7 +221,7 @@ public class SeedDataC {
 		List<Date> openDateList = new ArrayList<>();
 		String[] array = openDates.split("\\,");
 		for (String s : array) {
-			openDateList.add(DateCommonUtil.stringToDate("dd-mm-yyyy", s));
+			openDateList.add(DateCommonUtil.stringToDate("dd-MM-yyyy", s));
 		}
 
 		List<Room> rooms1 = new ArrayList<>();
@@ -258,20 +263,26 @@ public class SeedDataC {
 
 		bathroom.setBathrobe(true);
 		bathroom.setBathtub(true);
+		bathroom.setHairdryer(true);
+		bathroom.setSlipper(true);
 		media.setCableChannel(true);
+		media.setFlatTv(true);
 		roomGeneralFacility.setAirconditioning(true);
 		roomGeneralFacility.setHeating(true);
-
+		roomGeneralFacility.setSoundproof(true);
+		;
+		List<RoomType> roomTypes = Arrays.asList(RoomType.values());
+		List<RoomQuality> roomQualities = Arrays.asList(RoomQuality.values());
 		for (int i = 1; i <= 3; i++) {
 			Floor f = new Floor();
 			f.setName("Floor " + i);
 			f.setIthFloor(i);
 			f.setNumOfRoom(5);
-			f.setRoomType(RoomType.Double);
-			f.setRoomQuality(RoomQuality.Superior);
-			f.setMaxPeople(2);
+			f.setRoomType(roomTypes.get(rd(0, 4)));
+			f.setRoomQuality(roomQualities.get(rd(0, 3)));
+			f.setMaxPeople(rd(2, 5));
 			f.setActive(true);
-			f.setPrice(200);
+			f.setPrice(rd(10, 25) * 10);
 			f.setOpenDates(
 					"12-05-2019,13-05-2019,14-05-2019,15-05-2019,16-05-2019,17-05-2019,18-05-2019,25-05-2019,24-05-2019,23-05-2019,22-05-2019,21-05-2019,20-05-2019,19-05-2019");
 			f.setBathroom(bathroom);

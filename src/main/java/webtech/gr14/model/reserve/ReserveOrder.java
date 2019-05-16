@@ -38,13 +38,20 @@ public class ReserveOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	// booking date
+	@Column(name = "datex")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@Column(name = "datex")
 	private Date date;
-	private String note;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date checkInDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date checkOutDate;
+	private int numOfNight;
 	private int charge;
-	private String dateRange;
+	private String note;
 	@Enumerated(EnumType.STRING)
 	private ReserveOrderState state;
 
@@ -56,10 +63,10 @@ public class ReserveOrder {
 
 	@OneToMany(mappedBy = "reserveOrder", cascade = CascadeType.ALL)
 	private List<ReserveDetail> reserveDetails;
-	
+
 	@ManyToOne
 	private Acc acc;
-	
+
 	@ManyToOne
 	private Hotel hotel;
 }

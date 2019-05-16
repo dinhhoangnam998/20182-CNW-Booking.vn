@@ -3,6 +3,11 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Home')}"></th:block>
+  <style>
+    div div > div.row {
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,7 +23,7 @@
           <!-- avatar -->
           <div>
             <!-- img -->
-            <img th:src="@{${acc.imgURL}}" alt="no image found" style="height: 400px; width: 100%; object-fit: cover">
+            <img th:src="@{${acc.imgURL}}" alt="no image found" style="height: 350px; width: 100%; object-fit: cover">
             <div></div>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#change-avatar-modal">
@@ -47,9 +52,9 @@
                           <div>
                             <form th:action="@{/acc/profiles/{aid}/change-avatar(aid=${acc.id})}" method="post"
                               enctype="multipart/form-data">
-                              <input type="file" name="file" class="btn form-control-file">
+                              <input type="file" name="file" class="">
                               <br />
-                              <input type="submit" value="Save" class="btn btn-primary">
+                              <input type="submit" value="Save" class=" mt-2 btn btn-primary">
                             </form>
                           </div>
                         </div>

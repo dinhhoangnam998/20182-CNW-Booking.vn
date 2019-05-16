@@ -46,7 +46,7 @@ public class Hotel {
 	private int id;
 	private String name;
 	// need replace
-	private String address;
+
 	private String imgURL;
 	@ElementCollection
 	private List<String> imgURLs = new ArrayList<String>();
@@ -99,6 +99,8 @@ public class Hotel {
 
 	@ManyToOne
 	private Commune commune;
+	
+	private String address;
 
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
 	private List<Floor> floors;

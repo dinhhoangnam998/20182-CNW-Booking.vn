@@ -12,184 +12,202 @@
   <!-- main -->
   <main>
     <div class="container-fluid">
-      <form th:action="@{/host/manage/hotels/add}" method="POST" th:object="${hotel}" enctype="multipart/form-data">
 
-        <div class="container-fluid">
-          <h3>General Info</h3>
-          <div class="form-group">
-            <label th:for="name">Hotel Name</label>
-            <input type="text" th:field="*{name}" th:id="name" class="form-control" placeholder=""
-              aria-describedby="helpId">
-            <small th:id="helpId" class="text-muted">Help text</small>
-          </div>
-          <div class="form-group">
-            <label th:for="img">Upload Primary Image</label>
-            <input type="file" name="img" class="btn form-control-file" th:id="img" />
-          </div>
-          <div class="form-group">
-            <label th:for="imgs">Upload Other Images</label>
-            <input type="file" name="imgs" class="btn form-control-file" th:id="imgs" multiple />
-          </div>
-          <div class="form-group">
-            <label th:for="thumbs">Upload Thumbnail Images</label>
-            <input type="file" name="thumbs" class="btn form-control-file" th:id="thumbs" multiple />
-          </div>
-          <div class="form-group">
-            <label th:for="description">description</label>
-            <textarea name="" th:id="description" th:field="*{description}" class="form-control" rows="10"></textarea>
-          </div>
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <nav th:replace="~{/layout/host-base::navside(${session.hid})}"></nav>
         </div>
+        <div class="col-md-9">
 
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-4">
-              <h3>Facilities</h3>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.wifi}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">wifi</label>
-              </div>
 
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.airConditioning}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">airConditioning</label>
-              </div>
+          <div th:if="${errMsgs} != null">
+            <p th:each="msg : ${errMsgs}" th:text="${msg}"></p>
+          </div>
 
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.heating}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">heating</label>
-              </div>
 
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.elevator}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">elevator</label>
-              </div>
+          <form th:action="@{/host/manage/hotels/add}" method="POST" th:object="${hotel}" enctype="multipart/form-data">
 
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.convenienceStore}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">convenienceStore</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.shuttle}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">shuttle</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.parking}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">parking</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.swimmingPool}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">swimmingPool</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.frontDeck24h}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">frontDeck24h</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
-                  th:field="*{hotelGeneralFacility.miniBar}">
-                <label class="custom-control-label" th:for="${#ids.prev('facility')}">miniBar</label>
-              </div>
-
-            </div>
-
-            <div class="col-md-4 ">
-              <h3>Service</h3>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
-                  th:field="*{hotelService.housekeeping}">
-                <label class="custom-control-label" th:for="${#ids.prev('service')}">housekeeping</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
-                  th:field="*{hotelService.laundry}">
-                <label class="custom-control-label" th:for="${#ids.prev('service')}">laundry</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
-                  th:field="*{hotelService.roomService}">
-                <label class="custom-control-label" th:for="${#ids.prev('service')}">roomService</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
-                  th:field="*{hotelService.wakeup}">
-                <label class="custom-control-label" th:for="${#ids.prev('service')}">wakeup</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
-                  th:field="*{hotelService.bicycleRental}">
-                <label class="custom-control-label" th:for="${#ids.prev('service')}">bicycleRental</label>
-              </div>
-
-            </div>
-
-            <div class="col-md-4 ">
-              <h3>House Rule</h3>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
-                  th:field="*{houseRule.photoId}">
-                <label class="custom-control-label" th:for="${#ids.prev('rule')}">photoId</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
-                  th:field="*{houseRule.pet}">
-                <label class="custom-control-label" th:for="${#ids.prev('rule')}">pet</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
-                  th:field="*{houseRule.smoke}">
-                <label class="custom-control-label" th:for="${#ids.prev('rule')}">smoke</label>
-              </div>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
-                  th:field="*{houseRule.noise}">
-                <label class="custom-control-label" th:for="${#ids.prev('rule')}">noise</label>
+            <div class="container-fluid">
+              <h3>General Info</h3>
+              <div class="form-group">
+                <label th:for="name">Hotel Name</label>
+                <input type="text" th:field="*{name}" th:id="name" class="form-control" placeholder="">
               </div>
               <div class="form-group">
-
-                <label th:for="ckb">Check-in begin</label>
-                <input type="time" name="" th:id="ckb" class="form-control" th:filed="*{houseRule.checkinTimeBegin}" placeholder="">
-
-                <label th:for="cke">Check-in end</label>
-                <input type="time" name="" th:id="cke" class="form-control" th:filed="*{houseRule.checkinTimeEnd}" placeholder="">
-
+                <label th:for="img">Upload Primary Image</label>
+                <input type="file" name="img" class="btn form-control-file" th:id="img" />
               </div>
-              
               <div class="form-group">
-
-                  <label th:for="cob">Check-out begin</label>
-                  <input type="time" name="" th:id="cob" class="form-control" th:filed="*{houseRule.checkoutTimeBegin}" placeholder="">
-
-                <label th:for="coe">Check-out end</label>
-                <input type="time" name="" th:id="coe" class="form-control" th:filed="*{houseRule.checkoutTimeEnd}" placeholder="">
+                <label th:for="imgs">Upload Other Images</label>
+                <input type="file" name="imgs" class="btn form-control-file" th:id="imgs" multiple />
               </div>
+              <div class="form-group">
+                <label th:for="thumbs">Upload Thumbnail Images</label>
+                <input type="file" name="thumbs" class="btn form-control-file" th:id="thumbs" multiple />
+              </div>
+              <div class="form-group">
+                <label th:for="description">description</label>
+                <textarea name="" th:id="description" th:field="*{description}" class="form-control"
+                  rows="10"></textarea>
+              </div>
+            </div>
 
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+                  <h3>Facilities</h3>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.wifi}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">wifi</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.airConditioning}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">airConditioning</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.heating}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">heating</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.elevator}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">elevator</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.convenienceStore}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">convenienceStore</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.shuttle}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">shuttle</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.parking}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">parking</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.swimmingPool}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">swimmingPool</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.frontDeck24h}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">frontDeck24h</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('facility')}"
+                              th:field="*{hotelGeneralFacility.miniBar}">
+                            <label class="custom-control-label" th:for="${#ids.prev('facility')}">miniBar</label>
+                          </div>
+
+                        </div>
+
+                        <div class="col-md-4 ">
+                          <h3>Service</h3>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
+                              th:field="*{hotelService.housekeeping}">
+                            <label class="custom-control-label" th:for="${#ids.prev('service')}">housekeeping</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
+                              th:field="*{hotelService.laundry}">
+                            <label class="custom-control-label" th:for="${#ids.prev('service')}">laundry</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
+                              th:field="*{hotelService.roomService}">
+                            <label class="custom-control-label" th:for="${#ids.prev('service')}">roomService</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
+                              th:field="*{hotelService.wakeup}">
+                            <label class="custom-control-label" th:for="${#ids.prev('service')}">wakeup</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('service')}"
+                              th:field="*{hotelService.bicycleRental}">
+                            <label class="custom-control-label" th:for="${#ids.prev('service')}">bicycleRental</label>
+                          </div>
+
+                        </div>
+
+                        <div class="col-md-4 ">
+                          <h3>House Rule</h3>
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
+                              th:field="*{houseRule.photoId}">
+                            <label class="custom-control-label" th:for="${#ids.prev('rule')}">photoId</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
+                              th:field="*{houseRule.pet}">
+                            <label class="custom-control-label" th:for="${#ids.prev('rule')}">pet</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
+                              th:field="*{houseRule.smoke}">
+                            <label class="custom-control-label" th:for="${#ids.prev('rule')}">smoke</label>
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" th:id="${#ids.seq('rule')}"
+                              th:field="*{houseRule.noise}">
+                            <label class="custom-control-label" th:for="${#ids.prev('rule')}">noise</label>
+                          </div>
+                          <!-- <div class="form-group">
+
+                            <label th:for="ckb">Check-in begin</label>
+                            <input type="time" name="" th:id="ckb" class="form-control" th:filed="*{houseRule.checkinTimeBegin}" placeholder="">
+
+                            <label th:for="cke">Check-in end</label>
+                            <input type="time" name="" th:id="cke" class="form-control" th:filed="*{houseRule.checkinTimeEnd}" placeholder="">
+
+                          </div> -->
+            <!--               
+                          <div class="form-group">
+
+                              <label th:for="cob">Check-out begin</label>
+                              <input type="time" name="" th:id="cob" class="form-control" th:filed="*{houseRule.checkoutTimeBegin}" placeholder="">
+
+                            <label th:for="coe">Check-out end</label>
+                            <input type="time" name="" th:id="coe" class="form-control" th:filed="*{houseRule.checkoutTimeEnd}" placeholder="">
+                          </div> -->
+
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                  </form>
+    
             </div>
           </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+
     </div>
   </main>
 

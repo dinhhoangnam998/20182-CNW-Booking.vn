@@ -70,13 +70,13 @@
             <div class="row ">
               <div class="col-md-4 pr-0">
                 <ul id="vertical-gallery">
-                  <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
+                  <li th:each="imgURL : ${reserveOrder.hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
                     <img style="object-fit: cover" th:src="@{${imgURL}}" />
                   </li>
                 </ul>
               </div>
               <div class="col-md-8 ">
-                <div th:replace="~{/layout/guest-base::hotel-name(${hotel})}"></div>
+                <div th:replace="~{/layout/guest-base::hotel-name(${reserveOrder.hotel})}"></div>
                 <div>
                   <div style="font-size: 0.85rem">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada odio nec turpis mollis, a
@@ -181,8 +181,8 @@
         gallery: true,
         item: 1,
         vertical: true,
-        verticalHeight: 250,
-        vThumbWidth: 30,
+        verticalHeight: 230,
+        vThumbWidth: 40,
         thumbItem: 8,
         thumbMargin: 4,
         slideMargin: 0

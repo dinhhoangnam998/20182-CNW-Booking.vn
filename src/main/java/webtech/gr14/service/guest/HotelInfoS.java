@@ -48,9 +48,6 @@ public class HotelInfoS {
 
 	public Date getBeginDate(HttpSession ss) {
 		String dateRange = (String) ss.getAttribute("dateRange");
-		System.out.println("-----------------> dateRange store in sessionn by searchS: " + dateRange);
-		Date begin = DateCommonUtil.getBeginDateFromDateRange(dateRange);
-		System.out.println("-----------------> begin date when use DatecommonUltil: " + begin);
 		return DateCommonUtil.getBeginDateFromDateRange(dateRange);
 	}
 

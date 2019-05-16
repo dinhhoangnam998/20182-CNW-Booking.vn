@@ -27,7 +27,8 @@ public class ReserveDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int charge;
-
+	private String guestName;
+	
 	@ManyToOne
 	private ReserveOrder reserveOrder;
 

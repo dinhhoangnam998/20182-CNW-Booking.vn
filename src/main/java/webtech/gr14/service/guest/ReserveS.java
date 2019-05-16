@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import webtech.gr14.model.floor.Floor;
 import webtech.gr14.model.floor.Room;
 import webtech.gr14.model.reserve.ReserveDetail;
 import webtech.gr14.model.reserve.ReserveOrder;
@@ -45,17 +46,22 @@ public class ReserveS {
 
 	public int tempReserve(HttpSession ss, Integer[] floorsId, Integer[] numOfReserveRoom) {
 		ReserveOrder tempRO = new ReserveOrder();
-		tempRO.setAcc(aS.getAcc());
-		int hotelId = (int) ss.getAttribute("hotelId");
-		tempRO.setHotel(hR.getOne(hotelId));
-		tempRO.setState(ReserveOrderState.TEMP);
+		tempRO.setDate(new Date());
 		String dateRange = (String) ss.getAttribute("dateRange");
+		tempRO.setCheckInDate(DateCommonUtil.getBeginDateFromDateRange(dateRange));
+		tempRO.setCheckOutDate(DateCommonUtil.getEndDateFromDateRange(dateRange));
+		int numOfNight = DateCommonUtil.getDatesFromStringDateRange(dateRange).size();
+		tempRO.setNumOfNight(numOfNight);
+		tempRO.setState(ReserveOrderState.TEMP);
 
+		int charge = 0;
 		List<ReserveDetail> rds = new ArrayList<>();
 		for (int i = 0; i <= floorsId.length - 1; i++) {
 			int fid = floorsId[i];
+			Floor floor = fR.getOne(fid);
 			int nORR = numOfReserveRoom[i];
 			if (nORR > 0) {
+				charge += nORR * floor.getPrice();
 				List<Room> roomsForReserve = this.getRoomsForReserveOfFloor(fid, nORR, dateRange);
 				for (Room room : roomsForReserve) {
 					ReserveDetail rd = new ReserveDetail();
@@ -65,8 +71,12 @@ public class ReserveS {
 				}
 			}
 		}
+		tempRO.setCharge(charge * numOfNight);
 		tempRO.setReserveDetails(rds);
 
+		tempRO.setAcc(aS.getAcc());
+		int hotelId = (int) ss.getAttribute("hotelId");
+		tempRO.setHotel(hR.getOne(hotelId));
 		return roR.save(tempRO).getId();
 	}
 
@@ -89,8 +99,6 @@ public class ReserveS {
 
 	public boolean tryFinalCheckout(HttpSession ss, int roid) {
 		ReserveOrder ro = roR.getOne(roid);
-		int charge = 0;
-
 		String dateRange = (String) ss.getAttribute("dateRange");
 		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
 		int numOfNight = dateList.size();
@@ -100,7 +108,6 @@ public class ReserveS {
 			int chargeForRoom = room.getFloor().getPrice() * numOfNight;
 			rd.setCharge(chargeForRoom);
 			rdR.save(rd);
-			charge += chargeForRoom;
 			if (!room.getRemainOpenDates().containsAll(dateList)) {
 				roR.delete(ro);
 				return false;
@@ -109,14 +116,24 @@ public class ReserveS {
 
 		for (ReserveDetail rd : rds) {
 			Room room = rd.getRoom();
-			room.setRemainOpenDates((List<Date>) CollectionUtils.subtract(room.getRemainOpenDates(), dateList));
+			room.getReservedDates().addAll(dateList);
 			rR.save(room);
 		}
-		int hotelId = (int) ss.getAttribute("hotelId");
-		ro.setDate(new Date());
-		ro.setCharge(charge);
-		ro.setDateRange(dateRange);
-		ro.setHotel(hR.getOne(hotelId));
+		
+		for (ReserveDetail rd : rds) {
+			Room room = rd.getRoom();
+			room.getReservedDates().addAll(dateList);
+			rR.save(room);
+		}
+
+
+		for (ReserveDetail rd : rds) {
+			Room room = rd.getRoom();
+			room.setRemainOpenDates(
+					(List<Date>) CollectionUtils.subtract(room.getRemainOpenDates(), room.getReservedDates()));
+			rR.save(room);
+		}
+
 		ro.setState(ReserveOrderState.ORDERED);
 		// set note
 		roR.save(ro);

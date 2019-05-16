@@ -32,14 +32,10 @@ public class HomeC {
 			DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 			String strDate = dateFormat.format(today);
 			String dateRange = strDate + "-" + strDate;
-			System.out.println("dateRange: ---------------> " + dateRange);
 			ss.setAttribute("dateRange", dateRange);
-//			ss.setAttribute("address", address);
 			ss.setAttribute("numOfRoom", 1);
 			ss.setAttribute("numOfPeople", 1);
 			ss.setAttribute("firstTime", true);
-		} else {
-			System.out.println(" -----------------> firstTime == " + ss.getAttribute("firstTime"));
 		}
 
 		List<Hotel> hotels = hS.getBestHotel();
