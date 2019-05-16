@@ -38,9 +38,9 @@ public class ReserveC {
 		return "guest/reserve/checkout";
 	}
 
-	@GetMapping("/final-checkout/{roid}")
-	public String finalCheckout(RedirectAttributes rdA, HttpSession ss, @PathVariable int roid) {
-		if (rS.tryFinalCheckout(ss, roid)) {
+	@PostMapping("/final-checkout/{roid}")
+	public String finalCheckout(RedirectAttributes rdA, HttpSession ss, @PathVariable int roid, @RequestParam(required = false, defaultValue = "no note") String note) {
+		if (rS.tryFinalCheckout(ss, roid, note)) {
 			rdA.addFlashAttribute("msg", "success");
 			return "redirect:/guest/reserve-history";
 		} else {

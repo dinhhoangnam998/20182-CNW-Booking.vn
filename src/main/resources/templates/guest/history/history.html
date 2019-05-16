@@ -3,6 +3,63 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <style>
+    .rate-area {
+      float: left;
+      border-style: none;
+    }
+
+    .rate-area:not(:checked)>input {
+      position: absolute;
+      top: -9999px;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .rate-area:not(:checked)>label {
+      float: right;
+      width: 1em;
+      padding: 0 .1em;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 200%;
+      line-height: 1.2;
+      color: lightgrey;
+      text-shadow: 1px 1px #bbb;
+    }
+
+    .rate-area:not(:checked)>label:before {
+      content: '★ ';
+    }
+
+    .rate-area>input:checked~label {
+      color: gold;
+      text-shadow: 1px 1px #c60;
+      font-size: 200% !important;
+    }
+
+    .rate-area:not(:checked)>label:hover,
+    .rate-area:not(:checked)>label:hover~label {
+      color: gold;
+
+    }
+
+    .rate-area>input:checked+label:hover,
+    .rate-area>input:checked+label:hover~label,
+    .rate-area>input:checked~label:hover,
+    .rate-area>input:checked~label:hover~label,
+    .rate-area>label:hover~input:checked~label {
+      color: gold;
+      text-shadow: 1px 1px goldenrod;
+
+    }
+
+    .rate-area>label:active {
+      position: relative;
+      top: 2px;
+      left: 2px;
+    }
+  </style>
 </head>
 
 <body>
@@ -12,6 +69,7 @@
   <!-- main -->
   <main>
     <div class="container-fluid">
+      <div id="alert-box"></div>
 
       <div th:each="ro : ${ros}" class="container-fluid">
         <!-- hotel info -->
@@ -20,34 +78,87 @@
             <img th:src="${ro.hotel.imgURL}" alt="no img found" style="height: 100px; object-fit: cover">
           </div>
           <div class="col-md-9">
-              <div th:replace="~{/layout/guest-base::hotel-name(${ro.hotel})}"></div>
-          </div>
-        </div>
+            <!-- hotel info -->
+            <div th:replace="~{/layout/guest-base::hotel-name(${ro.hotel})}"></div>
+            <!-- info -->
+            <div class="row">
+              <div class="col-md-3">
+                <div>
+                  <div><b>Check-in</b></div>
+                  <div>[[${ro.checkInDate}]]</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div>
+                  <div><b>Check-out</b></div>
+                  <div>[[${ro.checkOutDate}]]</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div><b>Total length of stay:</b></div>
+                <div>[[${ro.numOfNight}]]</div>
+              </div>
+              <div class="col-md-3">
+                <div><b>Price</b></div>
+                <div>VND [[${ro.charge}]]</div>
+              </div>
+            </div>
+            <!-- vote -->
+            <div>
+              <ul class="rate-area px-0" th:id="${ro.id}">
+                <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="5" th:checked="${ro.voteByGuest} == 5" /><label th:for="${#ids.prev('start')}" title="Amazing">5
+                  stars</label>
+                <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="4" th:checked="${ro.voteByGuest} == 4" /><label th:for="${#ids.prev('start')}" title="Good">4
+                  stars</label>
+                <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="3" th:checked="${ro.voteByGuest} == 3" /><label th:for="${#ids.prev('start')}" title="Average">3
+                  stars</label>
+                <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="2" th:checked="${ro.voteByGuest} == 2" /><label th:for="${#ids.prev('start')}" title="Not Good">2
+                  stars</label>
+                <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="1" th:checked="${ro.voteByGuest} == 1" /><label th:for="${#ids.prev('start')}" title="Bad">1 star</label>
+              </ul>
+            </div>
 
-        <!-- booking order info -->
-        <div>
-          <div>booking date</div>
-          <div></div>
-        </div>
-        <!-- check in checkout info -->
-        <div>
-          <div>checkin</div>
-          <div>checkout</div>
-        </div>
-        <div>
-          total charge
+          </div>
         </div>
       </div>
 
-
-
-
     </div>
+ 
 
   </main>
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+    $(document).ready(function () {
+
+      $('input').click(function (e) {
+        var roid = $(this).parent().attr("id");
+        var starValue = $(this).attr("value");
+        var url = "/guest/vote/" + roid;
+
+
+        $.get(url, { value: starValue },
+          function (data, textStatus, jqXHR) {
+            if (textStatus == "success") {
+              var content =
+                '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span>' +
+                '<span class="sr-only">Close</span>' +
+                '</button>' +
+                '<strong>Vote reserve order id ' + roid + ' success</strong>' +
+                '</div>';
+              $('#alert-box').html(content);
+            }
+          },
+          "text"
+        );
+      });
+    });
+
+
+  </script>
 </body>
 
 </html>

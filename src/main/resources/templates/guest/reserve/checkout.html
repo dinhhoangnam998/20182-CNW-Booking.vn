@@ -24,15 +24,15 @@
               <div class="card-body">
                 <div>
                   <div><b>Check-in</b></div>
-                  <div>Date</div>
+                  <div>[[${reserveOrder.checkInDate}]]</div>
                 </div>
                 <div>
                   <div><b>Check-out</b></div>
-                  <div>Date</div>
+                  <div>[[${reserveOrder.checkOutDate}]]</div>
                 </div>
                 <div>
                   <div><b>Total length of stay:</b></div>
-                  <div>1 night</div>
+                  <div>[[${reserveOrder.numOfNight}]]</div>
                 </div>
               </div>
             </div>
@@ -45,8 +45,9 @@
             <div class="card">
               <div class="card-header">You seletected:</div>
               <div class="card-body">
-                <div>3 x Superior Double Room </div>
-                <div>1 x Superior Twin Room</div>
+                <div th:each="rod: ${reserveOrder.reserveDetails}">
+                  [[${rod.room.roomName}]] [[${rod.room.floor.roomQuality}]] [[${rod.room.floor.roomType}]] 
+                </div>
               </div>
             </div>
           </section>
@@ -56,7 +57,7 @@
               
               <div class="card-body">
                 <h4 class="card-title">Price</h4>
-                <p class="card-text">Text</p>
+                <p class="card-text">VND [[${reserveOrder.charge}]]</p>
               </div>
             </div>
             
@@ -132,7 +133,7 @@
                 </div>
 
                 <!-- input guest name -->
-                <div>
+                <!-- <div>
                   <div class="container-fluid px-0">
                     <div class="row">
                       <div class="col-md-6">
@@ -144,7 +145,7 @@
                       <div class="col-md-6"></div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
               </div>
 
@@ -154,20 +155,21 @@
 
           <!-- ask question -->
           <section>
-            <div style="background-color: #e9f0fa">
-              <b>Special request</b>
-              <div><small><i>Please write your requests in English or Vietnamese. </i></small></div>
-              <div><small><i>Special requests cannot be guaranteed – but the property will do its best to meet your
-                    needs. </i></small></div>
-              <div><small><i>You can always make a special request after your booking is complete!</i></small></div>
-              <div><textarea name="" id="" cols="50" rows="5"></textarea></div>
-            </div>
+            <form th:action="@{/guest/final-checkout/{roid}(roid=${reserveOrder.id})}" method="POST" id="final-checkout-form">
+                <div style="background-color: #e9f0fa">
+                    <b>Special request</b>
+                    <div><small><i>Please write your requests in English or Vietnamese. </i></small></div>
+                    <div><small><i>Special requests cannot be guaranteed – but the property will do its best to meet your
+                          needs. </i></small></div>
+                    <div><small><i>You can always make a special request after your booking is complete!</i></small></div>
+                    <div><textarea name="note" id="" cols="50" rows="5"></textarea></div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
 
           </section>
 
-          <section>
-            <a th:href="@{/guest/final-checkout/{roid}(roid=${reserveOrder.id})}">Final check-out</a>
-          </section>
         </div>
       </div>
     </div>

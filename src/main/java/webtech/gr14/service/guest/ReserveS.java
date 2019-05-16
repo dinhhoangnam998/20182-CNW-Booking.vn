@@ -97,7 +97,7 @@ public class ReserveS {
 		return retv;
 	}
 
-	public boolean tryFinalCheckout(HttpSession ss, int roid) {
+	public boolean tryFinalCheckout(HttpSession ss, int roid, String note) {
 		ReserveOrder ro = roR.getOne(roid);
 		String dateRange = (String) ss.getAttribute("dateRange");
 		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
@@ -119,12 +119,6 @@ public class ReserveS {
 			room.getReservedDates().addAll(dateList);
 			rR.save(room);
 		}
-		
-		for (ReserveDetail rd : rds) {
-			Room room = rd.getRoom();
-			room.getReservedDates().addAll(dateList);
-			rR.save(room);
-		}
 
 
 		for (ReserveDetail rd : rds) {
@@ -135,7 +129,7 @@ public class ReserveS {
 		}
 
 		ro.setState(ReserveOrderState.ORDERED);
-		// set note
+		ro.setNote(note);
 		roR.save(ro);
 		return true;
 
