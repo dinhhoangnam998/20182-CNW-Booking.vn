@@ -2,6 +2,7 @@ package webtech.gr14.model.floor;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Room {
 	@ElementCollection
 	List<Date> remainOpenDates;
 	@ElementCollection
-	List<Date> reservedDates;
+	Set<Date> reservedDates;
 	private boolean deleted;
 	
 	@ManyToOne

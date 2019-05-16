@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+</head>
+
+<body>
+  <!-- header -->
+  <header th:replace="~{/layout/base::header}"></header>
+
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <nav th:replace="~{/layout/host-base::navside(${session.hid})}"></nav>
+        </div>
+
+        <div class="col-md-9">
+          <div id="alert-box"></div>
+          <h4>Reserve Orders</h4>
+
+          <!-- section-content -->
+          <table id="ss-ct-tb" class="table table-hover table-bordered table-sm mt-2 mb-2">
+            <thead class="thead-inverse">
+              <tr>
+                <th>id</th>
+                <th>guest</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>booking date</th>
+                <th>total</th>
+                <th>state</th>
+                <th width="5%">detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <th:block th:each="ro : ${ros}">
+                <tr>
+                  <td scope="row" th:text="${ro.id}"></td>
+                  <td th:text="${ro.acc.name}"></td>
+                  <td th:text="${ro.acc.email}"></td>
+                  <td th:text="${ro.acc.phone}"></td>
+                  <td th:text="${ro.date}"></td>
+                  <td th:text="${ro.charge}"></td>
+                  <td>state here</td>
+                  <td class="text-center"><a data-toggle="collapse" th:href="'#' + ${#ids.next('ro')}"><i class="fas fa-info-circle text-info"></i> </a></td>
+                </tr>
+              
+                <tr class="p-0 m-0">
+                  <td colspan="10" class="p-0">
+                    <div class="collapse mt-3" id="content" th:id="${#ids.seq('ro')}">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-3">
+                                <div>
+                                  <div><b>Check-in</b></div>
+                                  <div>[[${ro.checkInDate}]]</div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div>
+                                  <div><b>Check-out</b></div>
+                                  <div>[[${ro.checkOutDate}]]</div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div><b>Total length of stay:</b></div>
+                                <div>[[${ro.numOfNight}]]</div>
+                              </div>
+                              <div class="col-md-3">
+                                <div><b>Total</b></div>
+                                <div>VND [[${ro.charge}]]</div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <h5>Reserved Rooms</h5>
+                              <div th:each="rd: ${ro.reserveDetails}">
+                                [[${rd.room.floor.name}]] [[${rd.room.roomName}]] [[${rd.room.floor.roomQuality}]] [[${rd.room.floor.roomType}]]
+                              </div>
+                            </div>
+
+                            <div>
+                              <h5>Guest Reserve Note</h5>
+                              <div>[[${ro.note}]]</div>
+                            </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </th:block>
+            </tbody>
+        </table>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer th:replace="~{/layout/base::footer}"></footer>
+</body>
+
+</html>

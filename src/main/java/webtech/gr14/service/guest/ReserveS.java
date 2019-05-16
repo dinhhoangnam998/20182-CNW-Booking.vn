@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,6 +101,7 @@ public class ReserveS {
 		String dateRange = (String) ss.getAttribute("dateRange");
 		List<Date> dateList = DateCommonUtil.getDatesFromStringDateRange(dateRange);
 		int numOfNight = dateList.size();
+
 		List<ReserveDetail> rds = rdR.findByReserveOrder_Id(roid);
 		for (ReserveDetail rd : rds) {
 			Room room = rd.getRoom();
@@ -117,15 +117,23 @@ public class ReserveS {
 		for (ReserveDetail rd : rds) {
 			Room room = rd.getRoom();
 			room.getReservedDates().addAll(dateList);
-			rR.save(room);
-		}
 
+			List<Date> openDates = room.getRemainOpenDates();
+			System.out.println("before: " + openDates.size());
 
-		for (ReserveDetail rd : rds) {
-			Room room = rd.getRoom();
-			room.setRemainOpenDates(
-					(List<Date>) CollectionUtils.subtract(room.getRemainOpenDates(), room.getReservedDates()));
+			List<Date> toRemove = new ArrayList<Date>();
+			for (Date date : dateList) {
+				for (Date date2 : openDates) {
+					if (date2.getTime() == date.getTime()) {
+						toRemove.add(date2);
+					}
+				}
+			}
+
+			openDates.removeAll(toRemove);
+			System.out.println("before: " + openDates.size());
 			rR.save(room);
+
 		}
 
 		ro.setState(ReserveOrderState.ORDERED);
