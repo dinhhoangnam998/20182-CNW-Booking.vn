@@ -3,6 +3,9 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <!-- slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
 </head>
 
 <body>
@@ -16,33 +19,153 @@
         <div class="col-md-3">
           <!-- checkin checkout detail -->
           <section>
+            <div class="card">
+              <div class="card-header">Your booking Details</div>
+              <div class="card-body">
+                <div>
+                  <div><b>Check-in</b></div>
+                  <div>Date</div>
+                </div>
+                <div>
+                  <div><b>Check-out</b></div>
+                  <div>Date</div>
+                </div>
+                <div>
+                  <div><b>Total length of stay:</b></div>
+                  <div>1 night</div>
+                </div>
+              </div>
+            </div>
 
           </section>
+
 
           <!-- rooms selected -->
           <section>
-
+            <div class="card">
+              <div class="card-header">You seletected:</div>
+              <div class="card-body">
+                <div>3 x Superior Double Room </div>
+                <div>1 x Superior Twin Room</div>
+              </div>
+            </div>
           </section>
           <!-- charge -->
           <section>
-
+            <div class="card">
+              
+              <div class="card-body">
+                <h4 class="card-title">Price</h4>
+                <p class="card-text">Text</p>
+              </div>
+            </div>
+            
           </section>
 
         </div>
         <div class="col-md-9">
           <!-- hotel img and name and so on -->
           <section>
+            <div class="row ">
+              <div class="col-md-4 pr-0">
+                <ul id="vertical-gallery">
+                  <li th:each="imgURL : ${hotel.imgURLs}" th:data-thumb="@{${imgURL}}">
+                    <img style="object-fit: cover" th:src="@{${imgURL}}" />
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-8 ">
+                <div th:replace="~{/layout/guest-base::hotel-name}"></div>
+                <div>
+                  <div style="font-size: 0.85rem">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada odio nec turpis mollis, a
+                    convallis nulla mattis. Nunc sodales ligula a erat ultrices, vel lobortis tortor mollis. Sed
+                    placerat consequat tellus eu auctor. Duis mattis in mi a elementum. Aliquam pulvinar lectus a magna
+                    scelerisque sagittis. Integer semper iaculis nibh, vel volutpat libero vestibulum vitae. Proin dui
+                    arcu, dignissim et bibendum a, posuere auctor metus.
+                  </div>
+                </div>
+              </div>
 
+            </div>
           </section>
 
           <!-- each room input your name -->
           <section>
+            <div style="background-color: #e9f0fa">
+
+              <div th:each="rd : ${reserveOrder.reserveDetails}" class="mb-4" style="background-color: #cce1ff">
+                <!-- room info -->
+                <div>
+                  <div>On floor: [[${rd.room.floor.ithFloor}]]</div>
+                  <div>[[${rd.room.floor.roomQuality}]] [[${rd.room.floor.roomType}]]</div>
+                  <div>Room name: [[${rd.room.roomName}]]</div>
+                </div>
+
+                <!-- room facility -->
+                <div>
+                  <div style="font-size: 0.8rem" class="text-success">
+                    <div>
+                      <span th:if="${rd.room.floor.roomGeneralFacility.airconditioning} == true"><i
+                          class="fas fa-snowflake"></i></span>
+                      <span th:if="${rd.room.floor.roomGeneralFacility.heating} == true">heating</span>
+                      <span th:if="${rd.room.floor.roomGeneralFacility.view} == true"><i class="fas fa-eye"></i></span>
+                      <span th:if="${rd.room.floor.roomGeneralFacility.soundproof} == true">soundproof</span>
+                    </div>
+
+                    <div>
+                      <span th:if="${rd.room.floor.bathroom.towel} == true">towel</span>
+                      <span th:if="${rd.room.floor.bathroom.bathtub} == true">bathtub</span>
+                      <span th:if="${rd.room.floor.bathroom.bathrobe} == true">bathrobe</span>
+                      <span th:if="${rd.room.floor.bathroom.slipper} == true">slipper</span>
+                      <span th:if="${rd.room.floor.bathroom.toiletPaper} == true">toiletPaper</span>
+                      <span th:if="${rd.room.floor.bathroom.toilettries} == true">toilettries</span>
+                      <span th:if="${rd.room.floor.bathroom.hairdryer} == true">hairdryer</span>
+                    </div>
+                    <div>
+                      <span th:if="${rd.room.floor.media.flatTv} == true">flatTv</span>
+                      <span th:if="${rd.room.floor.media.cableChannel} == true">cableChannel</span>
+                      <span th:if="${rd.room.floor.media.highendSoundSystem} == true">highendSoundSystem</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- input guest name -->
+                <div>
+                  <div class="container-fluid px-0">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for=""><b>Full Guest Name</b></label>
+                          <input type="text" name="" id="" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                      <div class="col-md-6"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
 
           </section>
 
           <!-- ask question -->
           <section>
+            <div style="background-color: #e9f0fa">
+              <b>Special request</b>
+              <div><small><i>Please write your requests in English or Vietnamese. </i></small></div>
+              <div><small><i>Special requests cannot be guaranteed – but the property will do its best to meet your
+                    needs. </i></small></div>
+              <div><small><i>You can always make a special request after your booking is complete!</i></small></div>
+              <div><textarea name="" id="" cols="50" rows="5"></textarea></div>
+            </div>
 
+          </section>
+
+          <section>
+            <a th:href="@{/guest/final-checkout/{roid}(roid=${reserveOrder.id})}">Final check-out</a>
           </section>
         </div>
       </div>
@@ -51,6 +174,20 @@
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
+  <script>
+    $(document).ready(function () {
+      $('#vertical-gallery').lightSlider({
+        gallery: true,
+        item: 1,
+        vertical: true,
+        verticalHeight: 250,
+        vThumbWidth: 30,
+        thumbItem: 8,
+        thumbMargin: 4,
+        slideMargin: 0
+      });
+    });
+  </script>
 </body>
 
 </html>

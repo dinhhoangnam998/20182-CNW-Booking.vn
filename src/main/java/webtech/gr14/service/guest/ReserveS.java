@@ -46,6 +46,8 @@ public class ReserveS {
 	public int tempReserve(HttpSession ss, Integer[] floorsId, Integer[] numOfReserveRoom) {
 		ReserveOrder tempRO = new ReserveOrder();
 		tempRO.setAcc(aS.getAcc());
+		int hotelId = (int) ss.getAttribute("hotelId");
+		tempRO.setHotel(hR.getOne(hotelId));
 		tempRO.setState(ReserveOrderState.TEMP);
 		String dateRange = (String) ss.getAttribute("dateRange");
 
