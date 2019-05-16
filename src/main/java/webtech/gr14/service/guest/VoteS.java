@@ -11,10 +11,16 @@ public class VoteS {
 
 	@Autowired
 	private ReserveOrderR roR;
-	
+
 	public void setVoteByGuest(int roid, int value) {
 		ReserveOrder ro = roR.getOne(roid);
 		ro.setVoteByGuest(value);
+		roR.save(ro);
+	}
+
+	public void setVoteByHost(int roid, int value) {
+		ReserveOrder ro = roR.getOne(roid);
+		ro.setVoteByHost(value);
 		roR.save(ro);
 	}
 

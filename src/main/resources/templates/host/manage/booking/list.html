@@ -3,6 +3,63 @@
 
 <head>
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+  <style>
+      .rate-area {
+        float: left;
+        border-style: none;
+      }
+  
+      .rate-area:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+        clip: rect(0, 0, 0, 0);
+      }
+  
+      .rate-area:not(:checked)>label {
+        float: right;
+        width: 1em;
+        padding: 0 .1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 200%;
+        line-height: 1.2;
+        color: lightgrey;
+        text-shadow: 1px 1px #bbb;
+      }
+  
+      .rate-area:not(:checked)>label:before {
+        content: '★ ';
+      }
+  
+      .rate-area>input:checked~label {
+        color: gold;
+        text-shadow: 1px 1px #c60;
+        font-size: 200% !important;
+      }
+  
+      .rate-area:not(:checked)>label:hover,
+      .rate-area:not(:checked)>label:hover~label {
+        color: gold;
+  
+      }
+  
+      .rate-area>input:checked+label:hover,
+      .rate-area>input:checked+label:hover~label,
+      .rate-area>input:checked~label:hover,
+      .rate-area>input:checked~label:hover~label,
+      .rate-area>label:hover~input:checked~label {
+        color: gold;
+        text-shadow: 1px 1px goldenrod;
+  
+      }
+  
+      .rate-area>label:active {
+        position: relative;
+        top: 2px;
+        left: 2px;
+      }
+    </style>
 </head>
 
 <body>
@@ -18,8 +75,9 @@
         </div>
 
         <div class="col-md-9">
-          <div id="alert-box"></div>
+        
           <h4>Reserve Orders</h4>
+          <div id="alert-box"></div>
 
           <!-- section-content -->
           <table id="ss-ct-tb" class="table table-hover table-bordered table-sm mt-2 mb-2">
@@ -52,6 +110,7 @@
                   <td colspan="10" class="p-0">
                     <div class="collapse mt-3" id="content" th:id="${#ids.seq('ro')}">
                       <div class="container">
+                        
                           <div class="row">
                               <div class="col-md-3">
                                 <div>
@@ -86,6 +145,21 @@
                               <h5>Guest Reserve Note</h5>
                               <div>[[${ro.note}]]</div>
                             </div>
+
+                            <div>
+                                <h5>Vote</h5>
+                                <ul class="rate-area px-0" th:id="${ro.id}">
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="5" th:checked="${ro.voteByHost} == 5" /><label th:for="${#ids.prev('start')}" title="Amazing">5
+                                    stars</label>
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="4" th:checked="${ro.voteByHost} == 4" /><label th:for="${#ids.prev('start')}" title="Good">4
+                                    stars</label>
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="3" th:checked="${ro.voteByHost} == 3" /><label th:for="${#ids.prev('start')}" title="Average">3
+                                    stars</label>
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="2" th:checked="${ro.voteByHost} == 2" /><label th:for="${#ids.prev('start')}" title="Not Good">2
+                                    stars</label>
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="1" th:checked="${ro.voteByHost} == 1" /><label th:for="${#ids.prev('start')}" title="Bad">1 star</label>
+                                </ul>
+                              </div>
                       </div>
                     </div>
                   </td>
@@ -101,6 +175,37 @@
 
   <!-- footer -->
   <footer th:replace="~{/layout/base::footer}"></footer>
+
+  <script>
+      $(document).ready(function () {
+  
+        $('input').click(function (e) {
+          var roid = $(this).parent().attr("id");
+          var starValue = $(this).attr("value");
+          var url = "/host/vote/" + roid;
+  
+  
+          $.get(url, { value: starValue },
+            function (data, textStatus, jqXHR) {
+              if (textStatus == "success") {
+                var content =
+                  '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                  '<span aria-hidden="true">&times;</span>' +
+                  '<span class="sr-only">Close</span>' +
+                  '</button>' +
+                  '<strong>Vote reserve order id ' + roid + ' success</strong>' +
+                  '</div>';
+                $('#alert-box').html(content);
+              }
+            },
+            "text"
+          );
+        });
+      });
+  
+  
+    </script>
 </body>
 
 </html>

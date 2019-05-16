@@ -22,4 +22,11 @@ public class VoteC {
 		return "ok";
 	}
 	
+	@ResponseBody
+	@GetMapping("/host/vote/{roid}")
+	public String voteByHost(@PathVariable int roid, @RequestParam int value) {
+		vS.setVoteByHost(roid, value);
+		return "ok";
+	}
+	
 }
