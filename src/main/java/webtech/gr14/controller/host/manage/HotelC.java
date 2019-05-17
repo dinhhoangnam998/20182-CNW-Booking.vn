@@ -34,6 +34,9 @@ public class HotelC {
 	@GetMapping("/add")
 	public String addHotel(Model model) {
 		model.addAttribute("hotel", new Hotel());
+		model.addAttribute("communes", hS.getAllCommune());
+		model.addAttribute("districts", hS.getAllDistrict());
+		model.addAttribute("provinces", hS.getAllProvince());
 		return "/host/manage/hotel/add";
 	}
 
@@ -60,6 +63,9 @@ public class HotelC {
 	@GetMapping("/{hid}/edit")
 	public String editHotel(Model model, @PathVariable int hid) {
 		model.addAttribute("hotel", hS.hR.getOne(hid));
+		model.addAttribute("communes", hS.getAllCommune());
+		model.addAttribute("districts", hS.getAllDistrict());
+		model.addAttribute("provinces", hS.getAllProvince());
 		return "/host/manage/hotel/edit";
 	}
 

@@ -9,7 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import webtech.gr14.model.Acc;
+import webtech.gr14.model.address.Commune;
+import webtech.gr14.model.address.District;
+import webtech.gr14.model.address.Province;
 import webtech.gr14.model.hotel.Hotel;
+import webtech.gr14.repository.address.CommuneR;
+import webtech.gr14.repository.address.DistrictR;
+import webtech.gr14.repository.address.ProvinceR;
 import webtech.gr14.repository.hotel.HotelR;
 import webtech.gr14.service.acc.AccS;
 import webtech.gr14.service.util.StorageFileS;
@@ -27,6 +33,15 @@ public class HotelS {
 
 	@Autowired
 	public HotelR hR;
+
+	@Autowired
+	public CommuneR cR;
+
+	@Autowired
+	public DistrictR dR;
+
+	@Autowired
+	public ProvinceR pR;
 
 	@Autowired
 	private StorageFileS sfS;
@@ -161,6 +176,18 @@ public class HotelS {
 
 	public List<String> getEditErrorMsgs() {
 		return errMsgs;
+	}
+
+	public List<Commune> getAllCommune() {
+		return cR.findAll();
+	}
+
+	public List<Province> getAllProvince() {
+		return pR.findAll();
+	}
+
+	public List<District> getAllDistrict() {
+		return dR.findAll();
 	}
 
 }

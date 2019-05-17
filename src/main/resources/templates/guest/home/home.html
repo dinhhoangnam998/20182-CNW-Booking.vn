@@ -13,13 +13,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
   <style>
-    div.row div.col-md-4 img {
+    #festival div.row div.col-md-4 img {
       height: 250px;
       width: 100%;
       object-fit: cover;
     }
 
-    div.row div.col-md-6 img {
+    #festival div.row div.col-md-6 img {
       height: 350px;
       width: 100%;
       object-fit: cover;
@@ -36,6 +36,38 @@
     div div div img {
       max-height: 350px;
     }
+
+    #location-container div.row div[class*="col-md"] {
+      position: relative;
+    }
+
+    #location-container div.row div[class*="col-md"]>div {
+      position: absolute;
+      bottom: 10px;
+      right: 40px;
+      font-size: 2rem;
+      color: white;
+      font-weight: 500;
+    }
+
+    #location-container div.row div[class*="col-md-6"] a>img {
+      height: 350px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #location-container div.row div[class*="col-md-4"] a>img {
+      height: 280px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+
+    #location-container div.row div[class*="col-md-3"] a>img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
   </style>
 </head>
 
@@ -46,11 +78,11 @@
   <!-- main -->
   <main>
     <!-- search box -->
-    <div class="container-fluid">
-      <h3>Find your best deal</h3>
+    <div class="container-fluid bg-warning py-4 mt-0" id="search-container">
+      <h3 class="">Find your best deal</h3>
       <form th:action="@{/guest/search-hotels}" method="post" id="myform">
-        <div class="container-fluid">
-          <div class="row ">
+        <div class="container-fluid mt-2">
+          <div class="row  ">
             <div class="col-md-5 px-1">
               <div style="position: relative;">
                 <input type="search" name="address" id="search-box" class="form-control" placeholder="...Destination"
@@ -79,32 +111,78 @@
       </form>
     </div>
 
-    <!-- festivals -->
-    <div class="container-fluid">
+    <!-- location -->
+    <div id="location-container" class="container-fluid" th:if="${#lists.size(locations)} == 9">
+        <h3>Destinations we love</h3>
       <div class="row">
-        <div class="col-md-4">
-          <img src="/images/location/sapa.jpg" alt="">
+        <div class="col-md-6">
+            <a th:href="@{/hotels(provinceId=${locations[0].province.id})}">
+              <img th:src="@{${locations[0].imgURL}}" alt="">
+            </a>
+            <div>[[${locations[0].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
         </div>
-        <div class="col-md-4">
-          <img src="/images/location/sondoong.jpg" alt="">
-        </div>
-        <div class="col-md-4">
-          <img src="/images/location/ninhbinh.jpg" alt="">
+        <div class="col-md-6">
+            <a th:href="@{/hotels(provinceId=${locations[1].province.id})}">
+              <img th:src="@{${locations[1].imgURL}}" alt="">
+            </a>
+            <div>[[${locations[1].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <img src="/images/location/danang.jpg" alt="">
+ 
+        <div class="col-md-4">
+          <a th:href="@{/hotels(provinceId=${locations[2].province.id})}">
+            <img th:src="@{${locations[2].imgURL}}" alt="">
+          </a>
+          <div>[[${locations[2].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
         </div>
-        <div class="col-md-6">
-          <img src="/images/location/hue.jpg" alt="">
+        <div class="col-md-4">
+          <a th:href="@{/hotels(provinceId=${locations[3].province.id})}">
+            <img th:src="@{${locations[3].imgURL}}" alt="">
+          </a>
+          <div>[[${locations[3].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
+        </div>
+        <div class="col-md-4">
+            <a th:href="@{/hotels(provinceId=${locations[4].province.id})}">
+              <img th:src="@{${locations[4].imgURL}}" alt="">
+            </a>
+            <div>[[${locations[4].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
+          </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-3">
+          <a th:href="@{/hotels(provinceId=${locations[5].province.id})}">
+            <img th:src="@{${locations[5].imgURL}}" alt="">
+          </a>
+          <div>[[${locations[5].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div> 
+        </div>
+        <div class="col-md-3">
+          <a th:href="@{/hotels(provinceId=${locations[6].province.id})}">
+            <img th:src="@{${locations[6].imgURL}}" alt="">
+          </a>
+          <div>[[${locations[6].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
+        </div>
+        <div class="col-md-3">
+            <a th:href="@{/hotels(provinceId=${locations[7].province.id})}">
+              <img th:src="@{${locations[7].imgURL}}" alt="">
+            </a>
+            <div>[[${locations[7].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
+      </div>
+      <div class="col-md-3">
+          <a th:href="@{/hotels(provinceId=${locations[8].province.id})}">
+            <img th:src="@{${locations[8].imgURL}}" alt="">
+          </a>
+          <div>[[${locations[8].name}]] <img src="/images/icon/vietnam-flag-icon-32.png" alt=""></div>
         </div>
       </div>
     </div>
 
-    <!-- top hotel -->
 
+
+    <!-- top hotel -->
     <div class="container-fluid">
+      <h3>Top Hotel</h3>
       <ul class="my-slider">
         <li th:each="hotel: ${hotels}">
           <div class="card">
@@ -120,63 +198,31 @@
       </ul>
     </div>
 
-    <!-- location -->
-
-    <div class="container-fluid" th:if="${#lists.size(locations)} == 9">
-      <div class="row">
-        <div class="col-md-6">
-            <a th:href="@{/hotels(provinceId=${locations[0].province.id})}">
-              <img th:src="@{${locations[0].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-            </a>
-        </div>
-        <div class="col-md-6">
-            <a th:href="@{/hotels(provinceId=${locations[1].province.id})}">
-              <img th:src="@{${locations[1].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-            </a>
-        </div>
-      </div>
-      <div class="row">
  
-        <div class="col-md-4">
-          <a th:href="@{/hotels(provinceId=${locations[2].province.id})}">
-            <img th:src="@{${locations[2].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a th:href="@{/hotels(provinceId=${locations[3].province.id})}">
-            <img th:src="@{${locations[3].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-          </a>
-        </div>
-        <div class="col-md-4">
-            <a th:href="@{/hotels(provinceId=${locations[4].province.id})}">
-              <img th:src="@{${locations[4].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-            </a>
+    <!-- festivals -->
+    <!-- <div class="container-fluid" id="festival">
+        <h3>Get inspiration for your next trip</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="/images/location/sapa.jpg" alt="">
           </div>
-      </div>
-      <div class="row">
-
-        <div class="col-md-3">
-          <a th:href="@{/hotels(provinceId=${locations[5].province.id})}">
-            <img th:src="@{${locations[5].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-          </a>
+          <div class="col-md-4">
+            <img src="/images/location/sondoong.jpg" alt="">
+          </div>
+          <div class="col-md-4">
+            <img src="/images/location/ninhbinh.jpg" alt="">
+          </div>
         </div>
-        <div class="col-md-3">
-          <a th:href="@{/hotels(provinceId=${locations[6].province.id})}">
-            <img th:src="@{${locations[6].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-          </a>
-        </div>
-        <div class="col-md-3">
-            <a th:href="@{/hotels(provinceId=${locations[7].province.id})}">
-              <img th:src="@{${locations[7].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-            </a>
-      </div>
-      <div class="col-md-3">
-          <a th:href="@{/hotels(provinceId=${locations[8].province.id})}">
-            <img th:src="@{${locations[8].imgURL}}" style="width: 100%; height: auto; object-fit: cover" alt="">
-          </a>
+        <div class="row">
+          <div class="col-md-6">
+            <img src="/images/location/danang.jpg" alt="">
+          </div>
+          <div class="col-md-6">
+            <img src="/images/location/hue.jpg" alt="">
+          </div>
         </div>
       </div>
-    </div>
+   -->
 
   </main>
 

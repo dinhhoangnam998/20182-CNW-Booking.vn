@@ -52,7 +52,15 @@
                 <textarea name="" th:id="description" th:field="*{description}" class="form-control"
                   rows="10"></textarea>
               </div>
+              <div class="form-group">
+                <label for="commune">Commune</label>
+                <select th:field="*{commune.id}" class="form-control" id="commune">
+                  <option th:each="commune : ${communes}" th:value="${commune.id}" th:text="${commune.name}">
+                  </option>
+                </select>
+              </div>
             </div>
+
 
             <div class="container-fluid">
               <div class="row">
