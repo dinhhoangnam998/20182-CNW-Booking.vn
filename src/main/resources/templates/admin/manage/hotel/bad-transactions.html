@@ -75,9 +75,11 @@
       }
     </style>
     <script>
-      $('.my-container').hover(function () {
-        $(this).toggleClass('hover-background');
-      })
+      $(document).ready(function () {
+        $('.my-container').hover(function () {
+          $(this).toggleClass('hover-background');
+        })
+      });
     </script>
 </body>
 

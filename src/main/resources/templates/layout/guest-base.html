@@ -1,32 +1,34 @@
-
 <div th:fragment="search-vertical">
 
   <h4>Search</h4>
   <form th:action="@{/guest/search-hotels}" method="post" id="myform">
     <div class="form-group">
       <label for="search-box">Destination</label>
-      <input type="text" name="address" id="search-box" class="form-control" placeholder="">
+      <input type="text" name="address" id="search-box" class="form-control" placeholder="" th:value="(${session.address} != null)?(${session.address})">
       <div
         style="position: absolute; overflow: auto; max-height: 250px; width: 100%; background-color:white; z-index: 9;"
         id="search-result"></div>
     </div>
     <div class="form-group">
       <label for="ci-co">Check in - Check out</label>
-      <input type="text" name="dateRange" id="ci-co" class="form-control  datepicker" placeholder="">
+      <input type="text" name="dateRange" id="ci-co" class="form-control datepicker" placeholder=""
+        th:value="${session.dateRange}">
     </div>
 
     <div class="container-fluid px-0">
       <div class="row">
         <div class="col-md-6">
-          <input class="form-control" type="number" name="numOfRoom" placeholder="room">
+          <input class="form-control" min="0" type="number" name="numOfRoom" placeholder="room" th:value="${session.numOfRoom}">
         </div>
         <div class="col-md-6">
-          <input class="form-control" type="number" name="numOfPeople" placeholder="people">
+          <input class="form-control" min="0" type="number" name="numOfPeople" placeholder="people"
+            th:value="${session.numOfPeople}">
         </div>
       </div>
     </div>
     <button class="form-control btn btn-primary mt-3" type="submit" form="myform">Search</button>
   </form>
+
 </div>
 
 <div th:fragment="gg-map">
@@ -55,12 +57,12 @@
 </div>
 
 <div th:fragment="hotel-name (hotel)" class="container-fluid px-0">
-    <div class="row">
-      <div class="col-md-8">
-        <div>
-          <b  style="font-size: 1.5rem; color: #07c"> [[${hotel.name}]] </b>
-          <!-- <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>  -->
-          <i th:each="i :${#numbers.sequence(1, hotel.star)}" class="fas fa-star text-warning"></i> 
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <b style="font-size: 1.5rem; color: #07c"> [[${hotel.name}]] </b>
+        <!-- <i class="fas fa-star text-warning"></i> <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>  -->
+        <i th:each="i :${#numbers.sequence(1, hotel.star)}" class="fas fa-star text-warning"></i> 
           <i class="far fa-thumbs-up text-warning"></i>
         </div>
         <div>

@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
   function showResult(content) {
     $('#search-result').html(content);
     $('#search-result').show();

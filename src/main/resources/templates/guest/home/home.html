@@ -25,11 +25,11 @@
       object-fit: cover;
     }
 
-    div.container-fluid {
+    main div.container-fluid {
       margin-top: 2rem;
     }
 
-    div.row {
+    main div.row {
       margin-top: 1rem;
     }
 
@@ -53,7 +53,7 @@
           <div class="row ">
             <div class="col-md-5 px-1">
               <div style="position: relative;">
-                <input type="search" name="address" id="search-box" class="form-control" placeholder="...Ha Noi"
+                <input type="search" name="address" id="search-box" class="form-control" placeholder="...Destination"
                   required />
                 <div
                   style="position: absolute; overflow: auto; max-height: 250px; width: 100%; background-color:white; z-index: 9;"
@@ -66,10 +66,10 @@
             </div>
 
             <div class="col-md-1 px-1">
-              <input class="form-control" type="number" name="numOfRoom" placeholder="room" required>
+              <input class="form-control" min="0" type="number" name="numOfRoom" placeholder="room" required>
             </div>
             <div class="col-md-1 px-1">
-              <input class="form-control" type="number" name="numOfPeople" placeholder="people" required>
+              <input class="form-control" min="0" type="number" name="numOfPeople" placeholder="people" required>
             </div>
             <div class="col-md-1 px-1">
               <button class="form-control btn btn-primary" type="submit" form="myform">Search</button>

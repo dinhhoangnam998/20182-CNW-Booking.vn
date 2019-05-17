@@ -2,17 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<th:block th:include="~{/layout/base::head ('Title')}"></th:block>
-<style>
-main div div div.col-md-3 section {
-	margin-bottom: 1.5rem;
-	padding: 1rem;
-}
+	<th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+	<script src="/js/guest/home/live-search.js"></script>
+	<!-- date picker 2 -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<style>
+		main div div div.col-md-3 section {
+			margin-bottom: 1.5rem;
+			padding: 1rem;
+		}
 
-div.col-md-3 section>div {
-	margin-bottom: 1rem;
-}
-</style>
+		div.col-md-3 section>div {
+			margin-bottom: 1rem;
+		}
+	</style>
 </head>
 
 <body>
@@ -21,25 +26,24 @@ div.col-md-3 section>div {
 
 	<!-- main -->
 	<main>
-	<div class="container-fluid">
-		<div class="row">
-			<!-- col-3 -->
-			<div class="col-md-3">
-				<!-- search-box-vertical -->
-				<section class="bg-warning">
-					<div th:replace="~{/layout/guest-base::search-vertical}"></div>
-				</section>
+		<div class="container-fluid">
+			<div class="row">
+				<!-- col-3 -->
+				<div class="col-md-3">
+					<!-- search-box-vertical -->
+					<section class="bg-warning">
+						<div th:replace="~{/layout/guest-base::search-vertical}"></div>
+					</section>
 
-				<!-- filter -->
-				<section class="border">
-					<h4>Filter by</h4>
+					<!-- filter -->
+					<section class="border">
+						<h4>Filter by</h4>
 
-					<!--  -->
-					<div>
-						<b>Star</b>
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input"
-								th:id="${#ids.seq('star')}" name="example1"> <label
+						<!--  -->
+						<div>
+							<b>Star</b>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" th:id="${#ids.seq('star')}" name="example1"> <label
 								class="custom-control-label" th:for="${#ids.prev('star')}">One
 								Star</label>
 						</div>
@@ -163,7 +167,7 @@ div.col-md-3 section>div {
 				</section>
 
 				<!-- google map -->
-				<section>
+				<section >
 					<div th:replace="~{/layout/guest-base::gg-map}"></div>
 				</section>
 			</div>
@@ -236,9 +240,13 @@ div.col-md-3 section>div {
 }
 </style>
 	<script>
-		$('.each-hotel').hover(function() {
-			$(this).toggleClass('hover-background');
-		})
+		$(document).ready(function () {
+			$('.each-hotel').hover(function () {
+				$(this).toggleClass('hover-background');
+			})
+
+			$('input.datepicker').daterangepicker();
+		});
 	</script>
 </body>
 

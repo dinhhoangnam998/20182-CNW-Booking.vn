@@ -5,6 +5,17 @@
   <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" />
+  <script src="/js/guest/home/live-search.js"></script>
+  <!-- date picker 2 -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <style>
+    main div div div.col-md-3 section {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,86 +28,89 @@
       <div class="row">
         <!-- search colapse & map & facility... -->
         <div class="col-md-3">
-          <section>
+          <section class="bg-warning">
             <div th:replace="~{/layout/guest-base::search-vertical}"></div>
           </section>
 
 
-          <section>
+          <section class="border">
             <div>
-              <h4>What guest love</h4>
+              <h5>What guest love</h4>
 
-              <!-- each comment -->
-              <div>
-                <!-- commnent -->
-                <div style="font-size: 0.8em" class="my-1">
-                  “Spent one night during our vacation. The hotel is well situated for sightseeing, shopping and good
-                  local res. The hotel has a great atmosphere and lots of character. Our room was massive and extremely
-                  comfortable. The staff were very helpful and accommodating. They are deserved for very good review
-                  after
-                  our nice stay.”
-                </div>
-                <!-- media object -->
+                <!-- each comment -->
                 <div>
-                  <div class="media">
-                    <a class="d-flex align-self-center mr-2" href="#">
-                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-warning">
-                    </a>
-                    <div class="media-body">
-                      <div style="font-size: 1em">Mr. Abc</div>
-                      <div style="font-size: 0.7em">From England</div>
+                  <!-- commnent -->
+                  <div style="font-size: 0.8em" class="my-1">
+                    “Spent one night during our vacation. The hotel is well situated for sightseeing, shopping and good
+                    local res. The hotel has a great atmosphere and lots of character. Our room was massive and
+                    extremely
+                    comfortable. The staff were very helpful and accommodating. They are deserved for very good review
+                    after
+                    our nice stay.”
+                  </div>
+                  <!-- media object -->
+                  <div>
+                    <div class="media">
+                      <a class="d-flex align-self-center mr-2" href="#">
+                        <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-warning">
+                      </a>
+                      <div class="media-body">
+                        <div style="font-size: 1em">Mr. Abc</div>
+                        <div style="font-size: 0.7em">From England</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- each comment -->
-              <div>
-                <!-- commnent -->
-                <div style="font-size: 0.8em" class="my-1">
-                  “We booked another hotel before but We got nightmare. We decided to change to this hotel and we were
-                  definitely happy. The room was very attractive and well furnished with bathtub. Location was quiet as
-                  advertising.
-                  The staff was always cheerful and very helpful. Marcus and Kelly provided excellent services.”
-                </div>
-                <!-- media object -->
+                <!-- each comment -->
                 <div>
-                  <div class="media">
-                    <a class="d-flex align-self-center mr-2" href="#">
-                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-info">
-                    </a>
-                    <div class="media-body">
-                      <div style="font-size: 1em">Mrs. QWE</div>
-                      <div style="font-size: 0.7em">From Germany</div>
+                  <!-- commnent -->
+                  <div style="font-size: 0.8em" class="my-1">
+                    “We booked another hotel before but We got nightmare. We decided to change to this hotel and we were
+                    definitely happy. The room was very attractive and well furnished with bathtub. Location was quiet
+                    as
+                    advertising.
+                    The staff was always cheerful and very helpful. Marcus and Kelly provided excellent services.”
+                  </div>
+                  <!-- media object -->
+                  <div>
+                    <div class="media">
+                      <a class="d-flex align-self-center mr-2" href="#">
+                        <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-info">
+                      </a>
+                      <div class="media-body">
+                        <div style="font-size: 1em">Mrs. QWE</div>
+                        <div style="font-size: 0.7em">From Germany</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- each comment -->
-              <div>
-                <!-- commnent -->
-                <div style="font-size: 0.8em" class="my-1">
-                  “This hotel was fantastic. Best hotel room we have ever stayed during this holiday and staff was very
-                  friendly and helpful. Try to stay on upper floor. Can walk to the most local areas having vietnamese
-                  foods and fresh beer ( BIA HOI ). Airport transfer was arranged on time and driver was also great.
-                  Would
-                  definitely eveyone book a trip to Halong bay with hotel. It was such amazing and reasonable together
-                  with quality. Nice hotel !!!”
-                </div>
-                <!-- media object -->
+                <!-- each comment -->
                 <div>
-                  <div class="media">
-                    <a class="d-flex align-self-center mr-2" href="#">
-                      <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-success">
-                    </a>
-                    <div class="media-body">
-                      <div style="font-size: 1em">Mr. ASD</div>
-                      <div style="font-size: 0.7em">From Austria</div>
+                  <!-- commnent -->
+                  <div style="font-size: 0.8em" class="my-1">
+                    “This hotel was fantastic. Best hotel room we have ever stayed during this holiday and staff was
+                    very
+                    friendly and helpful. Try to stay on upper floor. Can walk to the most local areas having vietnamese
+                    foods and fresh beer ( BIA HOI ). Airport transfer was arranged on time and driver was also great.
+                    Would
+                    definitely eveyone book a trip to Halong bay with hotel. It was such amazing and reasonable together
+                    with quality. Nice hotel !!!”
+                  </div>
+                  <!-- media object -->
+                  <div>
+                    <div class="media">
+                      <a class="d-flex align-self-center mr-2" href="#">
+                        <img src="" alt="" style="height: 30px; width: 30px;" class="rounded-circle bg-success">
+                      </a>
+                      <div class="media-body">
+                        <div style="font-size: 1em">Mr. ASD</div>
+                        <div style="font-size: 0.7em">From Austria</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
 
             </div>
@@ -166,7 +180,7 @@
 
           <!-- room availabe -->
           <section>
-              <h4>Available</h4>
+            <h4>Available</h4>
             <!-- reserve info -->
             <div class="container-fluid border bg-warning   py-3 my-3">
               <div class="row">
@@ -256,8 +270,8 @@
                     </div>
                     
                     <!-- reserve button -->
-                    <div class="col-md-2 pl-0 border border-primary" style="text-align: right">
-                      <button type="submit" class="btn btn-primary px-4" form="reserve-form">I'll reserve</button>
+                    <div class="col-md-2  border border-primary" style="text-align: center;">
+                      <button type="submit" class="btn btn-primary px-4 mt-2" style="position: sticky; top: 10px;" form="reserve-form">I'll reserve</button>
                     </div>
 
                   </div>
@@ -288,6 +302,10 @@
         keyPress: true,
         controls: true
       });
+
+
+      $('input.datepicker').daterangepicker();
+
     });
   </script>
 </body>
