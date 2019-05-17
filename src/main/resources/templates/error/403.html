@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   
   <head>
-    <th:block th:include="~{/layout/base::head ('Title')}"></th:block>
+    <th:block th:include="~{/layout/base::head ('Acess Denied!')}"></th:block>
   </head>
 
   <body>
@@ -11,7 +11,16 @@
 
     <!-- main -->
     <main>
-      403
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong>Access denied!</strong> You should check your right to access this page!
+      </div>
+      <div>
+        <img src="/images/error/403.jpg" alt="">
+      </div>
     </main>   
 
     <!-- footer -->
