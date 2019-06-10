@@ -4,62 +4,62 @@
 <head>
   <th:block th:include="~{/layout/base::head ('Reserve Order List')}"></th:block>
   <style>
-      .rate-area {
-        float: left;
-        border-style: none;
-      }
-  
-      .rate-area:not(:checked)>input {
-        position: absolute;
-        top: -9999px;
-        clip: rect(0, 0, 0, 0);
-      }
-  
-      .rate-area:not(:checked)>label {
-        float: right;
-        width: 1em;
-        padding: 0 .1em;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 200%;
-        line-height: 1.2;
-        color: lightgrey;
-        text-shadow: 1px 1px #bbb;
-      }
-  
-      .rate-area:not(:checked)>label:before {
-        content: '★ ';
-      }
-  
-      .rate-area>input:checked~label {
-        color: gold;
-        text-shadow: 1px 1px #c60;
-        font-size: 200% !important;
-      }
-  
-      .rate-area:not(:checked)>label:hover,
-      .rate-area:not(:checked)>label:hover~label {
-        color: gold;
-  
-      }
-  
-      .rate-area>input:checked+label:hover,
-      .rate-area>input:checked+label:hover~label,
-      .rate-area>input:checked~label:hover,
-      .rate-area>input:checked~label:hover~label,
-      .rate-area>label:hover~input:checked~label {
-        color: gold;
-        text-shadow: 1px 1px goldenrod;
-  
-      }
-  
-      .rate-area>label:active {
-        position: relative;
-        top: 2px;
-        left: 2px;
-      }
-    </style>
+    .rate-area {
+      float: left;
+      border-style: none;
+    }
+
+    .rate-area:not(:checked)>input {
+      position: absolute;
+      top: -9999px;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .rate-area:not(:checked)>label {
+      float: right;
+      width: 1em;
+      padding: 0 .1em;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 200%;
+      line-height: 1.2;
+      color: lightgrey;
+      text-shadow: 1px 1px #bbb;
+    }
+
+    .rate-area:not(:checked)>label:before {
+      content: '★ ';
+    }
+
+    .rate-area>input:checked~label {
+      color: gold;
+      text-shadow: 1px 1px #c60;
+      font-size: 200% !important;
+    }
+
+    .rate-area:not(:checked)>label:hover,
+    .rate-area:not(:checked)>label:hover~label {
+      color: gold;
+
+    }
+
+    .rate-area>input:checked+label:hover,
+    .rate-area>input:checked+label:hover~label,
+    .rate-area>input:checked~label:hover,
+    .rate-area>input:checked~label:hover~label,
+    .rate-area>label:hover~input:checked~label {
+      color: gold;
+      text-shadow: 1px 1px goldenrod;
+
+    }
+
+    .rate-area>label:active {
+      position: relative;
+      top: 2px;
+      left: 2px;
+    }
+  </style>
 </head>
 
 <body>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="col-md-9">
-        
+
           <h4>Reserve Orders</h4>
           <div id="alert-box"></div>
 
@@ -149,15 +149,15 @@
                             <div>
                                 <h5>Vote</h5>
                                 <ul class="rate-area px-0" th:id="${ro.id}">
-                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="5" th:checked="${ro.voteByHost} == 5" /><label th:for="${#ids.prev('start')}" title="Amazing">5
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="5" th:readonly="${ro.votedHotel}" th:checked="${ro.voteByHost} == 5" /><label th:for="${#ids.prev('start')}" title="Amazing">5
                                     stars</label>
-                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="4" th:checked="${ro.voteByHost} == 4" /><label th:for="${#ids.prev('start')}" title="Good">4
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="4" th:readonly="${ro.votedHotel}" th:checked="${ro.voteByHost} == 4" /><label th:for="${#ids.prev('start')}" title="Good">4
                                     stars</label>
-                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="3" th:checked="${ro.voteByHost} == 3" /><label th:for="${#ids.prev('start')}" title="Average">3
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="3" th:readonly="${ro.votedHotel}" th:checked="${ro.voteByHost} == 3" /><label th:for="${#ids.prev('start')}" title="Average">3
                                     stars</label>
-                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="2" th:checked="${ro.voteByHost} == 2" /><label th:for="${#ids.prev('start')}" title="Not Good">2
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="2" th:readonly="${ro.votedHotel}" th:checked="${ro.voteByHost} == 2" /><label th:for="${#ids.prev('start')}" title="Not Good">2
                                     stars</label>
-                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="1" th:checked="${ro.voteByHost} == 1" /><label th:for="${#ids.prev('start')}" title="Bad">1 star</label>
+                                  <input type="radio" th:id="${#ids.seq('start')}" th:name="${ro.id}" value="1" th:readonly="${ro.votedHotel}" th:checked="${ro.voteByHost} == 1" /><label th:for="${#ids.prev('start')}" title="Bad">1 star</label>
                                 </ul>
                               </div>
                       </div>
@@ -177,35 +177,49 @@
   <footer th:replace="~{/layout/base::footer}"></footer>
 
   <script>
-      $(document).ready(function () {
-  
-        $('input').click(function (e) {
-          var roid = $(this).parent().attr("id");
-          var starValue = $(this).attr("value");
-          var url = "/host/vote/" + roid;
-  
-  
-          $.get(url, { value: starValue },
-            function (data, textStatus, jqXHR) {
-              if (textStatus == "success") {
+    $(document).ready(function () {
+
+      $('input').click(function (e) {
+        var roid = $(this).parent().attr("id");
+        var starValue = $(this).attr("value");
+        var url = "/host/vote/" + roid;
+
+
+        $.get(url, { value: starValue },
+          function (data, textStatus, jqXHR) {
+            if (textStatus == "success") {
+              var alertType = "";
+              var msg = "";
+              if (data == "success") {
+                alertType = "alert-success";
+                msg = 'Vote reserve order id ' + roid + ' success!';
+              } else if (data == "voted") {
+                alertType = "alert-warning";
+                msg = "This reserve order had been voted before!";
+              } else if (data == "notFinished") {
+                alertType = "alert-warning";
+                msg = "Please wait until reserve order is finished!";
+              }
+
+
                 var content =
-                  '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                  '<div class="alert ' + alertType + ' alert-dismissible fade show" role="alert">' +
                   '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                   '<span aria-hidden="true">&times;</span>' +
                   '<span class="sr-only">Close</span>' +
                   '</button>' +
-                  '<strong>Vote reserve order id ' + roid + ' success</strong>' +
+                  '<strong>' + msg + ' </strong>' +
                   '</div>';
-                $('#alert-box').html(content);
-              }
-            },
-            "text"
-          );
-        });
+              $('#alert-box').html(content);
+            }
+          },
+          "text"
+        );
       });
-  
-  
-    </script>
+    });
+
+
+  </script>
 </body>
 
 </html>

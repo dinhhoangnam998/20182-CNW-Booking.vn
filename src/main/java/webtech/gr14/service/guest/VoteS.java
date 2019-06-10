@@ -1,5 +1,7 @@
 package webtech.gr14.service.guest;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +14,43 @@ public class VoteS {
 	@Autowired
 	private ReserveOrderR roR;
 
-	public void setVoteByGuest(int roid, int value) {
+	public String setVoteByGuest(int roid, int value) {
 		ReserveOrder ro = roR.getOne(roid);
-		ro.setVoteByGuest(value);
-		roR.save(ro);
+		Date checkoutDate = ro.getCheckOutDate();
+		Date today = new Date();
+		boolean finished = today.getTime() > checkoutDate.getTime();
+		if (!finished) {
+			return "notFinished";
+		} else if (ro.isVotedGuest()) {
+			return "voted";
+		} else if (ro.isVotedGuest() == false && finished) {
+			ro.setVoteByGuest(value);
+			ro.setVotedGuest(true);
+			roR.save(ro);
+			return "success";
+		} else {
+			return "";
+		}
+
 	}
 
-	public void setVoteByHost(int roid, int value) {
+	public String setVoteByHost(int roid, int value) {
 		ReserveOrder ro = roR.getOne(roid);
-		ro.setVoteByHost(value);
-		roR.save(ro);
+		Date checkoutDate = ro.getCheckOutDate();
+		Date today = new Date();
+		boolean finished = today.getTime() > checkoutDate.getTime();
+		if (!finished) {
+			return "notFinished";
+		} else if (ro.isVotedHotel()) {
+			return "voted";
+		} else if (ro.isVotedHotel() == false && finished) {
+			ro.setVoteByHost(value);
+			ro.setVotedHotel(true);
+			roR.save(ro);
+			return "success";
+		} else {
+			return "";
+		}
 	}
 
 }

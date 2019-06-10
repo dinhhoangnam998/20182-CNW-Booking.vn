@@ -14,19 +14,17 @@ public class VoteC {
 
 	@Autowired
 	private VoteS vS;
-	
+
 	@ResponseBody
 	@GetMapping("/guest/vote/{roid}")
 	public String voteByGuest(@PathVariable int roid, @RequestParam int value) {
-		vS.setVoteByGuest(roid, value);
-		return "ok";
+		return vS.setVoteByGuest(roid, value);
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/host/vote/{roid}")
 	public String voteByHost(@PathVariable int roid, @RequestParam int value) {
-		vS.setVoteByHost(roid, value);
-		return "ok";
+		return vS.setVoteByHost(roid, value);
 	}
-	
+
 }

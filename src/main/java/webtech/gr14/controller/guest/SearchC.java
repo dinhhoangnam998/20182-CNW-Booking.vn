@@ -40,7 +40,4 @@ public class SearchC {
 		model.addAttribute("address", address);
 		return "/guest/search/search-results";
 	}
-	
-
-	
 }

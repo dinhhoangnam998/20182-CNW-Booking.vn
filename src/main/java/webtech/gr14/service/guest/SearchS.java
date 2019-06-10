@@ -76,6 +76,4 @@ public class SearchS {
 		return dR.findByNameContaining(querry);
 	}
 
-
-
 }

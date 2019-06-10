@@ -58,7 +58,9 @@ public class ReserveOrder {
 
 	// for admin to manage
 	private int voteByGuest;
+	private boolean votedGuest;
 	private int voteByHost;
+	private boolean votedHotel;
 	private boolean checkedHotel;
 	private boolean checkedGuest;
 

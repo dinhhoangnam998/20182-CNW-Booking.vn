@@ -70,12 +70,13 @@
   <main>
     <div class="container-fluid">
       <div id="alert-box"></div>
+      <h3 style="text-align: center">Booking History</h3>
 
       <div th:each="ro : ${ros}" class="container-fluid">
         <!-- hotel info -->
         <div class="row">
           <div class="col-md-3">
-            <img th:src="${ro.hotel.imgURL}" alt="no img found" style="height: 100px; object-fit: cover">
+            <img th:src="${ro.hotel.imgURL}" alt="no img found" style="height: 150px; width: 100%; object-fit: cover">
           </div>
           <div class="col-md-9">
             <!-- hotel info -->
@@ -94,11 +95,11 @@
                   <div>[[${ro.checkOutDate}]]</div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <div><b>Total length of stay:</b></div>
-                <div>[[${ro.numOfNight}]]</div>
+                <div>[[${ro.numOfNight}]] nights</div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div><b>Price</b></div>
                 <div>VND [[${ro.charge}]]</div>
               </div>
@@ -133,21 +134,36 @@
     $(document).ready(function () {
 
       $('input').click(function (e) {
+        var thisE = $(this);
         var roid = $(this).parent().attr("id");
         var starValue = $(this).attr("value");
         var url = "/guest/vote/" + roid;
 
-
+       
         $.get(url, { value: starValue },
           function (data, textStatus, jqXHR) {
             if (textStatus == "success") {
+              var alertType = "";
+              var msg = "";
+              if (data == "success") {
+                alertType = "alert-success";
+                msg = 'Vote reserve order id ' + roid + ' success!';
+              } else if (data == "voted") {
+                alertType = "alert-warning";
+                msg = "This reserve order had been voted before!";
+              } else if (data == "notFinished") {
+                alertType = "alert-warning";
+                msg = "Please try again when you checkout already!";
+              }
+
+
               var content =
-                '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                '<div class="alert ' + alertType + ' alert-dismissible fade show" role="alert">' +
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                 '<span aria-hidden="true">&times;</span>' +
                 '<span class="sr-only">Close</span>' +
                 '</button>' +
-                '<strong>Vote reserve order id ' + roid + ' success</strong>' +
+                '<strong>' + msg + ' </strong>' +
                 '</div>';
               $('#alert-box').html(content);
             }
